@@ -1,0 +1,18 @@
+{
+    "sourceFile": "database/migrations/2025_08_07_133729_create_gallery_images_table.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1754573860655,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1754573860655,
+            "name": "Commit-0",
+            "content": "<?php\n\nuse Illuminate\\Database\\Migrations\\Migration;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\n\nreturn new class extends Migration {\n    public function up(): void {\n        Schema::create('gallery_images', function (Blueprint $table) {\n            $table->id();\n            $table->foreignId('gallery_category_id')->constrained()->onDelete('cascade');\n            $table->string('image');\n            $table->timestamps();\n        });\n    }\n\n    public function down(): void {\n        Schema::dropIfExists('gallery_images');\n    }\n};\n"
+        }
+    ]
+}

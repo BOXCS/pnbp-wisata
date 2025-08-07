@@ -1,0 +1,18 @@
+{
+    "sourceFile": "database/migrations/2025_08_07_133629_create_cultures_table.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1754573812998,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1754573812998,
+            "name": "Commit-0",
+            "content": "<?php\n\nuse Illuminate\\Database\\Migrations\\Migration;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\n\nreturn new class extends Migration {\n    public function up(): void {\n        Schema::create('cultures', function (Blueprint $table) {\n            $table->id();\n            $table->string('name');\n            $table->text('description')->nullable();\n            $table->string('image')->nullable();\n            $table->timestamps();\n        });\n    }\n\n    public function down(): void {\n        Schema::dropIfExists('cultures');\n    }\n};"
+        }
+    ]
+}
