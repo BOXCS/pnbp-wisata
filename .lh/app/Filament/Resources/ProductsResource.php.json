@@ -1,0 +1,26 @@
+{
+    "sourceFile": "app/Filament/Resources/ProductsResource.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1754680258523,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1754680365604,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n class ProductsResource extends Resource\n {\n     protected static ?string $model = Products::class;\n \n-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';\n+    protected static ?string $navigationIcon = 'heroicon-o-gift-top';\n \n     protected static ?string $navigationLabel = 'Produk';\n \n     protected static ?string $pluralModelLabel = 'Daftar Produk';\n"
+                },
+                {
+                    "date": 1754681663901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,13 @@\n     protected static ?string $navigationLabel = 'Produk';\n \n     protected static ?string $pluralModelLabel = 'Daftar Produk';\n \n+    public static function getNavigationBadge(): ?string\n+    {\n+        return static::getModel()::count();\n+    }\n+\n     public static function form(Form $form): Form\n     {\n         return $form->schema([\n             Forms\\Components\\Section::make()\n"
+                }
+            ],
+            "date": 1754680258523,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Filament\\Resources;\n\nuse App\\Filament\\Resources\\ProductsResource\\Pages;\nuse App\\Filament\\Resources\\ProductsResource\\RelationManagers;\nuse App\\Models\\Products;\nuse Filament\\Forms;\nuse Filament\\Forms\\Form;\nuse Filament\\Resources\\Resource;\nuse Filament\\Tables;\nuse Filament\\Tables\\Table;\nuse Illuminate\\Database\\Eloquent\\Builder;\nuse Illuminate\\Database\\Eloquent\\SoftDeletingScope;\n\nclass ProductsResource extends Resource\n{\n    protected static ?string $model = Products::class;\n\n    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';\n\n    protected static ?string $navigationLabel = 'Produk';\n\n    protected static ?string $pluralModelLabel = 'Daftar Produk';\n\n    public static function form(Form $form): Form\n    {\n        return $form->schema([\n            Forms\\Components\\Section::make()\n                ->schema([\n                    Forms\\Components\\TextInput::make('name')\n                        ->label('Nama Produk')\n                        ->required(),\n\n                    Forms\\Components\\TextInput::make('type')\n                        ->label('Jenis Produk')\n                        ->placeholder('Contoh: Wisata, Penginapan, Transportasi')\n                        ->maxLength(255),\n\n                    Forms\\Components\\Textarea::make('description')\n                        ->label('Deskripsi'),\n\n                    Forms\\Components\\FileUpload::make('image')\n                        ->label('Gambar')\n                        ->image()\n                        ->directory('product-images')\n                        ->visibility('public')\n                        ->preserveFilenames()\n                        ->imagePreviewHeight('250')\n                        ->openable()\n                        ->downloadable()\n                        ->columnSpanFull(),\n                ])\n                ->columns(1) // <<-- ini penting supaya semua field vertikal\n        ]);\n    }\n\n    public static function table(Table $table): Table\n    {\n        return $table\n            ->columns([\n                Tables\\Columns\\ImageColumn::make('image')\n                    ->label('Gambar')\n                    ->square()\n                    ->size(60),\n\n                Tables\\Columns\\TextColumn::make('name')\n                    ->label('Nama')\n                    ->searchable()\n                    ->sortable(),\n\n                Tables\\Columns\\TextColumn::make('type')\n                    ->label('Jenis')\n                    ->searchable()\n                    ->sortable(),\n\n                Tables\\Columns\\TextColumn::make('created_at')\n                    ->label('Dibuat')\n                    ->dateTime('d M Y')\n                    ->sortable(),\n            ])\n            ->filters([\n                // filter opsional bisa ditambah di sini\n            ])\n            ->bulkActions([\n                Tables\\Actions\\DeleteBulkAction::make(),\n            ]);\n    }\n\n    public static function getRelations(): array\n    {\n        return [\n            //\n        ];\n    }\n\n    public static function getPages(): array\n    {\n        return [\n            'index' => Pages\\ListProducts::route('/'),\n            'create' => Pages\\CreateProducts::route('/create'),\n            'edit' => Pages\\EditProducts::route('/{record}/edit'),\n        ];\n    }\n}\n"
+        }
+    ]
+}

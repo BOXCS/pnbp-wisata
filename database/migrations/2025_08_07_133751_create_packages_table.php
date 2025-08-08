@@ -6,15 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
     public function up(): void {
-        Schema::create('package_images', function (Blueprint $table) {
+        Schema::create('packages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('package_id')->constrained()->onDelete('cascade');
-            $table->string('image');
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->decimal('price', 12, 2)->nullable();
             $table->timestamps();
         });
     }
 
     public function down(): void {
-        Schema::dropIfExists('package_images');
+        Schema::dropIfExists('packages');
     }
 };

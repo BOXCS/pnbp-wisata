@@ -18,37 +18,53 @@ class CultureResource extends Resource
     protected static ?string $model = Culture::class;
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationLabel = 'Budaya';
-    protected static ?string $pluralModelLabel = 'Budaya';
+    protected static ?string $pluralModelLabel = 'Daftar Budaya';
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
 
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\TextInput::make('name')
-                ->label('Nama Budaya')
-                ->required(),
+            Forms\Components\Section::make()
+                ->schema([
+                    Forms\Components\TextInput::make('name')
+                        ->label('Nama Budaya')
+                        ->required(),
 
-            Forms\Components\Textarea::make('description')
-                ->label('Deskripsi'),
+                    Forms\Components\Textarea::make('description')
+                        ->label('Deskripsi'),
 
-            Forms\Components\FileUpload::make('image')
-                ->label('Gambar')
-                ->image()
-                ->directory('budaya-images')
-                ->visibility('public')
-                ->preserveFilenames() // optional: jika ingin mempertahankan nama file asli
-                ->imagePreviewHeight('250') // tambahkan preview
-                ->openable() // optional: memungkinkan membuka file
-                ->downloadable() // optional: memungkinkan download file
-                ->columnSpanFull(),
+                    Forms\Components\FileUpload::make('image')
+                        ->label('Gambar')
+                        ->image()
+                        ->directory('budaya-images')
+                        ->visibility('public')
+                        ->preserveFilenames()
+                        ->imagePreviewHeight('250')
+                        ->openable()
+                        ->downloadable()
+                        ->columnSpanFull(),
+                ])
+                ->columns(1) // <<-- ini penting supaya semua field vertikal
         ]);
     }
+
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->label('Nama Budaya'),
-                Tables\Columns\TextColumn::make('description')->label('Deskripsi')->limit(30),
+                Tables\Columns\TextColumn::make('name')
+                ->label('Nama Budaya')
+                ->searchable(),
+
+                Tables\Columns\TextColumn::make('description')
+                ->label('Deskripsi')
+                ->limit(30),
+
                 Tables\Columns\ImageColumn::make('image')
                     ->label('Gambar')
                     ->disk('public') // pastikan menggunakan disk yang benar

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1754573882830,
@@ -12,6 +12,10 @@
                 {
                     "date": 1754573901409,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,17 +5,16 @@\n use Illuminate\\Support\\Facades\\Schema;\n \n return new class extends Migration {\n     public function up(): void {\n-        Schema::create('packages', function (Blueprint $table) {\n+        Schema::create('package_images', function (Blueprint $table) {\n             $table->id();\n-            $table->string('name');\n-            $table->text('description')->nullable();\n-            $table->decimal('price', 12, 2)->nullable();\n+            $table->foreignId('package_id')->constrained()->onDelete('cascade');\n+            $table->string('image');\n             $table->timestamps();\n         });\n     }\n \n     public function down(): void {\n-        Schema::dropIfExists('packages');\n+        Schema::dropIfExists('package_images');\n     }\n };\n"
+                },
+                {
+                    "date": 1754611987275,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,16 +5,17 @@\n use Illuminate\\Support\\Facades\\Schema;\n \n return new class extends Migration {\n     public function up(): void {\n-        Schema::create('package_images', function (Blueprint $table) {\n+        Schema::create('packages', function (Blueprint $table) {\n             $table->id();\n-            $table->foreignId('package_id')->constrained()->onDelete('cascade');\n-            $table->string('image');\n+            $table->string('name');\n+            $table->text('description')->nullable();\n+            $table->decimal('price', 12, 2)->nullable();\n             $table->timestamps();\n         });\n     }\n \n     public function down(): void {\n-        Schema::dropIfExists('package_images');\n+        Schema::dropIfExists('packages');\n     }\n-};\n+};\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1754573882830,
