@@ -1,0 +1,46 @@
+{
+    "sourceFile": "app/Providers/Filament/AdminPanelProvider.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 7,
+            "patches": [
+                {
+                    "date": 1754541328297,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1754541574449,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n <?php\n \n namespace App\\Providers\\Filament;\n \n+use DiogoGPinto\\AuthUIEnhancer\\AuthUIEnhancerPlugin;\n use Filament\\Http\\Middleware\\Authenticate;\n use Filament\\Http\\Middleware\\AuthenticateSession;\n use Filament\\Http\\Middleware\\DisableBladeIconComponents;\n use Filament\\Http\\Middleware\\DispatchServingFilamentEvent;\n@@ -35,8 +36,11 @@\n             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\\\Filament\\\\Pages')\n             ->pages([\n                 Pages\\Dashboard::class,\n             ])\n+            ->plugins([\n+                AuthUIEnhancerPlugin::make(),\n+            ])\n             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\\\Filament\\\\Widgets')\n             ->widgets([\n                 Widgets\\AccountWidget::class,\n                 Widgets\\FilamentInfoWidget::class,\n"
+                },
+                {
+                    "date": 1754548255010,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,8 +27,9 @@\n             ->default()\n             ->id('admin')\n             ->path('admin')\n             ->login()\n+            ->register()\n             ->colors([\n                 'primary' => Color::Amber,\n             ])\n             ->viteTheme('resources/css/filament/admin/theme.css')\n"
+                },
+                {
+                    "date": 1754548319394,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n             ->default()\n             ->id('admin')\n             ->path('admin')\n             ->login()\n-            ->register()\n+            ->registration()\n             ->colors([\n                 'primary' => Color::Amber,\n             ])\n             ->viteTheme('resources/css/filament/admin/theme.css')\n"
+                },
+                {
+                    "date": 1754582032421,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n     {\n         return $panel\n             ->default()\n             ->id('admin')\n-            ->path('admin')\n+            ->path('petugas')\n             ->login()\n             ->registration()\n             ->colors([\n                 'primary' => Color::Amber,\n"
+                },
+                {
+                    "date": 1754681919246,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,8 +31,10 @@\n             ->registration()\n             ->colors([\n                 'primary' => Color::Amber,\n             ])\n+            ->globalSearchKeyBindings(['command+k', 'ctrl+k'])\n+            ->font('Poppins')\n             ->viteTheme('resources/css/filament/admin/theme.css')\n             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\\\Filament\\\\Resources')\n             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\\\Filament\\\\Pages')\n             ->pages([\n"
+                },
+                {
+                    "date": 1754681996916,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,8 +33,9 @@\n                 'primary' => Color::Amber,\n             ])\n             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])\n             ->font('Poppins')\n+            ->favicon('images/logo-arjasa.svg')\n             ->viteTheme('resources/css/filament/admin/theme.css')\n             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\\\Filament\\\\Resources')\n             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\\\Filament\\\\Pages')\n             ->pages([\n"
+                },
+                {
+                    "date": 1754682170238,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,9 @@\n             ->colors([\n                 'primary' => Color::Amber,\n             ])\n             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])\n+            ->sidebarCollapsibleOnDesktop()\n             ->font('Poppins')\n             ->favicon('images/logo-arjasa.svg')\n             ->viteTheme('resources/css/filament/admin/theme.css')\n             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\\\Filament\\\\Resources')\n"
+                }
+            ],
+            "date": 1754541328297,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Providers\\Filament;\n\nuse Filament\\Http\\Middleware\\Authenticate;\nuse Filament\\Http\\Middleware\\AuthenticateSession;\nuse Filament\\Http\\Middleware\\DisableBladeIconComponents;\nuse Filament\\Http\\Middleware\\DispatchServingFilamentEvent;\nuse Filament\\Pages;\nuse Filament\\Panel;\nuse Filament\\PanelProvider;\nuse Filament\\Support\\Colors\\Color;\nuse Filament\\Widgets;\nuse Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse;\nuse Illuminate\\Cookie\\Middleware\\EncryptCookies;\nuse Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken;\nuse Illuminate\\Routing\\Middleware\\SubstituteBindings;\nuse Illuminate\\Session\\Middleware\\StartSession;\nuse Illuminate\\View\\Middleware\\ShareErrorsFromSession;\n\nclass AdminPanelProvider extends PanelProvider\n{\n    public function panel(Panel $panel): Panel\n    {\n        return $panel\n            ->default()\n            ->id('admin')\n            ->path('admin')\n            ->login()\n            ->colors([\n                'primary' => Color::Amber,\n            ])\n            ->viteTheme('resources/css/filament/admin/theme.css')\n            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\\\Filament\\\\Resources')\n            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\\\Filament\\\\Pages')\n            ->pages([\n                Pages\\Dashboard::class,\n            ])\n            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\\\Filament\\\\Widgets')\n            ->widgets([\n                Widgets\\AccountWidget::class,\n                Widgets\\FilamentInfoWidget::class,\n            ])\n            ->middleware([\n                EncryptCookies::class,\n                AddQueuedCookiesToResponse::class,\n                StartSession::class,\n                AuthenticateSession::class,\n                ShareErrorsFromSession::class,\n                VerifyCsrfToken::class,\n                SubstituteBindings::class,\n                DisableBladeIconComponents::class,\n                DispatchServingFilamentEvent::class,\n            ])\n            ->authMiddleware([\n                Authenticate::class,\n            ]);\n    }\n}\n"
+        }
+    ]
+}

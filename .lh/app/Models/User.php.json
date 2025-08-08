@@ -1,0 +1,26 @@
+{
+    "sourceFile": "app/Models/User.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1754548853488,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1754603632750,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,36 @@\n+<?php\n+\n+namespace App\\Models;\n+\n+use Filament\\Models\\Contracts\\FilamentUser;\n+use Filament\\Panel;\n+use Illuminate\\Contracts\\Auth\\MustVerifyEmail;\n+use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\n+use Illuminate\\Foundation\\Auth\\User as Authenticatable;\n+use Illuminate\\Notifications\\Notifiable;\n+use Laravel\\Sanctum\\HasApiTokens;\n+\n+class User extends Authenticatable implements FilamentUser\n+{\n+    use HasApiTokens, HasFactory, Notifiable;\n+\n+    protected $fillable = [\n+        'name',\n+        'email',\n+        'password',\n+    ];\n+\n+    protected $hidden = [\n+        'password',\n+        'remember_token',\n+    ];\n+\n+    protected $casts = [\n+        'email_verified_at' => 'datetime',\n+    ];\n+\n+    public function canAccessPanel(Panel $panel): bool\n+    {\n+        return str_ends_with($this->email, '@hyangargopuro.research-ai.my.id') && $this->hasVerifiedEmail();\n+    }\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1754604908235,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,36 +30,7 @@\n     ];\n \n     public function canAccessPanel(Panel $panel): bool\n     {\n-        return str_ends_with($this->email, '@hyangargopuro.research-ai.my.id') && $this->hasVerifiedEmail();\n+        return str_ends_with($this->email, '@gmail.com');\n     }\n-}\n-<?php\n-\n-namespace App\\Models;\n-\n-use Illuminate\\Contracts\\Auth\\MustVerifyEmail;\n-use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\n-use Illuminate\\Foundation\\Auth\\User as Authenticatable;\n-use Illuminate\\Notifications\\Notifiable;\n-use Laravel\\Sanctum\\HasApiTokens;\n-\n-class User extends Authenticatable\n-{\n-    use HasApiTokens, HasFactory, Notifiable;\n-\n-    protected $fillable = [\n-        'name',\n-        'email',\n-        'password',\n-    ];\n-\n-    protected $hidden = [\n-        'password',\n-        'remember_token',\n-    ];\n-\n-    protected $casts = [\n-        'email_verified_at' => 'datetime',\n-    ];\n }\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1754548853488,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Models;\n\nuse Illuminate\\Contracts\\Auth\\MustVerifyEmail;\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\nuse Illuminate\\Foundation\\Auth\\User as Authenticatable;\nuse Illuminate\\Notifications\\Notifiable;\nuse Laravel\\Sanctum\\HasApiTokens;\n\nclass User extends Authenticatable\n{\n    use HasApiTokens, HasFactory, Notifiable;\n\n    protected $fillable = [\n        'name',\n        'email',\n        'password',\n    ];\n\n    protected $hidden = [\n        'password',\n        'remember_token',\n    ];\n\n    protected $casts = [\n        'email_verified_at' => 'datetime',\n    ];\n}"
+        }
+    ]
+}

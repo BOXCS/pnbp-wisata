@@ -1,0 +1,18 @@
+{
+    "sourceFile": "resources/css/filament/admin/tailwind.config.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1754541512441,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1754541512441,
+            "name": "Commit-0",
+            "content": "import preset from '../../../../vendor/filament/filament/tailwind.config.preset'\n\nexport default {\n    presets: [preset],\n    content: [\n        './app/Filament/**/*.php',\n        './resources/views/filament/**/*.blade.php',\n        './vendor/filament/**/*.blade.php',\n        './vendor/diogogpinto/filament-auth-ui-enhancer/resources/**/*.blade.php',\n    ],\n}\n"
+        }
+    ]
+}

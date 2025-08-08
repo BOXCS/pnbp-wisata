@@ -5,68 +5,164 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Great Art of Arjasa</title>
+
+    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        robotoSlab: ['"Roboto Slab"', 'serif'],
+                    },
+                },
+            },
+        }
+    </script>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&family=Sanchez:ital@0;1&display=swap"
+        rel="stylesheet">
+
     <style>
-        /* Definsi kelas .wave-mask untuk membuat lengkungan */
-        .wave-mask {
-            -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 C60,33 60,66 0,100 L100,100 L100,0 Z" fill="white"/></svg>');
-            -webkit-mask-size: 100% 100%;
-            -webkit-mask-repeat: no-repeat;
-            mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 C60,33 60,66 0,100 L100,100 L100,0 Z" fill="white"/></svg>');
-            mask-size: 100% 100%;
-            mask-repeat: no-repeat;
+        @keyframes imageFade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            25% {
+                opacity: 1;
+                transform: scale(1.05);
+                /* Sedikit zoom in */
+            }
+
+            33.33% {
+                opacity: 0;
+                transform: scale(1.1);
+                /* Zoom in lebih jauh saat fade out */
+            }
+
+            91.66% {
+                opacity: 0;
+                transform: scale(1);
+                /* Kembali ke ukuran normal */
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                /* Siap untuk siklus berikutnya */
+            }
+        }
+
+        .fade-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            /* Untuk memastikan zoom tidak keluar container */
+        }
+
+        .fade-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            animation: imageFade 12s infinite;
+            animation-fill-mode: both;
+            transform-origin: center center;
+            /* Zoom dari tengah gambar */
+            will-change: transform, opacity;
+            /* Optimasi performa */
+        }
+
+        /* Gambar pertama (bg2) - aktif di 0-4s dan 8-12s */
+        .fade-image:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        /* Gambar kedua (bg3) - aktif di 4-8s */
+        .fade-image:nth-child(2) {
+            animation-delay: -8s;
+        }
+
+        /* Gambar ketiga (bg4) - aktif di 8-12s */
+        .fade-image:nth-child(3) {
+            animation-delay: -4s;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 10;
         }
     </style>
 
-<style>
-    .fade-in {
-      animation: fadeInUp 0.6s ease forwards;
-    }
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px) scale(0.95);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
+    <style>
+        /* Tambahkan di CSS */
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #f97316;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Untuk card hover */
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
     </style>
-    
 </head>
 
-<body class="font-sans bg-white">
+
+<body class="bg-white">
+    <!-- Navbar Wrapper -->
     <div class="relative w-full min-h-screen md:h-screen">
-
-        <!-- Logo di pojok kiri atas -->
-        <div class="absolute top-4 left-4 md:top-6 md:left-6 z-30">
-            <img src="images/logo-arjasa.svg" alt="Logo" class="w-50 md:w-60 h-auto" />
-        </div>
-
-        <!-- Konten kiri -->
         <div
-            class="absolute md:absolute top-0 left-0 w-full md:w-1/2 h-screen md:h-full flex flex-col justify-center items-center md:items-start text-center md:text-left py-12 px-6 sm:px-12 md:px-16 lg:px-32 z-10">
+            class="absolute top-0 left-0 w-full flex flex-col justify-center items-center text-center py-52 px-6 sm:px-12 z-10">
 
-            <div class="max-w-md">
-                <h1 class="text-5xl sm:text-6xl md:text-6xl font-black leading-tight text-gray-800">
-                    <div>GREAT</div>
-                    <div>ART</div>
-                    <div>OF</div>
-                    <div>ARJASA</div>
+            <div class="w-full">
+                <h1 class="text-base sm:text-2xl font-extralight text-white" style="letter-spacing: 0.3em;">
+                    GREAT ART OF ARJASA
                 </h1>
-                <h2
-                    class="text-lg sm:text-2xl md:text-2xl mt-4 md:mt-6 text-gray-600 bg-amber-50/70 sm:bg-amber-50/70 lg:text-gray-600">
-                    Telusuri Keindahan Arjasa Yang Belum Pernah Anda Temui Sebelumnya
+
+                <div class="w-96 h-1 bg-white mx-auto mt-5 mb-8"></div>
+                <h2 class="text-lg sm:text-6xl mt-4 font-robotoSlab font-light text-white leading-snug text-center"
+                    style="letter-spacing: 0.2rem; lin">
+                    ANUGERAH DESA WISATA INDONESIA (ADWI) 2024:<br>
+                    <span class="text-white">ARJASA</span>
+                    <span class="text-transparent" style="-webkit-text-stroke: 1px white;">VILLAGE'S</span>
                 </h2>
-                <button
-                    class="mt-6 md:mt-8 bg-orange-500 hover:bg-orange-600 text-white font-bold px-10 py-4 md:px-8 md:py-3 rounded-b-3xl shadow-lg transition-transform transform hover:scale-105">
-                    BOOK NOW!
-                </button>
             </div>
-
         </div>
-
 
         <!-- Navbar di atas gambar - Mobile Menu Button -->
         <div class="md:hidden absolute top-4 right-4 z-30">
@@ -79,21 +175,45 @@
             </button>
         </div>
 
-        <!-- Navbar di atas gambar - Desktop -->
-        <div id="navbar" class="hidden md:flex absolute top-6 right-8 items-center gap-6 text-xl font-semibold z-20">
-            <nav class="flex flex-col md:flex-row gap-4 md:gap-10">
-                <a href="#profile" class="hover:text-orange-500 transition-colors">PROFILE</a>
-                <a href="#budaya" class="hover:text-orange-500 transition-colors">BUDAYA</a>
-                <a href="#gallery" class="hover:text-orange-500 transition-colors">GALLERY</a>
-                <a href="#packages" class="hover:text-orange-500 transition-colors">PACKAGES</a>
-                <a href="#facility" class="hover:text-orange-500 transition-colors">FACILITY</a>
-                <a href="#souvenir" class="hover:text-orange-500 transition-colors">SOUVENIR</a>
-                <a href="#igpics" class="hover:text-orange-500 transition-colors">IGPICS</a>
-            </nav>
-            <div class="flex items-center gap-2 font-medium">
-                <span>ID</span>
-                <span class="text-gray-300">|</span>
-                <span>EN</span>
+        <!-- Navbar Wrapper -->
+        <div class="fixed top-0 w-full h-fit bg-white shadow z-50 py-4">
+            <div class="relative flex items-center px-6 md:px-1 py-4 max-w-screen-xl mx-auto">
+
+                <!-- Logo di kiri -->
+                <div class="absolute left-0">
+                    <img src="images/logo-arjasa.svg" alt="Logo" class="h-20 md:h-20" />
+                </div>
+
+                <!-- Desktop Navbar di tengah -->
+                <div class="hidden md:flex flex-col items-center justify-center w-full text-lg font-semibold">
+                    <nav class="flex gap-6">
+                        <a href="#profile" class="nav-link hover:text-orange-500 transition-colors">PROFILE</a>
+                        <a href="#budaya" class="nav-link hover:text-orange-500 transition-colors">CULTURE</a>
+                        <a href="#gallery" class="nav-link hover:text-orange-500 transition-colors">GALLERY</a>
+                        <a href="#packages" class="nav-link hover:text-orange-500 transition-colors">PACKAGES</a>
+                        <a href="#facility" class="nav-link hover:text-orange-500 transition-colors">FACILITY</a>
+                        <a href="#souvenir" class="nav-link hover:text-orange-500 transition-colors">PRODUCT</a>
+                        <a href="#igpics" class="nav-link hover:text-orange-500 transition-colors">IGPICS</a>
+                    </nav>
+                </div>
+                <div class="absolute right-20 font-medium mt-1">
+                    <span>ID</span>
+                    <span class="text-gray-300">|</span>
+                    <span>EN</span>
+                    <span class="text-gray-300">|</span>
+                    <span>CN</span>
+                </div>
+
+                <!-- Mobile Menu Button di kanan -->
+                <div class="absolute right-0 md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-800">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+
             </div>
         </div>
 
@@ -121,21 +241,64 @@
             </div>
         </div>
 
-        <!-- Gambar cover bergelombang -->
-        <div class="absolute top-0 right-0 h-full w-full md:w-auto z-0">
-            <img src="images/hero-images.png" alt="Arjasa" class="h-full w-full object-cover" />
+        <!-- Background Slideshow Container -->
+        <div class="absolute top-0 left-0 w-full h-5/6 z-0 overflow-hidden">
+            <div class="fade-container">
+                <div class="image-loader"></div>
+                <img src="images/hero-bg2.jpeg" class="fade-image" />
+                <img src="images/hero-bg3 (1).jpg" class="fade-image" />
+                <img src="images/hero-bg4.jpg" class="fade-image" />
+                <div class="overlay"></div>
+            </div>
         </div>
-
     </div>
 
-    <div class="relative w-full h-16 md:h-24">
+    <div class="relative -mt-56 z-20 flex justify-center">
+        <div
+            class="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-6 py-10 bg-white rounded-xl shadow-lg">
+            <!-- Bagian 1 -->
+            <div class="flex items-start gap-4 bg-white p-4">
+                <img src="images/clean-hands.svg" alt="Icon 1" class="w-20 h-20 object-contain">
+                <div>
+                    <h3 class="text-lg font-semibold mb-1">Cleanliness and Beauty</h3>
+                    <p class="text-sm text-gray-600">Experience the clean and beauty of Penglipuran village</p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="flex items-start gap-4 bg-white p-4">
+                <img src="images/temple.svg" alt="Icon 2" class="w-20 h-20 object-contain">
+                <div>
+                    <h3 class="text-lg font-semibold mb-1">Cultural Preservation</h3>
+                    <p class="text-sm text-gray-600">Explore the cultural preservation efforts in the picturesque
+                        Penglipuran
+
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="flex items-start gap-4 bg-white p-4">
+                <img src="images/puzzle.png" alt="Icon 3" class="w-20 h-20 object-contain">
+                <div>
+                    <h3 class="text-lg font-semibold mb-1">Engaging Activities</h3>
+                    <p class="text-sm text-gray-600">Experience activities in Penglipuran that showcase the culture of
+                        Bali</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {{-- <div class="relative w-full h-16 md:h-24">
         <img src="images/barongan.svg" alt="Transition"
             class="absolute top-1/2 left-20 md:left-40 w-24 md:w-40 h-auto -translate-x-1/2 -translate-y-3/4 z-20" />
-    </div>
+    </div> --}}
 
 
     <!-- Section: Profile of Arjasa -->
-    <section id="profile" class=" py-5 px-6 md:px-16 text-center">
+    <section id="profile" class=" py-10 px-6 md:px-16 text-center">
         <h2 class="text-4xl font-extrabold text-gray-800 mb-4">Profile of Arjasa</h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
             Arjasa merupakan wilayah dengan warisan budaya yang kaya dari zaman Megalitikum hingga modern. Berikut
@@ -199,6 +362,7 @@
 
     <section id="vision" class="relative py-16 px-6 md:px-16 text-white text-center">
         <!-- Background -->
+        <div class="image-loader"></div>
         <img src="images/visi-bg.svg" alt="Background Visi"
             class="absolute top-0 left-0 w-full h-full object-cover z-0 pointer-events-none" />
 
@@ -323,7 +487,7 @@
                 <div id="main-display" class="w-full transition-all duration-700">
                     <div class="aspect-[16/9] w-full">
                         <iframe class="w-full h-full rounded-lg shadow-lg"
-                            src="https://www.youtube.com/embed/qxrWYrmujGM" title="YouTube video player"
+                            src="https://www.youtube.com/embed/zHBb5RIztBQ" title="YouTube video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen>
@@ -356,9 +520,325 @@
         </div>
     </section>
 
+    <section id="packages" class="py-16 px-6 md:px-16 bg-white text-center">
+        <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-2">5 RECOMMENDED PACKAGES Travel</h2>
+        <p class="text-lg text-gray-600 mb-12">
+            Wisata terbaik berdasarkan tingkat ketertarikan wisatawan Arjasa dan kepopuleran wisata tersebut
+        </p>
+
+        <!-- Baris Pertama: 2 Card -->
+        <div class="flex flex-wrap justify-center gap-6 mb-6">
+            <!-- Card 1 -->
+            <div class="w-full md:w-[48%] h-96 rounded-2xl overflow-hidden shadow-md relative">
+                <!-- Using img tag instead of background image for better reliability -->
+                <img src="images/packages-1.svg" alt="Package 1"
+                    class="absolute inset-0 w-full h-full object-cover z-0">
+
+                <!-- Overlay layer -->
+                <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+
+                <!-- Content -->
+                <div class="relative z-20 flex items-end justify-between px-6 py-4 h-80 text-white">
+                    <div class="text-left">
+                        <h3 class="text-xl font-semibold">Hyang Argopuro Festival</h3>
+                        <div class="text-yellow-400">★★★☆☆</div>
+                        <p class="text-orange-300 font-bold">Rp. 5.000</p>
+                    </div>
+                    <button
+                        class="bg-white text-blue-600 font-semibold px-3 py-1 rounded-lg hover:bg-gray-100 transition"
+                        data-title="Hyang Argopuro Festival" data-price="Rp. 5.000"
+                        data-description="Festival Hyang Argopuro adalah acara budaya tahunan yang diselenggarakan oleh Desa Wisata Adat Arjasa, menampilkan upacara tradisional Mendhak Tirta Manggala Hyang yang dilaksanakan di Sendang Tirtha Amertha Rajasa."
+                        data-map="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.8620543286847!2d113.73803847589068!3d-8.115525081210887!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd695b0276ac7bf%3A0x94113b9cbef1eb5e!2sSendang%20Tirtha%20Amertha%20Rajasa!5e0!3m2!1sid!2sid!4v1754316982817!5m2!1sid!2sid"
+                        onclick="openModal(this)">
+                        See Details
+                    </button>
+
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="w-full md:w-[48%] h-96 rounded-2xl overflow-hidden shadow-md relative">
+                <img src="images/packages-2.svg" alt="Package 2"
+                    class="absolute inset-0 w-full h-full object-cover z-0">
+                <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+                <div class="relative z-20 flex items-end justify-between px-6 py-4 h-80 text-white">
+                    <div class="text-left">
+                        <h3 class="text-xl font-semibold">One Day Tour Arjasa Village - Educational Tour</h3>
+                        <div class="text-yellow-400">★★★☆☆</div>
+                        <p class="text-orange-300 font-bold">Rp. 10.000</p>
+                    </div>
+                    <button
+                        class="bg-white text-blue-600 font-semibold px-3 py-1 rounded-lg hover:bg-gray-100 transition">
+                        See Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Baris Kedua: 3 Card -->
+        <div class="flex flex-wrap justify-center gap-6">
+            <!-- Card 3 -->
+            <div class="w-full md:w-[31%] h-80 rounded-2xl overflow-hidden shadow-md relative">
+                <img src="images/packages-3.svg" alt="Package 3"
+                    class="absolute inset-0 w-full h-full object-cover z-0">
+                <div
+                    class="absolute inset-0 bg-black bg-opacity-50 z-10 flex items-end justify-between px-6 py-4 text-white">
+                    <div class="text-left h-72">
+                        <h3 class="text-xl font-semibold">One Day Tour Arjasa Village - Educational Tour</h3>
+                        <div class="text-yellow-400">★★★☆☆</div>
+                        <p class="text-orange-300 font-bold">Rp. 25.000</p>
+                    </div>
+                    <button
+                        class="bg-white text-blue-600 font-semibold px-3 py-1 rounded-lg hover:bg-gray-100 transition">
+                        See Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="w-full md:w-[31%] h-80 rounded-2xl overflow-hidden shadow-md relative">
+                <img src="images/packages-4.svg" alt="Package 4"
+                    class="absolute inset-0 w-full h-full object-cover z-0">
+                <div
+                    class="absolute inset-0 bg-black bg-opacity-50 z-10 flex items-end justify-between px-6 py-4 text-white">
+                    <div class="text-left h-72">
+                        <h3 class="text-xl font-semibold">Heritage & Art Camp Arjasa Village</h3>
+                        <div class="text-yellow-400">★★★☆☆</div>
+                        <p class="text-orange-300 font-bold">Rp. 25.000</p>
+                    </div>
+                    <button
+                        class="bg-white text-blue-600 font-semibold px-3 py-1 rounded-lg hover:bg-gray-100 transition">
+                        See Details
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="w-full md:w-[31%] h-80 rounded-2xl overflow-hidden shadow-md relative">
+                <img src="images/packages-5.svg" alt="Package 5"
+                    class="absolute inset-0 w-full h-full object-cover z-0">
+                <div
+                    class="absolute inset-0 bg-black bg-opacity-50 z-10 flex items-end justify-between px-6 py-4 text-white">
+                    <div class="text-left h-72">
+                        <h3 class="text-xl font-semibold">Hyang Argopuro Festival</h3>
+                        <div class="text-yellow-400">★★★☆☆</div>
+                        <p class="text-orange-300 font-bold">Rp. 25.000</p>
+                    </div>
+                    <button
+                        class="bg-white text-blue-600 font-semibold px-3 py-1 rounded-lg hover:bg-gray-100 transition">
+                        See Details
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Modal -->
+    <div id="destinationModal"
+        class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white rounded-xl p-6 w-[90%] max-w-3xl relative">
+            <button onclick="closeModal()"
+                class="absolute top-2 right-2 text-gray-500 hover:text-red-600 text-xl font-bold">&times;</button>
+
+            <h3 id="modalTitle" class="text-2xl font-bold mb-2"></h3>
+            <p id="modalPrice" class="text-orange-500 font-semibold mb-4"></p>
+            <p id="modalDescription" class="text-gray-700 mb-4"></p>
+
+            <div class="aspect-w-16 aspect-h-9">
+                <iframe id="modalMap" class="w-full h-64 rounded-lg border" loading="lazy" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <section id="facility" class="py-16 px-6 md:px-16 bg-white text-gray-800">
+        <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2">FACILITY</h2>
+        <p class="text-center text-lg max-w-2xl mx-auto mb-12">
+            Adalah sebuah warisan indahnya alam dan budaya yang masih terjaga di Arjasa yang dapat anda jelajahi
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Left Column -->
+            <div class="relative h-[36rem] bg-cover bg-center rounded-lg overflow-hidden"
+                style="background-image: url('images/facility-1.svg')">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-start justify-end p-6">
+                    <h3 class="text-white text-2xl font-bold mb-3">Unlock the hidden gem of Arjasa</h3>
+                    <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition">
+                        View All Facility
+                    </button>
+                </div>
+            </div>
+
+            <!-- Middle Column -->
+            <div class="flex flex-col gap-6">
+                <div class="relative h-[17rem] bg-cover bg-center rounded-lg overflow-hidden"
+                    style="background-image: url('images/facility-2.svg')">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <h4 class="text-white font-bold text-lg">Explore Local Life</h4>
+                    </div>
+                </div>
+                <div class="relative h-[17rem] bg-cover bg-center rounded-lg overflow-hidden"
+                    style="background-image: url('images/facility-3.svg')">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <h4 class="text-white font-bold text-lg">Cultural Experience</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="flex flex-col gap-6">
+                <!-- ACOMODATION -->
+                <div class="p-6 bg-gray-100 rounded-lg shadow">
+                    <h3 class="text-xl font-bold mb-2">ACOMODATION</h3>
+                    <p class="text-gray-600 mb-4">
+                        Beragam penginapan dari homestay lokal hingga resort alami yang menyatu dengan alam Arjasa.
+                    </p>
+                    <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition">
+                        View More
+                    </button>
+                </div>
+
+                <!-- TRANSPORTATION -->
+                <div class="p-6 bg-gray-100 rounded-lg shadow">
+                    <h3 class="text-xl font-bold mb-2">TRANSPORTATION</h3>
+                    <ul class="list-disc list-inside text-gray-600 mb-4">
+                        <li>Ojek Tradisional</li>
+                        <li>Mobil Wisata</li>
+                        <li>Sepeda Gunung</li>
+                        <li>Jasa Antar Lokal</li>
+                    </ul>
+                    <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition">
+                        View More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="souvenir" class="py-16 px-6 md:px-16 bg-white text-gray-800">
+        <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2">SOUVENIR</h2>
+        <p class="text-center text-lg max-w-2xl mx-auto mb-12">
+            Adalah sebuah warisan indahnya alam dan budaya yang masih terjaga di Arjasa yang dapot anda jelajahi
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Left Column -->
+            <div class="relative h-[36rem] bg-cover bg-center rounded-lg overflow-hidden"
+                style="background-image: url('images/facility-1.svg')">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-start justify-end p-6">
+                    <h3 class="text-white text-2xl font-bold mb-3">Unlock the hidden gem of Arjasa</h3>
+                    <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition">
+                        View All Facility
+                    </button>
+                </div>
+            </div>
+
+            <!-- Middle Column -->
+            <div class="flex flex-col gap-6">
+                <div class="relative h-[17rem] bg-cover bg-center rounded-lg overflow-hidden"
+                    style="background-image: url('images/facility-2.svg')">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <h4 class="text-white font-bold text-lg">Explore Local Life</h4>
+                    </div>
+                </div>
+                <div class="relative h-[17rem] bg-cover bg-center rounded-lg overflow-hidden"
+                    style="background-image: url('images/facility-3.svg')">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <h4 class="text-white font-bold text-lg">Cultural Experience</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="flex flex-col gap-6">
+                <!-- CULINARY -->
+                <div class="p-6 bg-gray-100 rounded-lg shadow">
+                    <h3 class="text-xl font-bold mb-2">CULINARY</h3>
+                    <p class="text-gray-600 mb-4">
+                        Beragam penginapan dari homestay lokal hingga resort alami yang menyatu dengan alam Arjasa.
+                    </p>
+                    <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition">
+                        View More
+                    </button>
+                </div>
+
+                <!-- MERCHANDISE -->
+                <div class="p-6 bg-gray-100 rounded-lg shadow">
+                    <h3 class="text-xl font-bold mb-2">MERCHANDISE</h3>
+                    <p class="text-gray-600 mb-4">
+                        Beragam penginapan dari homestay lokal hingga resort alami yang menyatu dengan alam Arjasa.
+                    </p>
+                    <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition">
+                        View More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="social" class="py-16 px-6 md-px-16 bg-white text-gray-800">
+        <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2">DesaWisataArjasaOfficial</h2>
+
+        <div class="flex flex-wrap justify-center gap-6 px-10">
+            <!-- Card 3 -->
+            <div class="w-full md:w-[31%] h-80 rounded-2xl overflow-hidden shadow-md relative">
+                <img src="images/packages-3.svg" alt="Package 3"
+                    class="absolute inset-0 w-full h-full object-cover z-0">
+            </div>
+
+            <!-- Card 4 -->
+            <div class="w-full md:w-[31%] h-80 rounded-2xl overflow-hidden shadow-md relative">
+                <img src="images/packages-4.svg" alt="Package 4"
+                    class="absolute inset-0 w-full h-full object-cover z-0">
+            </div>
+
+            <!-- Card 5 -->
+            <div class="w-full md:w-[31%] h-80 rounded-2xl overflow-hidden shadow-md relative">
+                <img src="images/packages-5.svg" alt="Package 5"
+                    class="absolute inset-0 w-full h-full object-cover z-0">
+            </div>
+        </div>
+    </section>
+
+    <section id="social" class="py-16 px-6 md:px-16 bg-white text-gray-800">
+        <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2">WHAT'S HAPPENING</h2>
+        <p class="text-center text-lg max-w-2xl mx-auto mb-12">
+            Apa saja yang terjadi seputar Pariwisata, Kebudayaan dan Event di Arjasa
+        </p>
+
+        <!-- Google Maps Embed -->
+        <div class="flex justify-center">
+            <div class="w-full md:w-[90%] h-[450px] rounded-lg overflow-hidden shadow-lg">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.857847011082!2d113.73451588487477!3d-8.115953060346706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6953f62ed30bb%3A0xeda68b0d4c733f41!2sKantor%20Desa%20Arjasa!5e0!3m2!1sid!2sid!4v1754348200377!5m2!1sid!2sid"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
 
 
 </body>
+
+<script>
+    function openModal(button) {
+        document.getElementById('modalTitle').innerText = button.dataset.title;
+        document.getElementById('modalPrice').innerText = button.dataset.price;
+        document.getElementById('modalDescription').innerText = button.dataset.description;
+        document.getElementById('modalMap').src = button.dataset.map;
+
+        document.getElementById('destinationModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('destinationModal').classList.add('hidden');
+        document.getElementById('modalMap').src = ''; // Reset iframe agar tidak autoplay
+    }
+</script>
 
 <script>
     // Mobile menu toggle functionality
@@ -383,66 +863,66 @@
     const filterLinks = document.querySelectorAll('.filter-link');
     const carousel = document.getElementById('gallery-carousel');
     const carouselInner = carousel.querySelector('div');
-    
+
     const data = {
-      calok: {
-        image: 'images/gallery-1.svg',
-        gallery: ['images/gallery-1.svg', 'images/calok-2.jpg']
-      },
-      punden: {
-        image: 'images/gallery-3.svg',
-        gallery: ['images/gallery-3.svg', 'images/punden-2.jpg']
-      },
-      sendang: {
-        image: 'images/gallery-4.svg',
-        gallery: ['images/gallery-4.svg']
-      },
-      waterpark: {
-        image: 'images/gallery-2.svg',
-        gallery: ['images/gallery-2.svg', 'images/waterpark-2.jpg']
-      }
+        calok: {
+            image: 'images/gallery-1.svg',
+            gallery: ['images/gallery-1.svg', 'images/calok-2.jpg']
+        },
+        punden: {
+            image: 'images/gallery-3.svg',
+            gallery: ['images/gallery-3.svg', 'images/punden-2.jpg']
+        },
+        sendang: {
+            image: 'images/gallery-4.svg',
+            gallery: ['images/gallery-4.svg']
+        },
+        waterpark: {
+            image: 'images/gallery-2.svg',
+            gallery: ['images/gallery-2.svg', 'images/waterpark-2.jpg']
+        }
     };
-    
+
     function resetToDefault() {
-      mainDisplay.innerHTML = `
+        mainDisplay.innerHTML = `
         <div class="aspect-[16/9] w-full fade-in">
           <iframe class="w-full h-full rounded-lg shadow-lg"
-            src="https://www.youtube.com/embed/qxrWYrmujGM"
+            src="https://www.youtube.com/embed/zHBb5RIztBQ"
             title="YouTube video player" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen>
           </iframe>
         </div>
       `;
-      carousel.classList.add('hidden');
-      carouselInner.innerHTML = '';
+        carousel.classList.add('hidden');
+        carouselInner.innerHTML = '';
     }
-    
+
     filterLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const filter = link.dataset.filter;
-    
-        if (filter === 'all') {
-          resetToDefault();
-          return;
-        }
-    
-        const selected = data[filter];
-        mainDisplay.innerHTML = `
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const filter = link.dataset.filter;
+
+            if (filter === 'all') {
+                resetToDefault();
+                return;
+            }
+
+            const selected = data[filter];
+            mainDisplay.innerHTML = `
           <div class="aspect-[16/9] w-full fade-in">
             <img src="${selected.image}" alt="${filter}" class="w-full h-full object-cover rounded-lg shadow-lg" />
           </div>
         `;
-    
-        // Carousel
-        carousel.classList.remove('hidden');
-        carouselInner.innerHTML = selected.gallery.map(img =>
-          `<img src="${img}" class="h-32 rounded-lg shadow-md object-cover" />`
-        ).join('');
-      });
+
+            // Carousel
+            carousel.classList.remove('hidden');
+            carouselInner.innerHTML = selected.gallery.map(img =>
+                `<img src="${img}" class="h-32 rounded-lg shadow-md object-cover" />`
+            ).join('');
+        });
     });
-    </script>
-    
+</script>
+
 
 </html>

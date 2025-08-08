@@ -1,0 +1,22 @@
+{
+    "sourceFile": "app/Models/Culture.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1754554287986,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1754558233535,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,5 +13,11 @@\n         'name',\n         'description',\n         'image',\n     ];\n+    \n+    protected $casts = [\n+        'image' => 'array', // jika menggunakan multiple upload\n+        // atau\n+        'image' => 'string', // jika single upload\n+    ];\n }\n"
+                }
+            ],
+            "date": 1754554287986,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Models;\n\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\nuse Illuminate\\Database\\Eloquent\\Model;\n\nclass Culture extends Model\n{\n    use HasFactory;\n\n    protected $fillable = [\n        'name',\n        'description',\n        'image',\n    ];\n}\n"
+        }
+    ]
+}

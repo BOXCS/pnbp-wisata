@@ -1,0 +1,22 @@
+{
+    "sourceFile": "app/Filament/Pages/Travel_Packages.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1754605705300,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1754605725901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,6 +7,6 @@\n class Travel_Packages extends Page\n {\n     protected static ?string $navigationIcon = 'heroicon-o-document-text';\n \n-    protected static string $view = 'filament.pages.travel-packages';\n+    protected static string $view = 'filament.pages.travel_-packages';\n }\n"
+                }
+            ],
+            "date": 1754605705300,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Filament\\Pages;\n\nuse Filament\\Pages\\Page;\n\nclass Travel_Packages extends Page\n{\n    protected static ?string $navigationIcon = 'heroicon-o-document-text';\n\n    protected static string $view = 'filament.pages.travel-packages';\n}\n"
+        }
+    ]
+}

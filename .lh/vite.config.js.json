@@ -1,0 +1,26 @@
+{
+    "sourceFile": "vite.config.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1754541061520,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1754541077686,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,7 +6,6 @@\n         laravel({\n             input: ['resources/css/app.css', 'resources/js/app.js'],\n             refresh: true,\n         }),\n-        tailwindcss(),\n     ],\n });\n"
+                },
+                {
+                    "date": 1754541310016,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n \n export default defineConfig({\n     plugins: [\n         laravel({\n-            input: ['resources/css/app.css', 'resources/js/app.js'],\n+            input: ['resources/css/app.css', 'resources/js/app.js', `resources/css/filament/admin/theme.css`],\n             refresh: true,\n         }),\n     ],\n });\n"
+                }
+            ],
+            "date": 1754541061520,
+            "name": "Commit-0",
+            "content": "import { defineConfig } from 'vite';\nimport laravel from 'laravel-vite-plugin';\n\nexport default defineConfig({\n    plugins: [\n        laravel({\n            input: ['resources/css/app.css', 'resources/js/app.js'],\n            refresh: true,\n        }),\n        tailwindcss(),\n    ],\n});\n"
+        }
+    ]
+}
