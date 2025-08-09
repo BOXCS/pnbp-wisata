@@ -19,6 +19,8 @@ class ProductsResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-gift-top';
 
+    protected static ?string $navigationGroup = 'Data';
+
     protected static ?string $navigationLabel = 'Produk';
 
     protected static ?string $pluralModelLabel = 'Daftar Produk';
