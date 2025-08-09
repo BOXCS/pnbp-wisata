@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 7,
+            "activePatchIndex": 8,
             "patches": [
                 {
                     "date": 1754541328297,
@@ -36,6 +36,10 @@
                 {
                     "date": 1754682170238,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,8 +32,9 @@\n             ->colors([\n                 'primary' => Color::Amber,\n             ])\n             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])\n+            ->sidebarCollapsibleOnDesktop()\n             ->font('Poppins')\n             ->favicon('images/logo-arjasa.svg')\n             ->viteTheme('resources/css/filament/admin/theme.css')\n             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\\\Filament\\\\Resources')\n"
+                },
+                {
+                    "date": 1754702104440,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n     {\n         return $panel\n             ->default()\n             ->id('admin')\n-            ->path('petugas')\n+            ->path('admin')\n             ->login()\n             ->registration()\n             ->colors([\n                 'primary' => Color::Amber,\n"
                 }
             ],
             "date": 1754541328297,
