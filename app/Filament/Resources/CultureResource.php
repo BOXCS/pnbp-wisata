@@ -17,7 +17,11 @@ class CultureResource extends Resource
 {
     protected static ?string $model = Culture::class;
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
+
+    protected static ?string $navigationGroup = 'Data';
+
     protected static ?string $navigationLabel = 'Budaya';
+    
     protected static ?string $pluralModelLabel = 'Daftar Budaya';
 
     public static function getNavigationBadge(): ?string

@@ -22,6 +22,8 @@ class TravelResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Data';
+
     protected static ?string $navigationLabel = 'Travel Packages';
 
     protected static ?string $pluralModelLabel = 'Daftar Travel Packages';

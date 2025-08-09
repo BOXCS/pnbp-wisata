@@ -16,7 +16,12 @@ class GalleryResource extends Resource
     protected static ?string $model = GalleryImage::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
+
+    protected static ?string $navigationGroup = 'Data';
+
     protected static ?string $navigationLabel = 'Gallery';
+
+    protected static ?string $pluralModelLabel = 'Daftar Gallery';
 
     public static function getNavigationBadge(): ?string
     {

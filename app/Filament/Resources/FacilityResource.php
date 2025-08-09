@@ -19,6 +19,8 @@ class FacilityResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-truck';
 
+    protected static ?string $navigationGroup = 'Data';
+
     protected static ?string $navigationLabel = 'Fasilitas';
 
     protected static ?string $pluralModelLabel = 'Daftar Fasilitas';
