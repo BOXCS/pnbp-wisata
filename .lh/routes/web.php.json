@@ -1,0 +1,22 @@
+{
+    "sourceFile": "routes/web.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1754692962721,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1754700945800,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,12 @@\n <?php\n \n use App\\Http\\Controllers\\CultureController;\n+use App\\Http\\Controllers\\GalleryController;\n use Illuminate\\Support\\Facades\\Route;\n \n Route::get('/', function () {\n     return view('welcome');\n });\n \n Route::get('/culture', [CultureController::class, 'index']);\n+Route::get('/gallery', [GalleryController::class, 'index']);\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1754692962721,
+            "name": "Commit-0",
+            "content": "<?php\n\nuse App\\Http\\Controllers\\CultureController;\nuse Illuminate\\Support\\Facades\\Route;\n\nRoute::get('/', function () {\n    return view('welcome');\n});\n\nRoute::get('/culture', [CultureController::class, 'index']);\n"
+        }
+    ]
+}

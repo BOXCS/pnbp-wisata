@@ -351,77 +351,87 @@
     <!-- Culture Section -->
     <section id="culture" class="py-16 px-6 md:px-16 bg-white text-center">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">Culture of Arjasa</h2>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">
+            Culture of Arjasa
+        </h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
             Adalah sebuah warisan indahnya alam dan budaya yang masih terjaga di Arjasa yang dapat anda jelajahi
         </p>
-
+    
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="culture-item relative overflow-hidden rounded-lg shadow">
-                <img src="images/culture-1.svg" alt="Kesenian Gendung" class="w-full h-64 object-cover" />
-                <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 text-white text-center">
-                    <h3 class="text-xl font-semibold">Kesenian Gendung</h3>
-                    <div class="w-10 h-1 bg-orange-500 mx-auto mt-2"></div>
+            @foreach($cultures as $culture)
+                <div class="culture-item relative overflow-hidden rounded-lg shadow group">
+                    <!-- Gambar -->
+                    <img src="{{ asset('storage/' . $culture->image) }}" 
+                         alt="{{ $culture->name }}" 
+                         class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110" />
+    
+                    <!-- Overlay -->
+                    <div class="absolute bottom-0 left-0 right-0 h-[30%] bg-black bg-opacity-60 
+                                transition-all duration-700 ease-in-out group-hover:h-full 
+                                flex flex-col justify-center items-center text-white p-4">
+                        
+                        <!-- Nama -->
+                        <h3 class="text-xl font-semibold transform transition-all duration-700 
+                                   group-hover:-translate-y-6">
+                            {{ $culture->name }}
+                        </h3>
+    
+                        <!-- Deskripsi -->
+                        <p class="mt-2 opacity-0 translate-y-6 transition-all duration-700 delay-200 
+                                  group-hover:opacity-100 group-hover:translate-y-0 text-sm">
+                            {{ $culture->description }}
+                        </p>
+    
+                        <div class="w-10 h-1 bg-orange-500 mx-auto mt-2"></div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="culture-item relative overflow-hidden rounded-lg shadow">
-                <img src="images/culture-2.svg" alt="Kesenian Barongan" class="w-full h-64 object-cover" />
-                <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 text-white text-center">
-                    <h3 class="text-xl font-semibold">Kesenian Barongan</h3>
-                    <div class="w-10 h-1 bg-orange-500 mx-auto mt-2"></div>
-                </div>
-            </div>
-
-            <div class="culture-item relative overflow-hidden rounded-lg shadow">
-                <img src="images/culture-3.svg" alt="Kesenian Can Macanan Kaduk" class="w-full h-64 object-cover" />
-                <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 text-white text-center">
-                    <h3 class="text-xl font-semibold">Kesenian Can Macanan Kaduk</h3>
-                    <div class="w-10 h-1 bg-orange-500 mx-auto mt-2"></div>
-                </div>
-            </div>
-
-            <div class="culture-item relative overflow-hidden rounded-lg shadow">
-                <img src="images/culture-4.svg" alt="Kesenian Tari Bedhoyo" class="w-full h-64 object-cover" />
-                <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 text-white text-center">
-                    <h3 class="text-xl font-semibold">Kesenian Tari Bedhoyo</h3>
-                    <div class="w-10 h-1 bg-orange-500 mx-auto mt-2"></div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
+    
+    
 
     <!-- Destination Gallery -->
     <section id="gallery" class="py-16 px-6 md:px-16 bg-gray-50 text-center">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">Destination Gallery</h2>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">
+            Destination Gallery
+        </h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
             Potret indahnya kenampakan Arjasa yang tidak boleh anda lewatkan
         </p>
-
+    
+        <!-- Filter -->
         <div class="flex flex-wrap justify-center gap-8 mb-16 text-gray-700 font-semibold text-lg">
             <a href="#" class="filter-link hover:text-orange-500" data-filter="all">ALL</a>
-            <a href="#" class="filter-link hover:text-orange-500" data-filter="calok">Situs Calok</a>
-            <a href="#" class="filter-link hover:text-orange-500" data-filter="punden">Punden Berundak</a>
-            <a href="#" class="filter-link hover:text-orange-500" data-filter="sendang">Sendang Tirta Amertha Rajasa</a>
-            <a href="#" class="filter-link hover:text-orange-500" data-filter="waterpark">Citra Wisata Mandiri Waterpark</a>
+            @foreach($categories as $category)
+                <a href="#" 
+                   class="filter-link hover:text-orange-500" 
+                   data-filter="category-{{ $category->id }}">
+                   {{ $category->name }}
+                </a>
+            @endforeach
         </div>
-
+    
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div class="flex flex-col gap-6">
                 <div id="main-display" class="w-full aspect-[16/9] rounded-lg shadow-lg">
                     <iframe class="w-full h-full" src="https://www.youtube.com/embed/zHBb5RIztBQ" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <div id="gallery-carousel" class="flex overflow-x-auto gap-4 hidden">
-                    <!-- Carousel items -->
+                    <div class="flex gap-4"></div>
                 </div>
             </div>
-
+    
             <div class="grid grid-cols-2 gap-4">
-                <img src="images/gallery-1.svg" data-filter="calok" class="gallery-thumb rounded-lg shadow-md w-full h-full object-cover cursor-pointer" />
-                <img src="images/gallery-2.svg" data-filter="waterpark" class="gallery-thumb rounded-lg shadow-md w-full h-full object-cover cursor-pointer" />
-                <img src="images/gallery-3.svg" data-filter="punden" class="gallery-thumb rounded-lg shadow-md w-full h-full object-cover cursor-pointer" />
-                <img src="images/gallery-4.svg" data-filter="sendang" class="gallery-thumb rounded-lg shadow-md w-full h-full object-cover cursor-pointer" />
+                @foreach($categories as $category)
+                    @foreach($category->images as $image)
+                        <img src="{{ asset('storage/'.$image->image) }}" 
+                             data-filter="category-{{ $category->id }}" 
+                             class="gallery-thumb rounded-lg shadow-md w-full h-full object-cover cursor-pointer" />
+                    @endforeach
+                @endforeach
             </div>
         </div>
     </section>
@@ -831,13 +841,6 @@
     const carousel = document.getElementById('gallery-carousel');
     const carouselInner = carousel.querySelector('div');
 
-    const galleryData = {
-        calok: { image: 'images/gallery-1.svg', gallery: ['images/calok-1.jpg', 'images/calok-2.jpg'] },
-        punden: { image: 'images/gallery-3.svg', gallery: ['images/punden-1.jpg', 'images/punden-2.jpg'] },
-        sendang: { image: 'images/gallery-4.svg', gallery: ['images/sendang-1.jpg'] },
-        waterpark: { image: 'images/gallery-2.svg', gallery: ['images/waterpark-1.jpg', 'images/waterpark-2.jpg'] }
-    };
-
     function resetGallery() {
         mainDisplay.innerHTML = '<iframe class="w-full h-full rounded-lg shadow-lg" src="https://www.youtube.com/embed/zHBb5RIztBQ" frameborder="0" allowfullscreen></iframe>';
         carousel.classList.add('hidden');
@@ -848,12 +851,20 @@
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const filter = link.dataset.filter;
-            if (filter === 'all') return resetGallery();
 
-            const data = galleryData[filter];
-            mainDisplay.innerHTML = `<img src="${data.image}" alt="${filter}" class="w-full h-full object-cover rounded-lg shadow-lg" />`;
-            carousel.classList.remove('hidden');
-            carouselInner.innerHTML = data.gallery.map(img => `<img src="${img}" class="h-32 rounded-lg shadow-md object-cover" />`).join('');
+            if (filter === 'all') {
+                resetGallery();
+                return;
+            }
+
+            const thumbs = document.querySelectorAll(`img[data-filter="${filter}"]`);
+            if (thumbs.length > 0) {
+                mainDisplay.innerHTML = `<img src="${thumbs[0].src}" class="w-full h-full object-cover rounded-lg shadow-lg" />`;
+                carousel.classList.remove('hidden');
+                carouselInner.innerHTML = Array.from(thumbs).map(img =>
+                    `<img src="${img.src}" class="h-32 rounded-lg shadow-md object-cover" />`
+                ).join('');
+            }
         });
     });
 </script>

@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Culture;
+use App\Models\GalleryCategory;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::composer('welcome', function ($view) {
+            $view->with('cultures', Culture::all());
+        });
+        View::composer('welcome', function ($view) {
+            $view->with('categories', GalleryCategory::with('images')->get());
+        });
     }
 }
