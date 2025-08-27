@@ -33,6 +33,11 @@ class TravelResource extends Resource
         return static::getModel()::count();
     }
 
+    protected function getRedirectUrl(): string
+    {
+        return $this->previousUrl ?? $this->getResource()::getUrl('index');
+    }
+
     public static function form(Form $form): Form
     {
         return $form->schema([

@@ -52,6 +52,7 @@ class FacilityResource extends Resource
                         ->image()
                         ->directory('fasilities-images')
                         ->visibility('public')
+                        ->disk('public')
                         ->preserveFilenames()
                         ->imagePreviewHeight('250')
                         ->openable()
@@ -68,6 +69,7 @@ class FacilityResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('image')
                     ->label('Gambar')
+                    ->disk('public')
                     ->square()
                     ->size(60),
 
