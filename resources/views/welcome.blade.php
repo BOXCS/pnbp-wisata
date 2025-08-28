@@ -1,4 +1,3 @@
-```blade
 <!DOCTYPE html>
 <html lang="id">
 
@@ -27,6 +26,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&family=Sanchez:ital@0;1&display=swap"
         rel="stylesheet">
+
+    <!-- Elfsight Script untuk Google Reviews dan Instagram Feed -->
+    <script src="https://elfsightcdn.com/platform.js" async></script>
 
     <style>
         @keyframes imageFade {
@@ -151,6 +153,45 @@
             filter: brightness(1.1);
             transition: filter 0.3s ease;
         }
+
+        /* Efek tambahan: Fade-in untuk sections saat scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Parallax effect untuk background sections */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Animasi glow untuk buttons pada hover */
+        .glow-button {
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .glow-button:hover {
+            box-shadow: 0 0 15px rgba(249, 115, 22, 0.7);
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hide Elfsight free widget branding/toolbar */
+        .global-styles, .eapps-widget-toolbar {
+            display: none !important;
+        }
     </style>
 </head>
 
@@ -167,7 +208,7 @@
 
                 <div class="w-96 h-1 bg-white mx-auto mt-5 mb-8"></div>
                 <h1 class="text-2xl sm:text-5xl mt-4 font-robotoSlab font-light text-white leading-snug text-center"
-                    style="letter-spacing: 0.2rem; lin">
+                    style="letter-spacing: 0.2rem;">
                     ANUGERAH DESA WISATA INDONESIA (ADWI) 2024:<br>
                     <span class="text-white">ARJASA</span>
                     <span class="text-transparent" style="-webkit-text-stroke: 1px white;">VILLAGE'S</span>
@@ -290,8 +331,8 @@
         </div>
     </div>
 
-    <!-- Profile Section -->
-    <section id="profile" class="py-10 px-6 md:px-16 text-center bg-white">
+    <!-- Profile Section dengan fade-in -->
+    <section id="profile" class="py-10 px-6 md:px-16 text-center bg-white fade-in">
         <h2 class="text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">Profile Of Arjasa</h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
             Desa Arjasa merupakan desa tertua di Kabupaten Jember dengan warisan budaya dan sejarah yang kaya dari zaman
@@ -357,8 +398,8 @@
         </div>
     </section>
 
-    <!-- Culture Section -->
-    <section id="culture" class="py-16 px-6 md:px-16 bg-white text-center">
+    <!-- Culture Section dengan fade-in -->
+    <section id="culture" class="py-16 px-6 md:px-16 bg-white text-center fade-in">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
         <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">
             Culture of Arjasa
@@ -400,8 +441,6 @@
             @endforeach
         </div>
     </section>
-
-
 
     <!-- Destination Gallery -->
     <section id="gallery" class="py-16 px-6 md:px-16 bg-gray-50 text-center">
@@ -446,8 +485,8 @@
         </div>
     </section>
 
-    <!-- Packages Section -->
-    <section id="packages" class="py-16 px-6 md:px-16 bg-white text-center">
+    <!-- Packages Section dengan fade-in dan glow buttons -->
+    <section id="packages" class="py-16 px-6 md:px-16 bg-white text-center fade-in">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
         <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-2 font-josefinSlab">
             5 Recommended Packages Travel
@@ -501,8 +540,8 @@
         </div>
     </div>
 
-    <!-- Facility Section -->
-    <section id="facility" class="py-16 px-6 md:px-16 bg-white text-gray-800">
+    <!-- Facility Section dengan fade-in -->
+    <section id="facility" class="py-16 px-6 md:px-16 bg-white text-gray-800 fade-in">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
         <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">Facility</h2>
         <p class="text-center text-lg max-w-2xl mx-auto mb-12">
@@ -552,8 +591,8 @@
         </div>
     </section>
 
-    <!-- Souvenir Section -->
-    <section id="souvenir" class="py-16 px-6 md:px-16 bg-white text-gray-800">
+    <!-- Souvenir Section dengan fade-in -->
+    <section id="souvenir" class="py-16 px-6 md:px-16 bg-white text-gray-800 fade-in">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
         <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">Souvenir</h2>
         <p class="text-center text-lg max-w-2xl mx-auto mb-12">
@@ -565,7 +604,7 @@
                 style="background-image: url('images/souvenir-1.jpg'); background-size: cover;">
                 <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-start justify-end p-6">
                     <h3 class="text-white text-2xl font-bold mb-3">Batik Silabango</h3>
-                    <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
+                    <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 glow-button">
                         View All Souvenir
                     </button>
                 </div>
@@ -592,7 +631,7 @@
                     <p class="text-gray-600 mb-4 text-sm">
                         Makanan khas seperti tape, jenang, dan makanan tradisional lainnya.
                     </p>
-                    <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
+                    <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 glow-button">
                         View More
                     </button>
                 </div>
@@ -602,7 +641,7 @@
                     <p class="text-gray-600 mb-4 text-sm">
                         Kaos, topi, dan aksesoris bertema Desa Arjasa.
                     </p>
-                    <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
+                    <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 glow-button">
                         View More
                     </button>
                 </div>
@@ -636,98 +675,30 @@
         </div>
     </section>
 
-    <!-- Social Section -->
-    <section id="social" class="py-16 px-6 md:px-16 bg-white text-gray-800">
+    <!-- Social Section dengan Elfsight Instagram Widget dan fade-in -->
+    <section id="social" class="py-16 px-6 md:px-16 bg-white text-gray-800 fade-in">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
         <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@DesaWisataArjasaOfficial
         </h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-10">
-            <div class="h-80 rounded-2xl overflow-hidden shadow-md relative insta-image">
-                <img src="images/insta-1.jpg" alt="Parade" class="absolute inset-0 w-full h-full object-cover z-0">
-            </div>
-            <div class="h-80 rounded-2xl overflow-hidden shadow-md relative insta-image">
-                <img src="images/insta-2.jpg" alt="Situs Batu"
-                    class="absolute inset-0 w-full h-full object-cover z-0">
-            </div>
-            <div class="h-80 rounded-2xl overflow-hidden shadow-md relative insta-image">
-                <img src="images/insta-3.jpg" alt="Gerbang Calok"
-                    class="absolute inset-0 w-full h-full object-cover z-0">
-            </div>
-            <div class="h-80 rounded-2xl overflow-hidden shadow-md relative insta-image">
-                <img src="images/insta-4.jpg" alt="Anyaman" class="absolute inset-0 w-full h-full object-cover z-0">
-            </div>
-            <div class="h-80 rounded-2xl overflow-hidden shadow-md relative insta-image">
-                <img src="images/insta-5.jpg" alt="Hidangan" class="absolute inset-0 w-full h-full object-cover z-0">
-            </div>
-            <div class="h-80 rounded-2xl overflow-hidden shadow-md relative insta-image">
-                <img src="images/insta-6.jpg" alt="Gerbang Wisata"
-                    class="absolute inset-0 w-full h-full object-cover z-0">
-            </div>
-        </div>
+        <!-- Elfsight Instagram Feed Widget -->
+        <div class="elfsight-app-7148802b-a989-44c0-bc48-4b53fbc340c2" data-elfsight-app-lazy></div>
     </section>
 
-    <section id="reviews" class="py-16 px-6 md:px-16 bg-white text-gray-800">
+    <!-- Reviews Section dengan Elfsight Widget dan fade-in -->
+    <section id="reviews" class="py-16 px-6 md:px-16 bg-white text-gray-800 fade-in">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
         <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">WHAT OUR CUSTOMERS SAY</h2>
         <p class="text-center text-lg max-w-2xl mx-auto mb-12">
             Read reviews, testimonials, and feedback to learn more about this unique destination.
         </p>
 
-        <div class="flex flex-wrap justify-center gap-6">
-            <!-- Village Info Card -->
-            <div class="w-full md:w-1/4 bg-white p-4 rounded-lg shadow-md">
-                <div class="flex items-center gap-2 mb-2">
-                    <img src="images/arjasa-logo.png" alt="Arjasa Logo" class="w-10 h-10">
-                    <h3 class="font-bold text-lg">Desa Wisata Arjasa</h3>
-                </div>
-                <div class="text-yellow-400 text-xl">★★★★★</div>
-                <p class="text-sm text-gray-600">150 Google reviews</p>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:bg-blue-600 transition">Write a
-                    review</button>
-            </div>
-
-            <!-- Review Cards -->
-            <div
-                class="w-full md:w-1/4 bg-white p-4 rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition duration-300">
-                <div class="flex items-center gap-2 mb-2">
-                    <img src="images/user1.png" alt="User" class="w-8 h-8 rounded-full">
-                    <h4 class="font-bold">Budi Santoso</h4>
-                    <img src="images/google-logo.png" alt="Google" class="w-4 h-4">
-                </div>
-                <p class="text-xs text-gray-500">2025-07-15</p>
-                <div class="text-yellow-400 text-xl">★★★★★</div>
-                <p class="text-sm text-gray-600">Desa yang asri dan budaya yang kaya. Sangat direkomendasikan!</p>
-            </div>
-
-            <div
-                class="w-full md:w-1/4 bg-white p-4 rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition duration-300">
-                <div class="flex items-center gap-2 mb-2">
-                    <img src="images/user2.png" alt="User" class="w-8 h-8 rounded-full">
-                    <h4 class="font-bold">Siti Aisyah</h4>
-                    <img src="images/google-logo.png" alt="Google" class="w-4 h-4">
-                </div>
-                <p class="text-xs text-gray-500">2025-06-20</p>
-                <div class="text-yellow-400 text-xl">★★★★☆</div>
-                <p class="text-sm text-gray-600">Bagus... banyak spot foto, tapi ramai di akhir pekan.</p>
-            </div>
-
-            <div
-                class="w-full md:w-1/4 bg-white p-4 rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition duration-300">
-                <div class="flex items-center gap-2 mb-2">
-                    <img src="images/user3.png" alt="User" class="w-8 h-8 rounded-full">
-                    <h4 class="font-bold">John Doe</h4>
-                    <img src="images/google-logo.png" alt="Google" class="w-4 h-4">
-                </div>
-                <p class="text-xs text-gray-500">2025-05-10</p>
-                <div class="text-yellow-400 text-xl">★★★★★</div>
-                <p class="text-sm text-gray-600">Beautiful village, rich culture. Worth visiting!</p>
-            </div>
-        </div>
+        <!-- Elfsight Google Reviews Widget -->
+        <div class="elfsight-app-e9e89592-b352-42d7-914e-f13a74838102" data-elfsight-app-lazy></div>
     </section>
 
-    <!-- What's Happening Section -->
-    <section id="happening" class="py-16 px-6 md:px-16 bg-white text-gray-800">
+    <!-- What's Happening Section dengan fade-in -->
+    <section id="happening" class="py-16 px-6 md:px-16 bg-white text-gray-800 fade-in">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
         <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">What's Happening</h2>
         <p class="text-center text-lg max-w-2xl mx-auto mb-12">
