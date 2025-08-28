@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app/Http/Controllers/GalleryController.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1754700915279,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1754700915279,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Http\\Controllers;\n\nuse App\\Models\\GalleryCategory;\n\nclass GalleryController extends Controller\n{\n    public function index()\n    {\n        // Ambil semua kategori beserta gambar-gambarnya\n        $categories = GalleryCategory::with('images')->get();\n\n        return view('welcome', compact('categories'));\n    }\n}\n"
+        }
+    ]
+}

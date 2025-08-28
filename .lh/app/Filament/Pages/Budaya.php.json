@@ -1,0 +1,26 @@
+{
+    "sourceFile": "app/Filament/Pages/Budaya.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1754549544832,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1754555725038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,10 @@\n     protected static ?string $navigationIcon = 'heroicon-o-document-text';\n \n     protected static string $view = 'filament.pages.budaya';\n \n+    public $budayas;\n+\n     public function getViewData(): array\n     {\n         return [\n             'budayas' => Culture::all(),\n"
+                },
+                {
+                    "date": 1754555818454,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,8 @@\n     protected static ?string $navigationIcon = 'heroicon-o-document-text';\n \n     protected static string $view = 'filament.pages.budaya';\n \n-    public $budayas;\n-\n     public function getViewData(): array\n     {\n         return [\n             'budayas' => Culture::all(),\n"
+                }
+            ],
+            "date": 1754549544832,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Filament\\Pages;\n\nuse App\\Models\\Culture;\nuse Filament\\Pages\\Page;\n\nclass Budaya extends Page\n{\n    protected static ?string $navigationIcon = 'heroicon-o-document-text';\n\n    protected static string $view = 'filament.pages.budaya';\n\n    public function getViewData(): array\n    {\n        return [\n            'budayas' => Culture::all(),\n        ];\n    }\n}\n"
+        }
+    ]
+}

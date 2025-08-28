@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app/Models/Facility.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1754679350021,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1754679350021,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Models;\n\nuse Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\nuse Illuminate\\Database\\Eloquent\\Model;\n\nclass Facility extends Model\n{\n    use HasFactory;\n\n    protected $fillable = [\n        'name',\n        'type',\n        'description',\n        'image',\n    ];\n}\n"
+        }
+    ]
+}

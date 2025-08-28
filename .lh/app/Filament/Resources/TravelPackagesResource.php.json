@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app/Filament/Resources/TravelPackagesResource.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1754606140972,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1754606140972,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Filament\\Resources;\n\nuse App\\Filament\\Resources\\TravelPackagesResource\\Pages;\nuse App\\Filament\\Resources\\TravelPackagesResource\\RelationManagers;\nuse App\\Models\\Packages;\nuse App\\Models\\TravelPackages;\nuse Filament\\Forms;\nuse Filament\\Forms\\Form;\nuse Filament\\Resources\\Resource;\nuse Filament\\Tables;\nuse Filament\\Tables\\Table;\nuse Illuminate\\Database\\Eloquent\\Builder;\nuse Illuminate\\Database\\Eloquent\\SoftDeletingScope;\n\nclass TravelPackagesResource extends Resource\n{\n    protected static ?string $model = Packages::class;\n\n    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';\n\n    public static function form(Form $form): Form\n    {\n        return $form\n            ->schema([\n                //\n            ]);\n    }\n\n    public static function table(Table $table): Table\n    {\n        return $table\n            ->columns([\n                //\n            ])\n            ->filters([\n                //\n            ])\n            ->actions([\n                Tables\\Actions\\EditAction::make(),\n            ])\n            ->bulkActions([\n                Tables\\Actions\\BulkActionGroup::make([\n                    Tables\\Actions\\DeleteBulkAction::make(),\n                ]),\n            ]);\n    }\n\n    public static function getRelations(): array\n    {\n        return [\n            //\n        ];\n    }\n\n    public static function getPages(): array\n    {\n        return [\n            'index' => Pages\\ListTravelPackages::route('/'),\n            'create' => Pages\\CreateTravelPackages::route('/create'),\n            'edit' => Pages\\EditTravelPackages::route('/{record}/edit'),\n        ];\n    }\n}\n"
+        }
+    ]
+}

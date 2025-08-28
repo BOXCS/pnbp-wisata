@@ -1,0 +1,26 @@
+{
+    "sourceFile": "app/Models/PackageImage.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1754612129994,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1754612323300,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n use Illuminate\\Database\\Eloquent\\Relations\\BelongsTo;\n \n class PackageImage extends Model\n {\n-    protected $fillable = ['package_id', 'image'];\n+    protected $fillable = ['id', 'image'];\n \n     public function package(): BelongsTo\n     {\n         return $this->belongsTo(Packages::class);\n"
+                },
+                {
+                    "date": 1754612329200,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n use Illuminate\\Database\\Eloquent\\Relations\\BelongsTo;\n \n class PackageImage extends Model\n {\n-    protected $fillable = ['id', 'image'];\n+    protected $fillable = ['package_id', 'image'];\n \n     public function package(): BelongsTo\n     {\n         return $this->belongsTo(Packages::class);\n"
+                }
+            ],
+            "date": 1754612129994,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Models;\n\nuse Illuminate\\Database\\Eloquent\\Model;\nuse Illuminate\\Database\\Eloquent\\Relations\\BelongsTo;\n\nclass PackageImage extends Model\n{\n    protected $fillable = ['package_id', 'image'];\n\n    public function package(): BelongsTo\n    {\n        return $this->belongsTo(Packages::class);\n    }\n}\n"
+        }
+    ]
+}

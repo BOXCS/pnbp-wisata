@@ -1,0 +1,30 @@
+{
+    "sourceFile": "app/Filament/Pages/TravelPackages.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1754606036236,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1754606078435,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,20 +0,0 @@\n-<?php\n-\n-namespace App\\Filament\\Pages;\n-\n-use App\\Models\\Packages;\n-use Filament\\Pages\\Page;\n-\n-class TravelPackages extends Page\n-{\n-    protected static ?string $navigationIcon = 'heroicon-o-document-text';\n-\n-    protected static string $view = 'filament.pages.travel-packages';\n-\n-    public function getViewData(): array\n-    {\n-        return [\n-            'budayas' => Packages::all(),\n-        ];\n-    }\n-}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1754606087733,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,20 @@\n+<?php\n \n+namespace App\\Filament\\Pages;\n+\n+use App\\Models\\Packages;\n+use Filament\\Pages\\Page;\n+\n+class TravelPackages extends Page\n+{\n+    protected static ?string $navigationIcon = 'heroicon-o-document-text';\n+\n+    protected static string $view = 'filament.pages.travel-packages';\n+\n+    public function getViewData(): array\n+    {\n+        return [\n+            'budayas' => Packages::all(),\n+        ];\n+    }\n+}\n"
+                },
+                {
+                    "date": 1754606345301,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n class TravelPackages extends Page\n {\n     protected static ?string $navigationIcon = 'heroicon-o-document-text';\n \n-    protected static string $view = 'filament.pages.travel-packages';\n+    // protected static string $view = 'filament.pages.travel-packages';\n \n     public function getViewData(): array\n     {\n         return [\n"
+                }
+            ],
+            "date": 1754606036236,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Filament\\Pages;\n\nuse App\\Models\\Packages;\nuse Filament\\Pages\\Page;\n\nclass TravelPackages extends Page\n{\n    protected static ?string $navigationIcon = 'heroicon-o-document-text';\n\n    protected static string $view = 'filament.pages.travel-packages';\n\n    public function getViewData(): array\n    {\n        return [\n            'budayas' => Packages::all(),\n        ];\n    }\n}\n"
+        }
+    ]
+}

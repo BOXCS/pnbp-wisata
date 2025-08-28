@@ -1,0 +1,18 @@
+{
+    "sourceFile": "resources/views/filament/widgets/latest-records.blade.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1754704789133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1754704789133,
+            "name": "Commit-0",
+            "content": "<x-filament::widget>\r\n    <x-filament::card>\r\n        <h2 class=\"text-xl font-bold mb-4\">📋 Latest Records</h2>\r\n\r\n        <div class=\"grid grid-cols-1 md:grid-cols-2 gap-6\">\r\n            @foreach ($this->getLatestData() as $modelName => $records)\r\n                <div class=\"border border-gray-200 rounded-lg overflow-hidden shadow-sm bg-white\">\r\n                    <div class=\"bg-gray-100 px-4 py-2 font-semibold text-gray-700 flex justify-between\">\r\n                        <span>{{ $modelName }}</span>\r\n                        <span class=\"text-sm text-gray-500\">{{ $records->count() }} items</span>\r\n                    </div>\r\n                    <table class=\"w-full text-sm\">\r\n                        <thead>\r\n                            <tr class=\"bg-gray-50 border-b\">\r\n                                <th class=\"text-left py-2 px-4\">Name</th>\r\n                                <th class=\"text-left py-2 px-4\">Created At</th>\r\n                            </tr>\r\n                        </thead>\r\n                        <tbody>\r\n                            @forelse ($records as $record)\r\n                                <tr class=\"border-b hover:bg-gray-50 transition\">\r\n                                    <td class=\"py-2 px-4\">{{ $record->name ?? '-' }}</td>\r\n                                    <td class=\"py-2 px-4 text-gray-500\">{{ $record->created_at->format('Y-m-d') }}</td>\r\n                                </tr>\r\n                            @empty\r\n                                <tr>\r\n                                    <td colspan=\"2\" class=\"py-2 px-4 text-gray-500 text-center\">No records found.</td>\r\n                                </tr>\r\n                            @endforelse\r\n                        </tbody>\r\n                    </table>\r\n                </div>\r\n            @endforeach\r\n        </div>\r\n    </x-filament::card>\r\n</x-filament::widget>\r\n"
+        }
+    ]
+}

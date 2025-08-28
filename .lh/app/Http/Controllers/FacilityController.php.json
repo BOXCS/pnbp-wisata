@@ -1,0 +1,22 @@
+{
+    "sourceFile": "app/Http/Controllers/FacilityController.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1756301587003,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756302122867,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,22 @@\n+<?php\n+\n+namespace App\\Http\\Controllers;\n+\n+use App\\Models\\Facility;\n+\n+class FacilityController extends Controller\n+{\n+    public function index()\n+    {\n+        // Ambil 3 fasilitas yang punya gambar\n+        $imageFacilities = Facility::whereNotNull('image')\n+            ->take(3)\n+            ->get();\n+\n+        // Ambil 2 fasilitas yang berupa type description/text\n+        $textFacilities = Facility::where('type', 'description')\n+            ->take(2)\n+            ->get();\n+        return view('welcome', compact('facilities'));\n+    }\n+}\n"
+                }
+            ],
+            "date": 1756301587003,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Http\\Controllers;\n\nuse App\\Models\\Facility;\n\nclass FacilityController extends Controller\n{\n    public function index()\n    {\n        $facilities = Facility::latest()->get();\n        return view('welcome', compact('facilities'));\n    }\n}\n"
+        }
+    ]
+}

@@ -335,7 +335,8 @@
     <section id="profile" class="py-10 px-6 md:px-16 text-center bg-white fade-in">
         <h2 class="text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">Profile Of Arjasa</h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
-            Desa Arjasa merupakan desa tertua di Kabupaten Jember dengan warisan budaya dan sejarah yang kaya dari zaman Megalitikum hingga modern.
+            Desa Arjasa merupakan desa tertua di Kabupaten Jember dengan warisan budaya dan sejarah yang kaya dari zaman
+            Megalitikum hingga modern.
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -343,7 +344,9 @@
                 <img src="images/profile-klasik.svg" alt="Jejak Megalitikum" class="w-auto h-24 mx-auto mb-4" />
                 <h3 class="text-xl font-semibold mb-2 text-orange-600">Jejak Megalitikum & Klasik</h3>
                 <p class="text-gray-600 text-sm">
-                    Desa Arjasa menjadi saksi hidup perjalanan peradaban sejak zaman Batu Tengah (Mesolitikum) sekitar 400 SM, dengan bukti nyata yang tertanam di empat dusun berupa peninggalan megalitik seperti batu kenong, menhir, dolmen, batu dakon, hingga kubur batu yang masih terawat.
+                    Desa Arjasa menjadi saksi hidup perjalanan peradaban sejak zaman Batu Tengah (Mesolitikum) sekitar
+                    400 SM, dengan bukti nyata yang tertanam di empat dusun berupa peninggalan megalitik seperti batu
+                    kenong, menhir, dolmen, batu dakon, hingga kubur batu yang masih terawat.
                 </p>
             </div>
 
@@ -351,7 +354,8 @@
                 <img src="images/profile-pasraman.svg" alt="Jejak Islam" class="w-auto h-24 mx-auto mb-4" />
                 <h3 class="text-xl font-semibold mb-2 text-orange-600">Jejak Islam & Pasraman</h3>
                 <p class="text-gray-600 text-sm">
-                    Sejak masa pasraman hingga masuknya Islam, Desa Arjasa dikenal sebagai pusat spiritual yang menyatukan jejak Hindu-Buddha dan peradaban Islam.
+                    Sejak masa pasraman hingga masuknya Islam, Desa Arjasa dikenal sebagai pusat spiritual yang
+                    menyatukan jejak Hindu-Buddha dan peradaban Islam.
                 </p>
             </div>
 
@@ -359,15 +363,17 @@
                 <img src="images/profile-harmoni.svg" alt="Harmoni Tradisi" class="w-auto h-24 mx-auto mb-4" />
                 <h3 class="text-xl font-semibold mb-2 text-orange-600">Harmoni Tradisi</h3>
                 <p class="text-gray-600 text-sm">
-                    Kekayaan budaya Desa Arjasa terus hidup melalui kesenian ta’bhuta-an yang menjadi ikon tradisi khas Jember, serta Batik Silabango dengan motif peninggalan megalitik.
+                    Kekayaan budaya Desa Arjasa terus hidup melalui kesenian ta’bhuta-an yang menjadi ikon tradisi khas
+                    Jember, serta Batik Silabango dengan motif peninggalan megalitik.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Visi & Misi Section dengan parallax -->
-    <section id="vision" class="relative py-16 px-6 md:px-16 text-white text-center parallax" style="background-image: url('images/visi-bg.svg');">
-        <div class="relative z-10 max-w-4xl mx-auto fade-in">
+    <!-- Visi & Misi Section -->
+    <section id="vision" class="relative py-16 px-6 md:px-16 text-white text-center bg-cover bg-center"
+        style="background-image: url('images/visi-bg.svg');">
+        <div class="relative z-10 max-w-4xl mx-auto">
             <h2 class="text-3xl sm:text-4xl md:text-6xl font-extrabold mb-6 font-josefinSlab">Visi & Misi</h2>
 
             <p class="text-lg sm:text-xl md:text-2xl leading-relaxed mb-8 italic">
@@ -377,9 +383,12 @@
             <div class="text-left">
                 <p class="text-lg sm:text-xl font-semibold mb-4">Misi Desa Arjasa sebagai berikut:</p>
                 <ul class="list-decimal list-inside pl-5 space-y-4 text-base sm:text-lg leading-relaxed">
-                    <li>Menyelenggarakan pemerintahan yang bersih, amanah dan terbuka berorientasi pada optimalisasi pelayanan kepada masyarakat.</li>
-                    <li>Mendorong berkembangnya kualitas sumber daya manusia yang dilandasi nilai-nilai agama dan budaya.</li>
-                    <li>Peningkatan sarana dan prasarana dasar untuk menunjang kesejahteraan dan pelayanan publik dengan slogan: senyum, cepat dan tepat.</li>
+                    <li>Menyelenggarakan pemerintahan yang bersih, amanah dan terbuka berorientasi pada optimalisasi
+                        pelayanan kepada masyarakat.</li>
+                    <li>Mendorong berkembangnya kualitas sumber daya manusia yang dilandasi nilai-nilai agama dan
+                        budaya.</li>
+                    <li>Peningkatan sarana dan prasarana dasar untuk menunjang kesejahteraan dan pelayanan publik dengan
+                        slogan: senyum, cepat dan tepat.</li>
                     <li>Memanfaatkan potensi sumber daya alam yang berwawasan lingkungan.</li>
                     <li>Memberdayakan lembaga keuangan mikro berbasis masyarakat untuk mendorong usaha ekonomi.</li>
                     <li>Memberdayakan masyarakat melalui partisipasi aktif dalam pembangunan.</li>
@@ -392,77 +401,86 @@
     <!-- Culture Section dengan fade-in -->
     <section id="culture" class="py-16 px-6 md:px-16 bg-white text-center fade-in">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">Culture of Arjasa</h2>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">
+            Culture of Arjasa
+        </h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
             Adalah sebuah warisan indahnya alam dan budaya yang masih terjaga di Arjasa yang dapat anda jelajahi
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="culture-item relative overflow-hidden rounded-lg shadow">
-                <img src="images/culture-1.svg" alt="Kesenian Gendung" class="w-full h-64 object-cover" />
-                <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 text-white text-center">
-                    <h3 class="text-xl font-semibold">Kesenian Gendung</h3>
-                    <div class="w-10 h-1 bg-orange-500 mx-auto mt-2"></div>
-                </div>
-            </div>
+            @foreach ($cultures as $culture)
+                <div class="culture-item relative overflow-hidden rounded-lg shadow group">
+                    <!-- Gambar -->
+                    <img src="{{ asset('storage/' . $culture->image) }}" alt="{{ $culture->name }}"
+                        class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110" />
 
-            <div class="culture-item relative overflow-hidden rounded-lg shadow">
-                <img src="images/culture-2.svg" alt="Kesenian Barongan" class="w-full h-64 object-cover" />
-                <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 text-white text-center">
-                    <h3 class="text-xl font-semibold">Kesenian Barongan</h3>
-                    <div class="w-10 h-1 bg-orange-500 mx-auto mt-2"></div>
-                </div>
-            </div>
+                    <!-- Overlay -->
+                    <div
+                        class="absolute bottom-0 left-0 right-0 h-[30%] bg-black bg-opacity-60 
+                                transition-all duration-700 ease-in-out group-hover:h-full 
+                                flex flex-col justify-center items-center text-white p-4">
 
-            <div class="culture-item relative overflow-hidden rounded-lg shadow">
-                <img src="images/culture-3.svg" alt="Kesenian Can Macanan Kaduk" class="w-full h-64 object-cover" />
-                <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 text-white text-center">
-                    <h3 class="text-xl font-semibold">Kesenian Can Macanan Kaduk</h3>
-                    <div class="w-10 h-1 bg-orange-500 mx-auto mt-2"></div>
-                </div>
-            </div>
+                        <!-- Nama -->
+                        <h3
+                            class="text-xl font-semibold transform transition-all duration-700 
+                                   group-hover:-translate-y-6">
+                            {{ $culture->name }}
+                        </h3>
 
-            <div class="culture-item relative overflow-hidden rounded-lg shadow">
-                <img src="images/culture-4.svg" alt="Kesenian Tari Bedhoyo" class="w-full h-64 object-cover" />
-                <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 text-white text-center">
-                    <h3 class="text-xl font-semibold">Kesenian Tari Bedhoyo</h3>
-                    <div class="w-10 h-1 bg-orange-500 mx-auto mt-2"></div>
+                        <!-- Deskripsi -->
+                        <p
+                            class="mt-2 opacity-0 translate-y-6 transition-all duration-700 delay-200 
+                                  group-hover:opacity-100 group-hover:translate-y-0 text-sm">
+                            {{ $culture->description }}
+                        </p>
+
+                        <div class="w-10 h-1 bg-orange-500 mx-auto mt-2"></div>
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </section>
 
-    <!-- Destination Gallery dengan fade-in -->
-    <section id="gallery" class="py-16 px-6 md:px-16 bg-gray-50 text-center fade-in">
+    <!-- Destination Gallery -->
+    <section id="gallery" class="py-16 px-6 md:px-16 bg-gray-50 text-center">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">Destination Gallery</h2>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">
+            Destination Gallery
+        </h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
             Potret indahnya kenampakan Arjasa yang tidak boleh anda lewatkan
         </p>
 
+        <!-- Filter -->
         <div class="flex flex-wrap justify-center gap-8 mb-16 text-gray-700 font-semibold text-lg">
             <a href="#" class="filter-link hover:text-orange-500" data-filter="all">ALL</a>
-            <a href="#" class="filter-link hover:text-orange-500" data-filter="calok">Situs Calok</a>
-            <a href="#" class="filter-link hover:text-orange-500" data-filter="punden">Punden Berundak</a>
-            <a href="#" class="filter-link hover:text-orange-500" data-filter="sendang">Sendang Tirta Amertha Rajasa</a>
-            <a href="#" class="filter-link hover:text-orange-500" data-filter="waterpark">Citra Wisata Mandiri Waterpark</a>
+            @foreach ($categories as $category)
+                <a href="#" class="filter-link hover:text-orange-500"
+                    data-filter="category-{{ $category->id }}">
+                    {{ $category->name }}
+                </a>
+            @endforeach
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div class="flex flex-col gap-6">
                 <div id="main-display" class="w-full aspect-[16/9] rounded-lg shadow-lg">
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/zHBb5RIztBQ" frameborder="0" allowfullscreen></iframe>
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/zHBb5RIztBQ" frameborder="0"
+                        allowfullscreen></iframe>
                 </div>
                 <div id="gallery-carousel" class="flex overflow-x-auto gap-4 hidden">
-                    <!-- Carousel items -->
+                    <div class="flex gap-4"></div>
                 </div>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
-                <img src="images/gallery-1.svg" data-filter="calok" class="gallery-thumb rounded-lg shadow-md w-full h-full object-cover cursor-pointer" />
-                <img src="images/gallery-2.svg" data-filter="waterpark" class="gallery-thumb rounded-lg shadow-md w-full h-full object-cover cursor-pointer" />
-                <img src="images/gallery-3.svg" data-filter="punden" class="gallery-thumb rounded-lg shadow-md w-full h-full object-cover cursor-pointer" />
-                <img src="images/gallery-4.svg" data-filter="sendang" class="gallery-thumb rounded-lg shadow-md w-full h-full object-cover cursor-pointer" />
+                @foreach ($categories as $category)
+                    @foreach ($category->images as $image)
+                        <img src="{{ asset('storage/' . $image->image) }}" data-filter="category-{{ $category->id }}"
+                            class="gallery-thumb rounded-lg shadow-md w-full h-full object-cover cursor-pointer" />
+                    @endforeach
+                @endforeach
             </div>
         </div>
     </section>
@@ -470,92 +488,51 @@
     <!-- Packages Section dengan fade-in dan glow buttons -->
     <section id="packages" class="py-16 px-6 md:px-16 bg-white text-center fade-in">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-2 font-josefinSlab">5 Recommended Packages Travel</h2>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-2 font-josefinSlab">
+            5 Recommended Packages Travel
+        </h2>
         <p class="text-lg text-gray-600 mb-12">
             Wisata terbaik berdasarkan tingkat ketertarikan wisatawan Arjasa dan kepopuleran wisata tersebut
         </p>
 
-        <div class="flex flex-wrap justify-center gap-6 mb-6">
-            <div class="w-full md:w-[48%] h-96 rounded-2xl overflow-hidden shadow-md relative package-card">
-                <img src="images/packages-1.svg" alt="Hyang Argopuro Festival" class="absolute inset-0 w-full h-full object-cover z-0">
-                <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
-                <div class="relative z-20 flex items-end justify-between px-6 py-4 text-white">
-                    <div>
-                        <h3 class="text-xl font-semibold">Hyang Argopuro Festival</h3>
-                        <div class="text-yellow-400">★★★☆☆</div>
-                        <p class="text-orange-300 font-bold">Rp. 5.000</p>
-                    </div>
-                    <button class="bg-white text-blue-600 px-3 py-1 rounded-lg glow-button" data-title="Hyang Argopuro Festival" data-price="Rp. 5.000" data-description="Festival Hyang Argopuro adalah acara budaya tahunan..." data-map="https://www.google.com/maps/embed?pb=..." onclick="openModal(this)">
-                        See Details
-                    </button>
-                </div>
-            </div>
-
-            <div class="w-full md:w-[48%] h-96 rounded-2xl overflow-hidden shadow-md relative package-card">
-                <img src="images/packages-2.svg" alt="One Day Tour" class="absolute inset-0 w-full h-full object-cover z-0">
-                <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
-                <div class="relative z-20 flex items-end justify-between px-6 py-4 text-white">
-                    <div>
-                        <h3 class="text-xl font-semibold">One Day Tour Arjasa Village - Educational Tour</h3>
-                        <div class="text-yellow-400">★★★☆☆</div>
-                        <p class="text-orange-300 font-bold">Rp. 10.000</p>
-                    </div>
-                    <button class="bg-white text-blue-600 px-3 py-1 rounded-lg glow-button" data-title="One Day Tour Arjasa Village" data-price="Rp. 10.000" data-description="..." data-map="..." onclick="openModal(this)">
-                        See Details
-                    </button>
-                </div>
-            </div>
-        </div>
-
         <div class="flex flex-wrap justify-center gap-6">
-            <div class="w-full md:w-[31%] h-80 rounded-2xl overflow-hidden shadow-md relative package-card">
-                <img src="images/packages-3.svg" alt="Package 3" class="absolute inset-0 w-full h-full object-cover z-0">
-                <div class="absolute inset-0 bg-black bg-opacity-50 z-10 flex items-end justify-between px-6 py-4 text-white">
-                    <div>
-                        <h3 class="text-xl font-semibold">One Day Tour Arjasa Village - Educational Tour</h3>
-                        <div class="text-yellow-400">★★★☆☆</div>
-                        <p class="text-orange-300 font-bold">Rp. 25.000</p>
+            @foreach ($packages as $package)
+                <div class="w-full md:w-[48%] rounded-2xl overflow-hidden shadow-md relative package-card">
+                    <!-- Carousel -->
+                    <div id="carousel-{{ $package->id }}" class="relative h-96 overflow-hidden">
+                        @foreach ($package->images as $index => $img)
+                            <img src="{{ asset('storage/' . $img->image) }}"
+                                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 {{ $index === 0 ? 'opacity-100' : 'opacity-0' }}"
+                                data-carousel="{{ $package->id }}">
+                        @endforeach
                     </div>
-                    <button class="bg-white text-blue-600 px-3 py-1 rounded-lg glow-button" onclick="openModal(this)">
-                        See Details
-                    </button>
-                </div>
-            </div>
-
-            <div class="w-full md:w-[31%] h-80 rounded-2xl overflow-hidden shadow-md relative package-card">
-                <img src="images/packages-4.svg" alt="Heritage & Art Camp" class="absolute inset-0 w-full h-full object-cover z-0">
-                <div class="absolute inset-0 bg-black bg-opacity-50 z-10 flex items-end justify-between px-6 py-4 text-white">
-                    <div>
-                        <h3 class="text-xl font-semibold">Heritage & Art Camp Arjasa Village</h3>
-                        <div class="text-yellow-400">★★★☆☆</div>
-                        <p class="text-orange-300 font-bold">Rp. 25.000</p>
+                    <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+                    <div class="relative z-20 flex items-end justify-between px-6 py-4 text-white">
+                        <div>
+                            <h3 class="text-xl font-semibold">{{ $package->name }}</h3>
+                            <div class="text-yellow-400">★★★☆☆</div>
+                            <p class="text-orange-300 font-bold">Rp. {{ number_format($package->price, 0, ',', '.') }}
+                            </p>
+                        </div>
+                        <button class="bg-white text-blue-600 px-3 py-1 rounded-lg" data-title="{{ $package->name }}"
+                            data-price="Rp. {{ number_format($package->price, 0, ',', '.') }}"
+                            data-description="{{ $package->description }}" data-images='@json($package->images->pluck('image'))'
+                            onclick="openModal(this)">
+                            See Details
+                        </button>
                     </div>
-                    <button class="bg-white text-blue-600 px-3 py-1 rounded-lg glow-button" onclick="openModal(this)">
-                        See Details
-                    </button>
                 </div>
-            </div>
-
-            <div class="w-full md:w-[31%] h-80 rounded-2xl overflow-hidden shadow-md relative package-card">
-                <img src="images/packages-5.svg" alt="Hyang Argopuro Festival" class="absolute inset-0 w-full h-full object-cover z-0">
-                <div class="absolute inset-0 bg-black bg-opacity-50 z-10 flex items-end justify-between px-6 py-4 text-white">
-                    <div>
-                        <h3 class="text-xl font-semibold">Hyang Argopuro Festival</h3>
-                        <div class="text-yellow-400">★★★☆☆</div>
-                        <p class="text-orange-300 font-bold">Rp. 25.000</p>
-                    </div>
-                    <button class="bg-white text-blue-600 px-3 py-1 rounded-lg glow-button" onclick="openModal(this)">
-                        See Details
-                    </button>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
 
+
     <!-- Modal for Packages -->
-    <div id="destinationModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center">
+    <div id="destinationModal"
+        class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center">
         <div class="bg-white rounded-xl p-6 w-[90%] max-w-3xl relative">
-            <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-500 text-xl font-bold">&times;</button>
+            <button onclick="closeModal()"
+                class="absolute top-2 right-2 text-gray-500 text-xl font-bold">&times;</button>
             <h3 id="modalTitle" class="text-2xl font-bold mb-2"></h3>
             <p id="modalPrice" class="text-orange-500 font-semibold mb-4"></p>
             <p id="modalDescription" class="text-gray-700 mb-4"></p>
@@ -572,51 +549,44 @@
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="relative h-[36rem] rounded-lg overflow-hidden facility-card" style="background-image: url('images/facility-1.svg'); background-size: cover;">
-                <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-start justify-end p-6">
-                    <h3 class="text-white text-2xl font-bold mb-3">Unlock the hidden gem of Arjasa</h3>
-                    <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 glow-button">
-                        View All Facility
-                    </button>
-                </div>
-            </div>
-
-            <div class="flex flex-col gap-6">
-                <div class="relative h-[17rem] rounded-lg overflow-hidden facility-card" style="background-image: url('images/facility-2.svg'); background-size: cover;">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                        <h4 class="text-white font-bold text-lg">Explore Local Life</h4>
+            {{-- Kolom Besar 1 Gambar --}}
+            @if ($imageFacilities->isNotEmpty())
+                <div class="relative h-[36rem] rounded-lg overflow-hidden facility-card"
+                    style="background-image: url('{{ asset('storage/' . $imageFacilities[0]->image) }}'); background-size: cover;">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-start justify-end p-6">
+                        <h3 class="text-white text-2xl font-bold mb-3">{{ $imageFacilities[0]->name }}</h3>
+                        <a href="{{ route('facilities.index') }}"
+                            class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
+                            View All Facility
+                        </a>
                     </div>
                 </div>
-                <div class="relative h-[17rem] rounded-lg overflow-hidden facility-card" style="background-image: url('images/facility-3.svg'); background-size: cover;">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                        <h4 class="text-white font-bold text-lg">Cultural Experience</h4>
+            @endif
+
+            {{-- Kolom Tengah 2 Gambar --}}
+            <div class="flex flex-col gap-6">
+                @foreach ($imageFacilities->skip(1) as $facility)
+                    <div class="relative h-[17rem] rounded-lg overflow-hidden facility-card"
+                        style="background-image: url('{{ asset('storage/' . $facility->image) }}'); background-size: cover;">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <h4 class="text-white font-bold text-lg">{{ $facility->name }}</h4>
+                        </div>
                     </div>
-                </div>
+                @endforeach
             </div>
 
+            {{-- Kolom Kanan 2 Deskripsi --}}
             <div class="flex flex-col gap-6">
-                <div class="p-6 bg-gray-100 rounded-lg shadow facility-card">
-                    <h3 class="text-xl font-bold mb-2">ACOMODATION</h3>
-                    <p class="text-gray-600 mb-4 text-sm">
-                        Beragam penginapan dari homestay lokal hingga resort alami yang menyatu dengan alam Arjasa.
-                    </p>
-                    <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 glow-button">
-                        View More
-                    </button>
-                </div>
-
-                <div class="p-6 bg-gray-100 rounded-lg shadow facility-card">
-                    <h3 class="text-xl font-bold mb-2">TRANSPORTATION</h3>
-                    <ul class="list-disc list-inside text-gray-600 mb-4 text-sm">
-                        <li>Ojek Tradisional</li>
-                        <li>Mobil Wisata</li>
-                        <li>Sepeda Gunung</li>
-                        <li>Jasa Antar Lokal</li>
-                    </ul>
-                    <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 glow-button">
-                        View More
-                    </button>
-                </div>
+                @foreach ($textFacilities as $facility)
+                    <div class="p-6 bg-gray-100 rounded-lg shadow facility-card">
+                        <h3 class="text-xl font-bold mb-2">{{ strtoupper($facility->name) }}</h3>
+                        <p class="text-gray-600 mb-4 text-sm">{{ $facility->description }}</p>
+                        <a href="{{ route('facilities.show', $facility->id) }}"
+                            class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
+                            View More
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -630,7 +600,8 @@
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="souvenir-item relative h-[36rem] rounded-lg overflow-hidden shadow" style="background-image: url('images/souvenir-1.jpg'); background-size: cover;">
+            <div class="souvenir-item relative h-[36rem] rounded-lg overflow-hidden shadow"
+                style="background-image: url('images/souvenir-1.jpg'); background-size: cover;">
                 <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-start justify-end p-6">
                     <h3 class="text-white text-2xl font-bold mb-3">Batik Silabango</h3>
                     <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 glow-button">
@@ -640,12 +611,14 @@
             </div>
 
             <div class="flex flex-col gap-6">
-                <div class="souvenir-item relative h-[17rem] rounded-lg overflow-hidden shadow" style="background-image: url('images/souvenir-2.jpg'); background-size: cover;">
+                <div class="souvenir-item relative h-[17rem] rounded-lg overflow-hidden shadow"
+                    style="background-image: url('images/souvenir-2.jpg'); background-size: cover;">
                     <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                         <h4 class="text-white font-bold text-lg">Anyaman Bambu</h4>
                     </div>
                 </div>
-                <div class="souvenir-item relative h-[17rem] rounded-lg overflow-hidden shadow" style="background-image: url('images/souvenir-3.jpg'); background-size: cover;">
+                <div class="souvenir-item relative h-[17rem] rounded-lg overflow-hidden shadow"
+                    style="background-image: url('images/souvenir-3.jpg'); background-size: cover;">
                     <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                         <h4 class="text-white font-bold text-lg">Kerajinan Kayu</h4>
                     </div>
@@ -705,7 +678,8 @@
     <!-- Social Section dengan Elfsight Instagram Widget dan fade-in -->
     <section id="social" class="py-16 px-6 md:px-16 bg-white text-gray-800 fade-in">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@DesaWisataArjasaOfficial</h2>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@DesaWisataArjasaOfficial
+        </h2>
 
         <!-- Elfsight Instagram Feed Widget -->
         <div class="elfsight-app-7148802b-a989-44c0-bc48-4b53fbc340c2" data-elfsight-app-lazy></div>
@@ -733,7 +707,9 @@
 
         <div class="flex justify-center">
             <div class="w-full md:w-[90%] h-[450px] rounded-lg overflow-hidden shadow-lg">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.857847011082!2d113.73451588487477!3d-8.115953060346706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6953f62ed30bb%3A0xeda68b0d4c733f41!2sKantor%20Desa%20Arjasa!5e0!3m2!1sid!2sid!4v1754348200377!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.857847011082!2d113.73451588487477!3d-8.115953060346706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6953f62ed30bb%3A0xeda68b0d4c733f41!2sKantor%20Desa%20Arjasa!5e0!3m2!1sid!2sid!4v1754348200377!5m2!1sid!2sid"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </section>
@@ -811,15 +787,9 @@
     const carousel = document.getElementById('gallery-carousel');
     const carouselInner = carousel.querySelector('div');
 
-    const galleryData = {
-        calok: { image: 'images/gallery-1.svg', gallery: ['images/calok-1.jpg', 'images/calok-2.jpg'] },
-        punden: { image: 'images/gallery-3.svg', gallery: ['images/punden-1.jpg', 'images/punden-2.jpg'] },
-        sendang: { image: 'images/gallery-4.svg', gallery: ['images/sendang-1.jpg'] },
-        waterpark: { image: 'images/gallery-2.svg', gallery: ['images/waterpark-1.jpg', 'images/waterpark-2.jpg'] }
-    };
-
     function resetGallery() {
-        mainDisplay.innerHTML = '<iframe class="w-full h-full rounded-lg shadow-lg" src="https://www.youtube.com/embed/zHBb5RIztBQ" frameborder="0" allowfullscreen></iframe>';
+        mainDisplay.innerHTML =
+            '<iframe class="w-full h-full rounded-lg shadow-lg" src="https://www.youtube.com/embed/zHBb5RIztBQ" frameborder="0" allowfullscreen></iframe>';
         carousel.classList.add('hidden');
         carouselInner.innerHTML = '';
     }
@@ -828,26 +798,78 @@
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const filter = link.dataset.filter;
-            if (filter === 'all') return resetGallery();
 
-            const data = galleryData[filter];
-            mainDisplay.innerHTML = `<img src="${data.image}" alt="${filter}" class="w-full h-full object-cover rounded-lg shadow-lg" />`;
-            carousel.classList.remove('hidden');
-            carouselInner.innerHTML = data.gallery.map(img => `<img src="${img}" class="h-32 rounded-lg shadow-md object-cover" />`).join('');
+            if (filter === 'all') {
+                resetGallery();
+                return;
+            }
+
+            const thumbs = document.querySelectorAll(`img[data-filter="${filter}"]`);
+            if (thumbs.length > 0) {
+                mainDisplay.innerHTML =
+                    `<img src="${thumbs[0].src}" class="w-full h-full object-cover rounded-lg shadow-lg" />`;
+                carousel.classList.remove('hidden');
+                carouselInner.innerHTML = Array.from(thumbs).map(img =>
+                    `<img src="${img.src}" class="h-32 rounded-lg shadow-md object-cover" />`
+                ).join('');
+            }
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('[data-carousel]').forEach(img => {
+            const packageId = img.dataset.carousel;
+            let index = 0;
+            const images = document.querySelectorAll(`[data-carousel="${packageId}"]`);
+            setInterval(() => {
+                images[index].classList.remove('opacity-100');
+                images[index].classList.add('opacity-0');
+                index = (index + 1) % images.length;
+                images[index].classList.remove('opacity-0');
+                images[index].classList.add('opacity-100');
+            }, 3000);
         });
     });
 
-    // Intersection Observer untuk fade-in effects
-    const fadeInElements = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.1 });
+    function openModal(button) {
+        const title = button.dataset.title;
+        const price = button.dataset.price;
+        const description = button.dataset.description;
+        const images = JSON.parse(button.dataset.images);
 
-    fadeInElements.forEach(el => observer.observe(el));
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalPrice').innerText = price;
+        document.getElementById('modalDescription').innerText = description;
+
+        // Ganti iframe map jadi carousel modal
+        const modalMap = document.getElementById('modalMap');
+        modalMap.outerHTML = `
+            <div id="modalCarousel" class="relative w-full h-64 overflow-hidden rounded-lg">
+                ${images.map((img, i) => `
+                    <img src="/storage/${img}" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === 0 ? 'opacity-100' : 'opacity-0'}" data-modal-carousel>
+                `).join('')}
+            </div>
+        `;
+
+        let idx = 0;
+        const modalImages = document.querySelectorAll('[data-modal-carousel]');
+        setInterval(() => {
+            modalImages[idx].classList.remove('opacity-100');
+            modalImages[idx].classList.add('opacity-0');
+            idx = (idx + 1) % modalImages.length;
+            modalImages[idx].classList.remove('opacity-0');
+            modalImages[idx].classList.add('opacity-100');
+        }, 3000);
+
+        document.getElementById('destinationModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('destinationModal').classList.add('hidden');
+    }
 </script>
+
 
 </html>
