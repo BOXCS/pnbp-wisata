@@ -6,6 +6,7 @@ use App\Models\Culture;
 use App\Models\Facility;
 use App\Models\GalleryCategory;
 use App\Models\Packages;
+use App\Models\Products;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -42,6 +43,8 @@ class AppServiceProvider extends ServiceProvider
                 'imageFacilities',
                 'textFacilities',
             ));
+
+            $view->with('products', Products::all());
         });
     }
 }

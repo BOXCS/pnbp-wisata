@@ -1,3 +1,4 @@
+```blade
 <!DOCTYPE html>
 <html lang="id">
 
@@ -144,7 +145,7 @@
             transition: background-color 0.3s ease;
         }
 
-        .souvenir-item:hover {
+        .products-item:hover {
             transform: rotate(2deg);
             transition: transform 0.3s ease;
         }
@@ -152,45 +153,6 @@
         .insta-image:hover {
             filter: brightness(1.1);
             transition: filter 0.3s ease;
-        }
-
-        /* Efek tambahan: Fade-in untuk sections saat scroll */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Parallax effect untuk background sections */
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        /* Animasi glow untuk buttons pada hover */
-        .glow-button {
-            transition: box-shadow 0.3s ease-in-out;
-        }
-
-        .glow-button:hover {
-            box-shadow: 0 0 15px rgba(249, 115, 22, 0.7);
-        }
-
-        /* Smooth scroll behavior */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Hide Elfsight free widget branding/toolbar */
-        .global-styles, .eapps-widget-toolbar {
-            display: none !important;
         }
     </style>
 </head>
@@ -208,7 +170,7 @@
 
                 <div class="w-96 h-1 bg-white mx-auto mt-5 mb-8"></div>
                 <h1 class="text-2xl sm:text-5xl mt-4 font-robotoSlab font-light text-white leading-snug text-center"
-                    style="letter-spacing: 0.2rem;">
+                    style="letter-spacing: 0.2rem; lin">
                     ANUGERAH DESA WISATA INDONESIA (ADWI) 2024:<br>
                     <span class="text-white">ARJASA</span>
                     <span class="text-transparent" style="-webkit-text-stroke: 1px white;">VILLAGE'S</span>
@@ -233,7 +195,7 @@
                         <a href="#gallery" class="nav-link hover:text-orange-500 transition-colors">GALLERY</a>
                         <a href="#packages" class="nav-link hover:text-orange-500 transition-colors">PACKAGES</a>
                         <a href="#facility" class="nav-link hover:text-orange-500 transition-colors">FACILITY</a>
-                        <a href="#souvenir" class="nav-link hover:text-orange-500 transition-colors">SOUVENIR</a>
+                        <a href="#products" class="nav-link hover:text-orange-500 transition-colors">PRODUK</a>
                         <a href="#social" class="nav-link hover:text-orange-500 transition-colors">SOCIAL</a>
                     </nav>
                 </div>
@@ -275,7 +237,7 @@
             <a href="#gallery" class="hover:text-orange-500 transition-colors">GALLERY</a>
             <a href="#packages" class="hover:text-orange-500 transition-colors">PACKAGES</a>
             <a href="#facility" class="hover:text-orange-500 transition-colors">FACILITY</a>
-            <a href="#souvenir" class="hover:text-orange-500 transition-colors">SOUVENIR</a>
+            <a href="#products" class="hover:text-orange-500 transition-colors">PRODUK</a>
             <a href="#social" class="hover:text-orange-500 transition-colors">SOCIAL</a>
             <div class="flex items-center gap-2 font-medium mt-4">
                 <span>ID</span>
@@ -331,8 +293,8 @@
         </div>
     </div>
 
-    <!-- Profile Section dengan fade-in -->
-    <section id="profile" class="py-10 px-6 md:px-16 text-center bg-white fade-in">
+    <!-- Profile Section -->
+    <section id="profile" class="py-10 px-6 md:px-16 text-center bg-white">
         <h2 class="text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">Profile Of Arjasa</h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
             Desa Arjasa merupakan desa tertua di Kabupaten Jember dengan warisan budaya dan sejarah yang kaya dari zaman
@@ -398,8 +360,8 @@
         </div>
     </section>
 
-    <!-- Culture Section dengan fade-in -->
-    <section id="culture" class="py-16 px-6 md:px-16 bg-white text-center fade-in">
+    <!-- Culture Section -->
+    <section id="culture" class="py-16 px-6 md:px-16 bg-white text-center">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
         <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">
             Culture of Arjasa
@@ -441,6 +403,8 @@
             @endforeach
         </div>
     </section>
+
+
 
     <!-- Destination Gallery -->
     <section id="gallery" class="py-16 px-6 md:px-16 bg-gray-50 text-center">
@@ -485,8 +449,8 @@
         </div>
     </section>
 
-    <!-- Packages Section dengan fade-in dan glow buttons -->
-    <section id="packages" class="py-16 px-6 md:px-16 bg-white text-center fade-in">
+    <!-- Packages Section -->
+    <section id="packages" class="py-16 px-6 md:px-16 bg-white text-center">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
         <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-2 font-josefinSlab">
             5 Recommended Packages Travel
@@ -540,8 +504,8 @@
         </div>
     </div>
 
-    <!-- Facility Section dengan fade-in -->
-    <section id="facility" class="py-16 px-6 md:px-16 bg-white text-gray-800 fade-in">
+    <!-- Facility Section -->
+    <section id="facility" class="py-16 px-6 md:px-16 bg-white text-gray-800">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
         <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">Facility</h2>
         <p class="text-center text-lg max-w-2xl mx-auto mb-12">
@@ -591,90 +555,31 @@
         </div>
     </section>
 
-    <!-- Souvenir Section dengan fade-in -->
-    <section id="souvenir" class="py-16 px-6 md:px-16 bg-white text-gray-800 fade-in">
+    <!-- products Section -->
+    <section id="products" class="py-16 px-6 md:px-16 bg-white text-gray-800">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">Souvenir</h2>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">Produk</h2>
         <p class="text-center text-lg max-w-2xl mx-auto mb-12">
             Oleh-oleh khas Arjasa yang wajib dibawa pulang sebagai kenang-kenangan.
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="souvenir-item relative h-[36rem] rounded-lg overflow-hidden shadow"
-                style="background-image: url('images/souvenir-1.jpg'); background-size: cover;">
-                <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-start justify-end p-6">
-                    <h3 class="text-white text-2xl font-bold mb-3">Batik Silabango</h3>
-                    <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 glow-button">
-                        View All Souvenir
-                    </button>
-                </div>
-            </div>
-
-            <div class="flex flex-col gap-6">
-                <div class="souvenir-item relative h-[17rem] rounded-lg overflow-hidden shadow"
-                    style="background-image: url('images/souvenir-2.jpg'); background-size: cover;">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                        <h4 class="text-white font-bold text-lg">Anyaman Bambu</h4>
+            @foreach ($products as $product)
+                <div class="products-item relative h-[20rem] rounded-lg overflow-hidden shadow"
+                    style="background-image: url('{{ asset('storage/' . $product->image) }}'); background-size: cover;">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-start justify-end p-6">
+                        <h3 class="text-white text-2xl font-bold mb-3">{{ $product->name }}</h3>
+                        <p class="text-gray-200 text-sm mb-3">{{ Str::limit($product->description, 80) }}</p>
+                        <span
+                            class="bg-orange-500 text-white px-3 py-1 rounded text-xs">{{ strtoupper($product->type) }}</span>
                     </div>
                 </div>
-                <div class="souvenir-item relative h-[17rem] rounded-lg overflow-hidden shadow"
-                    style="background-image: url('images/souvenir-3.jpg'); background-size: cover;">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                        <h4 class="text-white font-bold text-lg">Kerajinan Kayu</h4>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-col gap-6">
-                <div class="p-6 bg-gray-100 rounded-lg shadow souvenir-item">
-                    <h3 class="text-xl font-bold mb-2">CULINARY</h3>
-                    <p class="text-gray-600 mb-4 text-sm">
-                        Makanan khas seperti tape, jenang, dan makanan tradisional lainnya.
-                    </p>
-                    <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 glow-button">
-                        View More
-                    </button>
-                </div>
-
-                <div class="p-6 bg-gray-100 rounded-lg shadow souvenir-item">
-                    <h3 class="text-xl font-bold mb-2">MERCHANDISE</h3>
-                    <p class="text-gray-600 mb-4 text-sm">
-                        Kaos, topi, dan aksesoris bertema Desa Arjasa.
-                    </p>
-                    <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 glow-button">
-                        View More
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-            <div class="souvenir-item rounded-lg shadow overflow-hidden">
-                <img src="images/souvenir-batik.jpg" alt="Batik Silabango" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h4 class="font-bold">Batik Silabango</h4>
-                    <p class="text-sm text-gray-600">Motif peninggalan megalitik dengan warna alami.</p>
-                </div>
-            </div>
-
-            <div class="souvenir-item rounded-lg shadow overflow-hidden">
-                <img src="images/souvenir-anyaman.jpg" alt="Anyaman Bambu" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h4 class="font-bold">Anyaman Bambu</h4>
-                    <p class="text-sm text-gray-600">Produk kerajinan tangan dari bambu lokal.</p>
-                </div>
-            </div>
-
-            <div class="souvenir-item rounded-lg shadow overflow-hidden">
-                <img src="images/souvenir-makanan.jpg" alt="Makanan Khas" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h4 class="font-bold">Makanan Khas</h4>
-                    <p class="text-sm text-gray-600">Tape Arjasa dan jenang tradisional.</p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
 
+
+    <!-- Social Section -->
     <!-- Social Section dengan Elfsight Instagram Widget dan fade-in -->
     <section id="social" class="py-16 px-6 md:px-16 bg-white text-gray-800 fade-in">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
@@ -697,8 +602,8 @@
         <div class="elfsight-app-e9e89592-b352-42d7-914e-f13a74838102" data-elfsight-app-lazy></div>
     </section>
 
-    <!-- What's Happening Section dengan fade-in -->
-    <section id="happening" class="py-16 px-6 md:px-16 bg-white text-gray-800 fade-in">
+    <!-- What's Happening Section -->
+    <section id="happening" class="py-16 px-6 md:px-16 bg-white text-gray-800">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
         <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">What's Happening</h2>
         <p class="text-center text-lg max-w-2xl mx-auto mb-12">

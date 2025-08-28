@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 8,
+            "activePatchIndex": 9,
             "patches": [
                 {
                     "date": 1754700028592,
@@ -40,6 +40,10 @@
                 {
                     "date": 1756302389593,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,17 +24,24 @@\n      */\n     public function boot(): void\n     {\n         View::composer('welcome', function ($view) {\n-            $view->with('cultures', Culture::all());\n+            $cultures    = Culture::all();\n+            $categories  = GalleryCategory::with('images')->get();\n+            $packages    = Packages::all();\n+            $facilities  = Facility::all();\n+\n+            // turunan untuk layout facility\n+            $imageFacilities = $facilities->filter(fn($f) => !empty($f->image))->take(3)->values();\n+            $textFacilities  = $facilities->filter(fn($f) => $f->type === 'description')->take(2)->values();\n+\n+            $view->with(compact(\n+                'cultures',\n+                'categories',\n+                'packages',\n+                'facilities',\n+                'imageFacilities',\n+                'textFacilities',\n+            ));\n         });\n-        View::composer('welcome', function ($view) {\n-            $view->with('categories', GalleryCategory::with('images')->get());\n-        });\n-        View::composer('welcome', function ($view) {\n-            $view->with('packages', Packages::all());\n-        });\n-        View::composer('welcome', function ($view) {\n-            $view->with('imageFacilities', Facility::all());\n-        });\n     }\n }\n"
+                },
+                {
+                    "date": 1756347994935,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n use App\\Models\\Culture;\n use App\\Models\\Facility;\n use App\\Models\\GalleryCategory;\n use App\\Models\\Packages;\n+use App\\Models\\Products;\n use Illuminate\\Support\\Facades\\View;\n use Illuminate\\Support\\ServiceProvider;\n \n class AppServiceProvider extends ServiceProvider\n@@ -41,7 +42,9 @@\n                 'facilities',\n                 'imageFacilities',\n                 'textFacilities',\n             ));\n+\n+            $view->with('products', Products::all());\n         });\n     }\n }\n"
                 }
             ],
             "date": 1754700028592,
