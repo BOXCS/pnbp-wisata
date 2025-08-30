@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "780af4c9c308053df48065ff06dca7e7",
+    "content-hash": "2cc299a1b525e84f6a9a738643d3d615",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -996,6 +996,56 @@
                 }
             ],
             "time": "2024-10-09T13:47:03+00:00"
+        },
+        {
+            "name": "dymantic/laravel-instagram-feed",
+            "version": "v2.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Dymantic/laravel-instagram-feed.git",
+                "reference": "075968a6eba519ec4ac7760608f5c72d1c5537c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Dymantic/laravel-instagram-feed/zipball/075968a6eba519ec4ac7760608f5c72d1c5537c3",
+                "reference": "075968a6eba519ec4ac7760608f5c72d1c5537c3",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.5 | ^7.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.9"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Dymantic\\InstagramFeed\\InstagramFeedServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dymantic\\InstagramFeed\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Joyner",
+                    "email": "joyner.michael@gmail.com"
+                }
+            ],
+            "description": "Fetches the instagram feed for given authenticated profiles",
+            "support": {
+                "issues": "https://github.com/Dymantic/laravel-instagram-feed/issues",
+                "source": "https://github.com/Dymantic/laravel-instagram-feed/tree/v2.4.1"
+            },
+            "time": "2021-03-17T03:21:58+00:00"
         },
         {
             "name": "egulias/email-validator",

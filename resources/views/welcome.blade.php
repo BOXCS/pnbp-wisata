@@ -591,7 +591,7 @@
     </section>
 
     <!-- Reviews Section dengan Elfsight Widget dan fade-in -->
-    <section id="reviews" class="py-16 px-6 md:px-16 bg-white text-gray-800 fade-in">
+    <section id="reviews" class="py-5 px-6 md:px-16 bg-white text-gray-800 fade-in">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
         <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">WHAT OUR CUSTOMERS SAY</h2>
         <p class="text-center text-lg max-w-2xl mx-auto mb-12">
@@ -603,7 +603,7 @@
     </section>
 
     <!-- What's Happening Section -->
-    <section id="happening" class="py-16 px-6 md:px-16 bg-white text-gray-800">
+    <section id="happening" class="py-16 -mt-8 px-6 md:px-16 bg-white text-gray-800">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
         <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">What's Happening</h2>
         <p class="text-center text-lg max-w-2xl mx-auto mb-12">
