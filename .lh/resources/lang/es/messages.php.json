@@ -1,0 +1,30 @@
+{
+    "sourceFile": "resources/lang/es/messages.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1756552368628,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756552452116,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,10 @@\n     'greeting' => 'Hola',\r\n     'profile' => 'Perfil',\r\n     'vision' => 'Visión y Misión',\r\n     'culture' => 'Cultura',\r\n-    'gallery' => 'Galeri',\r\n-    'packages' => 'Paket',\r\n-    'facility' => 'Fasilitas',\r\n-    'products' => 'Produk',\r\n-    'social' => 'Sosial',\r\n+    'gallery' => 'Galería',\r\n+    'packages' => 'Paquetes',\r\n+    'facility' => 'Instalación',\r\n+    'products' => 'Productos',\r\n+    'social' => 'Social',\r\n ];\r\n"
+                },
+                {
+                    "date": 1756553435088,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,13 @@\n+<?php\r\n+\r\n+return [\r\n+    'greeting' => 'Hola',\r\n+    'profile' => 'Perfil',\r\n+    'vision' => 'Visión y Misión',\r\n+    'culture' => 'Cultura',\r\n+    'gallery' => 'Galería',\r\n+    'packages' => 'Paquetes',\r\n+    'facility' => 'Instalación',\r\n+    'products' => 'Productos',\r\n+    'social' => 'Social',\r\n+];\r\n"
+                },
+                {
+                    "date": 1756553914118,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,4 @@\n-<?php\r\n-\r\n return [\r\n     'greeting' => 'Hola',\r\n     'profile' => 'Perfil',\r\n     'vision' => 'Visión y Misión',\r\n@@ -10,15 +8,4 @@\n     'facility' => 'Instalación',\r\n     'products' => 'Productos',\r\n     'social' => 'Social',\r\n ];\r\n-return [\r\n-    'greeting' => 'Hola',\r\n-    'profile' => 'Perfil',\r\n-    'vision' => 'Visión y Misión',\r\n-    'culture' => 'Cultura',\r\n-    'gallery' => 'Galería',\r\n-    'packages' => 'Paquetes',\r\n-    'facility' => 'Instalación',\r\n-    'products' => 'Productos',\r\n-    'social' => 'Social',\r\n-];\r\n"
+                }
+            ],
+            "date": 1756552368628,
+            "name": "Commit-0",
+            "content": "return [\r\n    'greeting' => 'Hola',\r\n    'profile' => 'Perfil',\r\n    'vision' => 'Visión y Misión',\r\n    'culture' => 'Cultura',\r\n    'gallery' => 'Galeri',\r\n    'packages' => 'Paket',\r\n    'facility' => 'Fasilitas',\r\n    'products' => 'Produk',\r\n    'social' => 'Sosial',\r\n];\r\n"
+        }
+    ]
+}

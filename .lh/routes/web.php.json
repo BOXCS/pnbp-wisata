@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1754692962721,
@@ -20,6 +20,14 @@
                 {
                     "date": 1756302431625,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,5 +10,6 @@\n });\n \n Route::get('/culture', [CultureController::class, 'index']);\n Route::get('/gallery', [GalleryController::class, 'index']);\n-Route::get('/facility', [FacilityController::class, 'index']);\n\\ No newline at end of file\n+Route::get('/facility', [FacilityController::class, 'index'])->name('facilities.index');\n+Route::get('/facility/{facility}', [FacilityController::class, 'show'])->name('facilities.show');\n"
+                },
+                {
+                    "date": 1756552853414,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n \n use App\\Http\\Controllers\\CultureController;\n use App\\Http\\Controllers\\FacilityController;\n use App\\Http\\Controllers\\GalleryController;\n+use App\\Http\\Controllers\\LanguageController;\n use Illuminate\\Support\\Facades\\Route;\n \n Route::get('/', function () {\n     return view('welcome');\n@@ -12,4 +13,6 @@\n Route::get('/culture', [CultureController::class, 'index']);\n Route::get('/gallery', [GalleryController::class, 'index']);\n Route::get('/facility', [FacilityController::class, 'index'])->name('facilities.index');\n Route::get('/facility/{facility}', [FacilityController::class, 'show'])->name('facilities.show');\n+\n+Route::post('/language', [LanguageController::class, 'switch'])->name('language.switch');\n"
+                },
+                {
+                    "date": 1756553703331,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,14 +5,16 @@\n use App\\Http\\Controllers\\GalleryController;\n use App\\Http\\Controllers\\LanguageController;\n use Illuminate\\Support\\Facades\\Route;\n \n-Route::get('/', function () {\n-    return view('welcome');\n-});\n+Route::middleware(['locale'])->group(function () {  // Applying middleware here\n+    Route::get('/', function () {\n+        return view('welcome');\n+    });\n \n-Route::get('/culture', [CultureController::class, 'index']);\n-Route::get('/gallery', [GalleryController::class, 'index']);\n-Route::get('/facility', [FacilityController::class, 'index'])->name('facilities.index');\n-Route::get('/facility/{facility}', [FacilityController::class, 'show'])->name('facilities.show');\n-\n-Route::post('/language', [LanguageController::class, 'switch'])->name('language.switch');\n+    Route::get('/culture', [CultureController::class, 'index']);\n+    Route::get('/gallery', [GalleryController::class, 'index']);\n+    Route::get('/facility', [FacilityController::class, 'index'])->name('facilities.index');\n+    Route::get('/facility/{facility}', [FacilityController::class, 'show'])->name('facilities.show');\n+    \n+    Route::post('/language', [LanguageController::class, 'switch'])->name('language.switch');\n+});\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1754692962721,

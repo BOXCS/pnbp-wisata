@@ -1,0 +1,26 @@
+{
+    "sourceFile": "app/Http/Controllers/LanguageController.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1756552851252,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756553740644,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,12 @@\n {\n     public function switch(Request $request)\n     {\n         $lang = $request->lang;\n-        Session::put('locale', $lang);  // Store the selected language in session\n-        return redirect()->back();  // Redirect back to the previous page\n+\n+        if (in_array($lang, ['id', 'en', 'es', 'zh'])) {\n+            Session::put('locale', $lang);\n+        }\n+\n+        return redirect()->back();\n     }\n }\n"
+                },
+                {
+                    "date": 1756553842470,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,13 +8,16 @@\n class LanguageController extends Controller\n {\n     public function switch(Request $request)\n     {\n+        // Ensure that the language code is valid\n         $lang = $request->lang;\n \n         if (in_array($lang, ['id', 'en', 'es', 'zh'])) {\n+            // Store the language in the session\n             Session::put('locale', $lang);\n         }\n \n+        // Redirect back to the previous page with the updated language\n         return redirect()->back();\n     }\n }\n"
+                }
+            ],
+            "date": 1756552851252,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Http\\Controllers;\n\nuse Illuminate\\Http\\Request;\nuse Illuminate\\Support\\Facades\\Session;\n\nclass LanguageController extends Controller\n{\n    public function switch(Request $request)\n    {\n        $lang = $request->lang;\n        Session::put('locale', $lang);  // Store the selected language in session\n        return redirect()->back();  // Redirect back to the previous page\n    }\n}\n"
+        }
+    ]
+}

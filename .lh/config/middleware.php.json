@@ -1,0 +1,22 @@
+{
+    "sourceFile": "config/middleware.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1756553187202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756554352244,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,7 +20,9 @@\n         \\App\\Http\\Middleware\\SetLocale::class,  // Optional: Apply locale switching middleware to API routes if needed\r\n         \\Illuminate\\Session\\Middleware\\StartSession::class,\r\n         \\Illuminate\\Routing\\Middleware\\SubstituteBindings::class,\r\n     ],\r\n+    \r\n+    'locale' => \\App\\Http\\Middleware\\SetLocale::class,\r\n \r\n     // Define other custom middleware groups as needed\r\n ];\r\n"
+                }
+            ],
+            "date": 1756553187202,
+            "name": "Commit-0",
+            "content": "<?php\r\n\r\nreturn [\r\n\r\n    // Middleware to be applied globally\r\n    'global' => [\r\n        \\App\\Http\\Middleware\\SetLocale::class,  // Register the SetLocale middleware here for all requests\r\n    ],\r\n\r\n    // Middleware groups that can be used for specific routes\r\n    'web' => [\r\n        \\App\\Http\\Middleware\\SetLocale::class,  // Apply locale switching middleware to web routes\r\n        \\Illuminate\\Session\\Middleware\\StartSession::class,\r\n        \\Illuminate\\View\\Middleware\\ShareErrorsFromSession::class,\r\n        \\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken::class,\r\n        \\Illuminate\\Routing\\Middleware\\SubstituteBindings::class,\r\n    ],\r\n\r\n    'api' => [\r\n        \\App\\Http\\Middleware\\SetLocale::class,  // Optional: Apply locale switching middleware to API routes if needed\r\n        \\Illuminate\\Session\\Middleware\\StartSession::class,\r\n        \\Illuminate\\Routing\\Middleware\\SubstituteBindings::class,\r\n    ],\r\n\r\n    // Define other custom middleware groups as needed\r\n];\r\n"
+        }
+    ]
+}

@@ -1,6 +1,6 @@
 ```blade
 <!DOCTYPE html>
-<html lang="id">
+<html lang="{{ session('locale', 'id') }}">
 
 <head>
     <meta charset="UTF-8" />
@@ -189,26 +189,29 @@
                 <!-- Desktop Navbar di tengah -->
                 <div class="hidden md:flex flex-col items-center justify-center w-full text-lg font-semibold">
                     <nav class="flex gap-6">
-                        <a href="#profile" class="nav-link hover:text-orange-500 transition-colors">PROFILE</a>
-                        <a href="#vision" class="nav-link hover:text-orange-500 transition-colors">VISI & MISI</a>
-                        <a href="#culture" class="nav-link hover:text-orange-500 transition-colors">CULTURE</a>
-                        <a href="#gallery" class="nav-link hover:text-orange-500 transition-colors">GALLERY</a>
-                        <a href="#packages" class="nav-link hover:text-orange-500 transition-colors">PACKAGES</a>
-                        <a href="#facility" class="nav-link hover:text-orange-500 transition-colors">FACILITY</a>
-                        <a href="#products" class="nav-link hover:text-orange-500 transition-colors">PRODUK</a>
-                        <a href="#social" class="nav-link hover:text-orange-500 transition-colors">SOCIAL</a>
+                        <a href="#profile" class="nav-link hover:text-orange-500 transition-colors">{{ __('messages.profile') }}</a>
+                        <a href="#vision" class="nav-link hover:text-orange-500 transition-colors">{{ __('messages.vision') }}</a>
+                        <a href="#culture" class="nav-link hover:text-orange-500 transition-colors">{{ __('messages.culture') }}</a>
+                        <a href="#gallery" class="nav-link hover:text-orange-500 transition-colors">{{ __('messages.gallery') }}</a>
+                        <a href="#packages" class="nav-link hover:text-orange-500 transition-colors">{{ __('messages.packages') }}</a>
+                        <a href="#facility" class="nav-link hover:text-orange-500 transition-colors">{{ __('messages.facility') }}</a>
+                        <a href="#products" class="nav-link hover:text-orange-500 transition-colors">{{ __('messages.products') }}</a>
+                        <a href="#social" class="nav-link hover:text-orange-500 transition-colors">{{ __('messages.social') }}</a>
                     </nav>
                 </div>
 
                 <!-- Language Selector -->
                 <div class="absolute right-20 font-medium mt-1">
-                    <span>ID</span>
-                    <span class="text-gray-300">|</span>
-                    <span>EN</span>
-                    <span class="text-gray-300">|</span>
-                    <span>CN</span>
-                    <span class="text-gray-300">|</span>
-                    <span>ES</span>
+                    <form action="{{ route('language.switch') }}" method="POST">
+                        @csrf
+                        <button type="submit" name="lang" value="id">ID</button>
+                        <span class="text-gray-300">|</span>
+                        <button type="submit" name="lang" value="en">EN</button>
+                        <span class="text-gray-300">|</span>
+                        <button type="submit" name="lang" value="es">ES</button>
+                        <span class="text-gray-300">|</span>
+                        <button type="submit" name="lang" value="zh">CN</button>
+                    </form>
                 </div>
 
                 <!-- Mobile Menu Button -->

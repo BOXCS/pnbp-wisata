@@ -1,0 +1,26 @@
+{
+    "sourceFile": "resources/lang/en/messages.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1756552262132,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756553427254,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n+<?php\r\n+\r\n return [\r\n     'greeting' => 'Hello',\r\n     'profile' => 'Profile',\r\n     'vision' => 'Vision & Mission',\r\n"
+                },
+                {
+                    "date": 1756553908916,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,4 @@\n-<?php\r\n-\r\n return [\r\n     'greeting' => 'Hello',\r\n     'profile' => 'Profile',\r\n     'vision' => 'Vision & Mission',\r\n"
+                }
+            ],
+            "date": 1756552262132,
+            "name": "Commit-0",
+            "content": "return [\r\n    'greeting' => 'Hello',\r\n    'profile' => 'Profile',\r\n    'vision' => 'Vision & Mission',\r\n    'culture' => 'Culture',\r\n    'gallery' => 'Gallery',\r\n    'packages' => 'Packages',\r\n    'facility' => 'Facility',\r\n    'products' => 'Products',\r\n    'social' => 'Social',\r\n];\r\n"
+        }
+    ]
+}

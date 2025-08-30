@@ -1,0 +1,26 @@
+{
+    "sourceFile": "resources/lang/id/messages.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1756552270626,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756553439381,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n+<?php\r\n+\r\n return [\r\n     'greeting' => 'Halo',\r\n     'profile' => 'Profil',\r\n     'vision' => 'Visi & Misi',\r\n"
+                },
+                {
+                    "date": 1756553917295,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,11 @@\n+return [\r\n+    'greeting' => 'Halo',\r\n+    'profile' => 'Profil',\r\n+    'vision' => 'Visi & Misi',\r\n+    'culture' => 'Budaya',\r\n+    'gallery' => 'Galeri',\r\n+    'packages' => 'Paket',\r\n+    'facility' => 'Fasilitas',\r\n+    'products' => 'Produk',\r\n+    'social' => 'Sosial',\r\n+];\r\n"
+                }
+            ],
+            "date": 1756552270626,
+            "name": "Commit-0",
+            "content": "return [\r\n    'greeting' => 'Halo',\r\n    'profile' => 'Profil',\r\n    'vision' => 'Visi & Misi',\r\n    'culture' => 'Budaya',\r\n    'gallery' => 'Galeri',\r\n    'packages' => 'Paket',\r\n    'facility' => 'Fasilitas',\r\n    'products' => 'Produk',\r\n    'social' => 'Sosial',\r\n];\r\n"
+        }
+    ]
+}
