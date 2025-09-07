@@ -189,14 +189,21 @@
                 <!-- Desktop Navbar di tengah -->
                 <div class="hidden md:flex flex-col items-center justify-center w-full text-lg font-semibold">
                     <nav class="flex gap-6">
-                        <a href="#profile" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.profile')</a>
+                        <a href="#profile"
+                            class="nav-link hover:text-orange-500 transition-colors">@lang('messages.profile')</a>
                         <a href="#vision" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.vision')</a>
-                        <a href="#culture" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.culture')</a>
-                        <a href="#gallery" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.gallery')</a>
-                        <a href="#packages" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.packages')</a>
-                        <a href="#facility" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.facility')</a>
-                        <a href="#products" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.products')</a>
-                        <a href="#social" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.social')</a>
+                        <a href="#culture"
+                            class="nav-link hover:text-orange-500 transition-colors">@lang('messages.culture')</a>
+                        <a href="#gallery"
+                            class="nav-link hover:text-orange-500 transition-colors">@lang('messages.gallery')</a>
+                        <a href="#packages"
+                            class="nav-link hover:text-orange-500 transition-colors">@lang('messages.packages')</a>
+                        <a href="#facility"
+                            class="nav-link hover:text-orange-500 transition-colors">@lang('messages.facility')</a>
+                        <a href="#products"
+                            class="nav-link hover:text-orange-500 transition-colors">@lang('messages.products')</a>
+                        <a href="#social"
+                            class="nav-link hover:text-orange-500 transition-colors">@lang('messages.social')</a>
                     </nav>
                 </div>
 
@@ -492,9 +499,12 @@
             <h3 id="modalTitle" class="text-2xl font-bold mb-2"></h3>
             <p id="modalPrice" class="text-orange-500 font-semibold mb-4"></p>
             <p id="modalDescription" class="text-gray-700 mb-4"></p>
-            <iframe id="modalMap" class="w-full h-64 rounded-lg border" loading="lazy" allowfullscreen></iframe>
+
+            <!-- Ganti iframe jadi div kosong untuk isi carousel -->
+            <div id="modalCarouselContainer" class="relative w-full h-64 overflow-hidden rounded-lg"></div>
         </div>
     </div>
+
 
     <!-- Facility Section -->
     <section id="facility" class="py-16 px-6 md:px-16 bg-white text-gray-800">
@@ -715,6 +725,7 @@
 </script>
 
 <script>
+    // === Auto carousel di card package ===
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('[data-carousel]').forEach(img => {
             const packageId = img.dataset.carousel;
@@ -730,6 +741,9 @@
         });
     });
 
+    // === Modal Carousel ===
+    let modalInterval = null; // simpan interval agar bisa dibersihkan
+
     function openModal(button) {
         const title = button.dataset.title;
         const price = button.dataset.price;
@@ -740,19 +754,21 @@
         document.getElementById('modalPrice').innerText = price;
         document.getElementById('modalDescription').innerText = description;
 
-        // Ganti iframe map jadi carousel modal
-        const modalMap = document.getElementById('modalMap');
-        modalMap.outerHTML = `
-            <div id="modalCarousel" class="relative w-full h-64 overflow-hidden rounded-lg">
-                ${images.map((img, i) => `
-                    <img src="/storage/${img}" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === 0 ? 'opacity-100' : 'opacity-0'}" data-modal-carousel>
-                `).join('')}
-            </div>
-        `;
+        // Isi ulang carousel container
+        const modalContainer = document.getElementById('modalCarouselContainer');
+        modalContainer.innerHTML = images.map((img, i) => `
+            <img src="/storage/${img}" 
+                 class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === 0 ? 'opacity-100' : 'opacity-0'}"
+                 data-modal-carousel>
+        `).join('');
 
+        // Hapus interval lama
+        if (modalInterval) clearInterval(modalInterval);
+
+        // Buat slideshow baru
         let idx = 0;
         const modalImages = document.querySelectorAll('[data-modal-carousel]');
-        setInterval(() => {
+        modalInterval = setInterval(() => {
             modalImages[idx].classList.remove('opacity-100');
             modalImages[idx].classList.add('opacity-0');
             idx = (idx + 1) % modalImages.length;
@@ -765,6 +781,7 @@
 
     function closeModal() {
         document.getElementById('destinationModal').classList.add('hidden');
+        if (modalInterval) clearInterval(modalInterval); // stop slideshow saat modal ditutup
     }
 </script>
 
