@@ -165,15 +165,15 @@
 
             <div class="w-full">
                 <h1 class="text-base sm:text-2xl font-extralight text-white" style="letter-spacing: 0.3em;">
-                    GREAT ART OF ARJASA
+                    @lang('messages.great_art_of_arjasa')
                 </h1>
 
                 <div class="w-96 h-1 bg-white mx-auto mt-5 mb-8"></div>
                 <h1 class="text-2xl sm:text-5xl mt-4 font-robotoSlab font-light text-white leading-snug text-center"
                     style="letter-spacing: 0.2rem; lin">
-                    ANUGERAH DESA WISATA INDONESIA (ADWI) 2024:<br>
-                    <span class="text-white">ARJASA</span>
-                    <span class="text-transparent" style="-webkit-text-stroke: 1px white;">VILLAGE'S</span>
+                    @lang('messages.award')<br>
+                    <span class="text-white">@lang('messages.village_name')</span>
+                    <span class="text-transparent" style="-webkit-text-stroke: 1px white;">@lang('messages.village_thing')</span>
                 </h1>
             </div>
         </div>
@@ -189,26 +189,26 @@
                 <!-- Desktop Navbar di tengah -->
                 <div class="hidden md:flex flex-col items-center justify-center w-full text-lg font-semibold">
                     <nav class="flex gap-6">
-                        <a href="#profile" class="nav-link hover:text-orange-500 transition-colors">PROFILE</a>
-                        <a href="#vision" class="nav-link hover:text-orange-500 transition-colors">VISI & MISI</a>
-                        <a href="#culture" class="nav-link hover:text-orange-500 transition-colors">CULTURE</a>
-                        <a href="#gallery" class="nav-link hover:text-orange-500 transition-colors">GALLERY</a>
-                        <a href="#packages" class="nav-link hover:text-orange-500 transition-colors">PACKAGES</a>
-                        <a href="#facility" class="nav-link hover:text-orange-500 transition-colors">FACILITY</a>
-                        <a href="#products" class="nav-link hover:text-orange-500 transition-colors">PRODUK</a>
-                        <a href="#social" class="nav-link hover:text-orange-500 transition-colors">SOCIAL</a>
+                        <a href="#profile" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.profile')</a>
+                        <a href="#vision" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.vision')</a>
+                        <a href="#culture" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.culture')</a>
+                        <a href="#gallery" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.gallery')</a>
+                        <a href="#packages" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.packages')</a>
+                        <a href="#facility" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.facility')</a>
+                        <a href="#products" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.products')</a>
+                        <a href="#social" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.social')</a>
                     </nav>
                 </div>
 
                 <!-- Language Selector -->
                 <div class="absolute right-20 font-medium mt-1">
-                    <span>ID</span>
+                    <a href="locale/id">@lang('messages.language_selector_id')</a>
                     <span class="text-gray-300">|</span>
-                    <span>EN</span>
+                    <a href="locale/en">@lang('messages.language_selector_en')</a>
                     <span class="text-gray-300">|</span>
-                    <span>CN</span>
+                    <a href="locale/zh">@lang('messages.language_selector_cn')</a>
                     <span class="text-gray-300">|</span>
-                    <span>ES</span>
+                    <a href="locale/es">@lang('messages.language_selector_es')</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -231,22 +231,22 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
-            <a href="#profile" class="hover:text-orange-500 transition-colors">PROFILE</a>
-            <a href="#vision" class="hover:text-orange-500 transition-colors">VISI & MISI</a>
-            <a href="#culture" class="hover:text-orange-500 transition-colors">CULTURE</a>
-            <a href="#gallery" class="hover:text-orange-500 transition-colors">GALLERY</a>
-            <a href="#packages" class="hover:text-orange-500 transition-colors">PACKAGES</a>
-            <a href="#facility" class="hover:text-orange-500 transition-colors">FACILITY</a>
-            <a href="#products" class="hover:text-orange-500 transition-colors">PRODUK</a>
-            <a href="#social" class="hover:text-orange-500 transition-colors">SOCIAL</a>
+            <a href="#profile" class="hover:text-orange-500 transition-colors">@lang('messages.profile')</a>
+            <a href="#vision" class="hover:text-orange-500 transition-colors">@lang('messages.vision')</a>
+            <a href="#culture" class="hover:text-orange-500 transition-colors">@lang('messages.culture')</a>
+            <a href="#gallery" class="hover:text-orange-500 transition-colors">@lang('messages.gallery')</a>
+            <a href="#packages" class="hover:text-orange-500 transition-colors">@lang('messages.packages')</a>
+            <a href="#facility" class="hover:text-orange-500 transition-colors">@lang('messages.facility')</a>
+            <a href="#products" class="hover:text-orange-500 transition-colors">@lang('messages.products')</a>
+            <a href="#social" class="hover:text-orange-500 transition-colors">@lang('messages.social')</a>
             <div class="flex items-center gap-2 font-medium mt-4">
-                <span>ID</span>
+                <a>@lang('messages.language_selector_id')</a>
                 <span class="text-gray-300">|</span>
-                <span>EN</span>
+                <a>@lang('messages.language_selector_en')</a>
                 <span class="text-gray-300">|</span>
-                <span>CN</span>
+                <a>@lang('messages.language_selector_cn')</a>
                 <span class="text-gray-300">|</span>
-                <span>ES</span>
+                <a>@lang('messages.language_selector_es')</a>
             </div>
         </div>
 
@@ -268,8 +268,8 @@
             <div class="flex items-start gap-4 bg-white p-4 card-hover">
                 <img src="images/clean-hands.svg" alt="Icon 1" class="w-20 h-20 object-contain">
                 <div>
-                    <h3 class="text-lg font-semibold mb-1">Cleanliness and Beauty</h3>
-                    <p class="text-sm text-gray-600">Experience the clean and beauty of Arjasa village</p>
+                    <h3 class="text-lg font-semibold mb-1">@lang('messages.cleanliness_and_beauty')</h3>
+                    <p class="text-sm text-gray-600">@lang('messages.cleanliness_description')</p>
                 </div>
             </div>
 
@@ -277,8 +277,8 @@
             <div class="flex items-start gap-4 bg-white p-4 card-hover">
                 <img src="images/temple.svg" alt="Icon 2" class="w-20 h-20 object-contain">
                 <div>
-                    <h3 class="text-lg font-semibold mb-1">Cultural Preservation</h3>
-                    <p class="text-sm text-gray-600">Explore the cultural preservation efforts in Arjasa</p>
+                    <h3 class="text-lg font-semibold mb-1">@lang('messages.cultural_preservation')</h3>
+                    <p class="text-sm text-gray-600">@lang('messages.cultural_description')</p>
                 </div>
             </div>
 
@@ -286,8 +286,8 @@
             <div class="flex items-start gap-4 bg-white p-4 card-hover">
                 <img src="images/puzzle.png" alt="Icon 3" class="w-20 h-20 object-contain">
                 <div>
-                    <h3 class="text-lg font-semibold mb-1">Engaging Activities</h3>
-                    <p class="text-sm text-gray-600">Experience activities in Arjasa that showcase the culture</p>
+                    <h3 class="text-lg font-semibold mb-1">@lang('messages.engaging_activities')</h3>
+                    <p class="text-sm text-gray-600">@lang('messages.activities_description')</p>
                 </div>
             </div>
         </div>
@@ -295,38 +295,33 @@
 
     <!-- Profile Section -->
     <section id="profile" class="py-10 px-6 md:px-16 text-center bg-white">
-        <h2 class="text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">Profile Of Arjasa</h2>
+        <h2 class="text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">@lang('messages.profile_of_arjasa')</h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
-            Desa Arjasa merupakan desa tertua di Kabupaten Jember dengan warisan budaya dan sejarah yang kaya dari zaman
-            Megalitikum hingga modern.
+            @lang('messages.profile_description')
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div class="bg-white p-6 rounded-lg shadow card-hover">
                 <img src="images/profile-klasik.svg" alt="Jejak Megalitikum" class="w-auto h-24 mx-auto mb-4" />
-                <h3 class="text-xl font-semibold mb-2 text-orange-600">Jejak Megalitikum & Klasik</h3>
+                <h3 class="text-xl font-semibold mb-2 text-orange-600">@lang('messages.megalithic_and_classic')</h3>
                 <p class="text-gray-600 text-sm">
-                    Desa Arjasa menjadi saksi hidup perjalanan peradaban sejak zaman Batu Tengah (Mesolitikum) sekitar
-                    400 SM, dengan bukti nyata yang tertanam di empat dusun berupa peninggalan megalitik seperti batu
-                    kenong, menhir, dolmen, batu dakon, hingga kubur batu yang masih terawat.
+                    @lang('messages.megalithic_description')
                 </p>
             </div>
 
             <div class="bg-white p-6 rounded-lg shadow card-hover">
                 <img src="images/profile-pasraman.svg" alt="Jejak Islam" class="w-auto h-24 mx-auto mb-4" />
-                <h3 class="text-xl font-semibold mb-2 text-orange-600">Jejak Islam & Pasraman</h3>
+                <h3 class="text-xl font-semibold mb-2 text-orange-600">@lang('messages.islamic_heritage')</h3>
                 <p class="text-gray-600 text-sm">
-                    Sejak masa pasraman hingga masuknya Islam, Desa Arjasa dikenal sebagai pusat spiritual yang
-                    menyatukan jejak Hindu-Buddha dan peradaban Islam.
+                    @lang('messages.islamic_description')
                 </p>
             </div>
 
             <div class="bg-white p-6 rounded-lg shadow card-hover">
                 <img src="images/profile-harmoni.svg" alt="Harmoni Tradisi" class="w-auto h-24 mx-auto mb-4" />
-                <h3 class="text-xl font-semibold mb-2 text-orange-600">Harmoni Tradisi</h3>
+                <h3 class="text-xl font-semibold mb-2 text-orange-600">@lang('messages.tradition_harmony')</h3>
                 <p class="text-gray-600 text-sm">
-                    Kekayaan budaya Desa Arjasa terus hidup melalui kesenian ta’bhuta-an yang menjadi ikon tradisi khas
-                    Jember, serta Batik Silabango dengan motif peninggalan megalitik.
+                    @lang('messages.tradition_description')
                 </p>
             </div>
         </div>
@@ -336,25 +331,22 @@
     <section id="vision" class="relative py-16 px-6 md:px-16 text-white text-center bg-cover bg-center"
         style="background-image: url('images/visi-bg.svg');">
         <div class="relative z-10 max-w-4xl mx-auto">
-            <h2 class="text-3xl sm:text-4xl md:text-6xl font-extrabold mb-6 font-josefinSlab">Visi & Misi</h2>
+            <h2 class="text-3xl sm:text-4xl md:text-6xl font-extrabold mb-6 font-josefinSlab">@lang('messages.vision_and_mission')</h2>
 
             <p class="text-lg sm:text-xl md:text-2xl leading-relaxed mb-8 italic">
-                “Menuju Desa Arjasa yang agamis, berbudaya, dan berwawasan lingkungan.”
+                @lang('messages.vision_description')
             </p>
 
             <div class="text-left">
-                <p class="text-lg sm:text-xl font-semibold mb-4">Misi Desa Arjasa sebagai berikut:</p>
+                {{-- <p class="text-lg sm:text-xl font-semibold mb-4">Misi Desa Arjasa sebagai berikut:</p> --}}
                 <ul class="list-decimal list-inside pl-5 space-y-4 text-base sm:text-lg leading-relaxed">
-                    <li>Menyelenggarakan pemerintahan yang bersih, amanah dan terbuka berorientasi pada optimalisasi
-                        pelayanan kepada masyarakat.</li>
-                    <li>Mendorong berkembangnya kualitas sumber daya manusia yang dilandasi nilai-nilai agama dan
-                        budaya.</li>
-                    <li>Peningkatan sarana dan prasarana dasar untuk menunjang kesejahteraan dan pelayanan publik dengan
-                        slogan: senyum, cepat dan tepat.</li>
-                    <li>Memanfaatkan potensi sumber daya alam yang berwawasan lingkungan.</li>
-                    <li>Memberdayakan lembaga keuangan mikro berbasis masyarakat untuk mendorong usaha ekonomi.</li>
-                    <li>Memberdayakan masyarakat melalui partisipasi aktif dalam pembangunan.</li>
-                    <li>Mewujudkan lingkungan yang bersih, aman, tertib, dan nyaman.</li>
+                    <li>@lang('messages.mission_list.0')</li>
+                    <li>@lang('messages.mission_list.1')</li>
+                    <li>@lang('messages.mission_list.2')</li>
+                    <li>@lang('messages.mission_list.3')</li>
+                    <li>@lang('messages.mission_list.4')</li>
+                    <li>@lang('messages.mission_list.5')</li>
+                    <li>@lang('messages.mission_list.6')</li>
                 </ul>
             </div>
         </div>
@@ -364,10 +356,10 @@
     <section id="culture" class="py-16 px-6 md:px-16 bg-white text-center">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
         <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">
-            Culture of Arjasa
+            @lang('messages.culture_of_arjasa')
         </h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
-            Adalah sebuah warisan indahnya alam dan budaya yang masih terjaga di Arjasa yang dapat anda jelajahi
+            @lang('messages.culture_description')
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -410,10 +402,10 @@
     <section id="gallery" class="py-16 px-6 md:px-16 bg-gray-50 text-center">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
         <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">
-            Destination Gallery
+            @lang('messages.destination_gallery')
         </h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
-            Potret indahnya kenampakan Arjasa yang tidak boleh anda lewatkan
+            @lang('messages.destination_description')
         </p>
 
         <!-- Filter -->
@@ -453,10 +445,10 @@
     <section id="packages" class="py-16 px-6 md:px-16 bg-white text-center">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
         <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-2 font-josefinSlab">
-            5 Recommended Packages Travel
+            @lang('messages.packages_title')
         </h2>
         <p class="text-lg text-gray-600 mb-12">
-            Wisata terbaik berdasarkan tingkat ketertarikan wisatawan Arjasa dan kepopuleran wisata tersebut
+            @lang('messages.packages_description')
         </p>
 
         <div class="flex flex-wrap justify-center gap-6">
@@ -482,7 +474,7 @@
                             data-price="Rp. {{ number_format($package->price, 0, ',', '.') }}"
                             data-description="{{ $package->description }}" data-images='@json($package->images->pluck('image'))'
                             onclick="openModal(this)">
-                            See Details
+                            @lang('messages.see_details')
                         </button>
                     </div>
                 </div>
@@ -507,9 +499,9 @@
     <!-- Facility Section -->
     <section id="facility" class="py-16 px-6 md:px-16 bg-white text-gray-800">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">Facility</h2>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@lang('messages.facility')</h2>
         <p class="text-center text-lg max-w-2xl mx-auto mb-12">
-            Fasilitas pendukung wisata di Desa Arjasa yang siap memanjakan pengunjung.
+            @lang('messages.facility_description')
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -521,7 +513,7 @@
                         <h3 class="text-white text-2xl font-bold mb-3">{{ $imageFacilities[0]->name }}</h3>
                         <a href="{{ route('facilities.index') }}"
                             class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
-                            View All Facility
+                            @lang('messages.view_facility')
                         </a>
                     </div>
                 </div>
@@ -547,7 +539,7 @@
                         <p class="text-gray-600 mb-4 text-sm">{{ $facility->description }}</p>
                         <a href="{{ route('facilities.show', $facility->id) }}"
                             class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
-                            View More
+                            @lang('messages.view_more')
                         </a>
                     </div>
                 @endforeach
@@ -558,9 +550,9 @@
     <!-- products Section -->
     <section id="products" class="py-16 px-6 md:px-16 bg-white text-gray-800">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">Produk</h2>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@lang('messages.products')</h2>
         <p class="text-center text-lg max-w-2xl mx-auto mb-12">
-            Oleh-oleh khas Arjasa yang wajib dibawa pulang sebagai kenang-kenangan.
+            @lang('messages.products_description')
         </p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -593,9 +585,9 @@
     <!-- Reviews Section dengan Elfsight Widget dan fade-in -->
     <section id="reviews" class="py-16 px-6 md:px-16 bg-white text-gray-800 fade-in">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">WHAT OUR CUSTOMERS SAY</h2>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@lang('messages.what_customers_say')</h2>
         <p class="text-center text-lg max-w-2xl mx-auto mb-12">
-            Read reviews, testimonials, and feedback to learn more about this unique destination.
+            @lang('messages.reviews_description')
         </p>
 
         <!-- Elfsight Google Reviews Widget -->
@@ -605,9 +597,9 @@
     <!-- What's Happening Section -->
     <section id="happening" class="py-16 px-6 md:px-16 bg-white text-gray-800">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">What's Happening</h2>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@lang('messages.what_is_happening')</h2>
         <p class="text-center text-lg max-w-2xl mx-auto mb-12">
-            Apa saja yang terjadi seputar Pariwisata, Kebudayaan dan Event di Arjasa
+            @lang('messages.happening_description')
         </p>
 
         <div class="flex justify-center">
@@ -623,31 +615,31 @@
     <footer class="bg-black text-white py-8 px-6 md:px-16">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-                <h4 class="font-bold mb-4">Arjasa</h4>
-                <p class="text-sm">Desa Wisata Arjasa<br>Kabupaten Jember<br>Jawa Timur, Indonesia</p>
+                <h4 class="font-bold mb-4">@lang('messages.footer.arjasa')</h4>
+                <p class="text-sm">{!! __('messages.footer.address') !!}</p>
             </div>
 
             <div>
-                <h4 class="font-bold mb-4">Information</h4>
+                <h4 class="font-bold mb-4">@lang('messages.footer.information')</h4>
                 <ul class="text-sm space-y-2">
-                    <li><a href="#" class="hover:text-orange-500">About Us</a></li>
-                    <li><a href="#" class="hover:text-orange-500">Contact</a></li>
-                    <li><a href="#" class="hover:text-orange-500">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-orange-500">@lang('messages.footer_info.about_us')</a></li>
+                    <li><a href="#" class="hover:text-orange-500">@lang('messages.footer_info.contact')</a></li>
+                    <li><a href="#" class="hover:text-orange-500">@lang('messages.footer_info.privacy_policy')</a></li>
                 </ul>
             </div>
 
             <div>
-                <h4 class="font-bold mb-4">Quick Links</h4>
+                <h4 class="font-bold mb-4">@lang('messages.footer.quick_links')</h4>
                 <ul class="text-sm space-y-2">
-                    <li><a href="#profile" class="hover:text-orange-500">Profile</a></li>
-                    <li><a href="#culture" class="hover:text-orange-500">Culture</a></li>
-                    <li><a href="#gallery" class="hover:text-orange-500">Gallery</a></li>
-                    <li><a href="#packages" class="hover:text-orange-500">Packages</a></li>
+                    <li><a href="#profile" class="hover:text-orange-500">@lang('messages.profile')</a></li>
+                    <li><a href="#culture" class="hover:text-orange-500">@lang('messages.culture')</a></li>
+                    <li><a href="#gallery" class="hover:text-orange-500">@lang('messages.gallery')</a></li>
+                    <li><a href="#packages" class="hover:text-orange-500">@lang('messages.packages')</a></li>
                 </ul>
             </div>
 
             <div>
-                <h4 class="font-bold mb-4">Social Media</h4>
+                <h4 class="font-bold mb-4">@lang('messages.social_media')</h4>
                 <div class="flex gap-4">
                     <a href="#" class="hover:text-orange-500">Facebook</a>
                     <a href="#" class="hover:text-orange-500">Twitter</a>
