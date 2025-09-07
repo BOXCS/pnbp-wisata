@@ -1,0 +1,22 @@
+{
+    "sourceFile": "app/Http/Middleware/LocalizationMiddleware.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1756556033821,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756556117991,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n namespace App\\Http\\Middleware;\n \n use Closure;\n use Illuminate\\Http\\Request;\n+use Illuminate\\Support\\Facades\\App;\n use Illuminate\\Support\\Facades\\Session;\n use Symfony\\Component\\HttpFoundation\\Response;\n \n class LocalizationMiddleware\n@@ -17,7 +18,10 @@\n     public function handle(Request $request, Closure $next): Response\n     {\n \n         $locale = Session::get('locale') ?? 'id';\n+        Session::put('locale',$locale);\n+        App::setLocale($locale);\n+        \n         return $next($request);\n     }\n }\n"
+                }
+            ],
+            "date": 1756556033821,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Http\\Middleware;\n\nuse Closure;\nuse Illuminate\\Http\\Request;\nuse Illuminate\\Support\\Facades\\Session;\nuse Symfony\\Component\\HttpFoundation\\Response;\n\nclass LocalizationMiddleware\n{\n    /**\n     * Handle an incoming request.\n     *\n     * @param  \\Closure(\\Illuminate\\Http\\Request): (\\Symfony\\Component\\HttpFoundation\\Response)  $next\n     */\n    public function handle(Request $request, Closure $next): Response\n    {\n\n        $locale = Session::get('locale') ?? 'id';\n        return $next($request);\n    }\n}\n"
+        }
+    ]
+}

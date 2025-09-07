@@ -1,0 +1,22 @@
+{
+    "sourceFile": "app/Http/Controllers/LocaleController.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1756555893415,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1756555920406,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,6 +13,8 @@\n         if (in_array($lang,['en','id','es','zh'])) {\n             App::setLocale($lang);\n             Session::put('locale',$lang);\n         }\n+\n+        return back();\n     }\n }\n"
+                }
+            ],
+            "date": 1756555893415,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Http\\Controllers;\n\nuse Illuminate\\Http\\Request;\nuse Illuminate\\Support\\Facades\\App;\nuse Illuminate\\Support\\Facades\\Session;\n\nclass LocaleController extends Controller\n{\n    //\n    public function setLocale($lang) {\n        if (in_array($lang,['en','id','es','zh'])) {\n            App::setLocale($lang);\n            Session::put('locale',$lang);\n        }\n    }\n}\n"
+        }
+    ]
+}
