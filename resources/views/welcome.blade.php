@@ -155,16 +155,29 @@
             transition: filter 0.3s ease;
         }
 
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #mobile-menu.hidden {
+            transform: translateX(-100%);
+        }
+
+        #mobile-menu.open {
+            transform: translateX(0);
+        }
+
         #social .elfsight-app-7148802b-a989-44c0-bc48-4b53fbc340c2 {
             max-height: 700px;
             overflow-y: hidden;
         }
 
         #reviews .elfsight-app-e9e89592-b352-42d7-914e-f13a74838102 {
-        max-height: 400px; /* Tentukan tinggi maksimum */
-        overflow-y: hidden; /* Scroll jika konten melebihi batas */
-}
-
+            max-height: 400px;
+            /* Tentukan tinggi maksimum */
+            overflow-y: hidden;
+            /* Scroll jika konten melebihi batas */
+        }
     </style>
 </head>
 
@@ -219,7 +232,7 @@
                 </div>
 
                 <!-- Language Selector -->
-                <div class="absolute right-20 font-medium mt-1">
+                <div class="absolute right-20 font-medium mt-1 hidden md:flex">
                     <a href="locale/id">@lang('messages.language_selector_id')</a>
                     <span class="text-gray-300">|</span>
                     <a href="locale/en">@lang('messages.language_selector_en')</a>
@@ -232,12 +245,21 @@
                 <!-- Mobile Menu Button -->
                 <div class="absolute right-0 md:hidden">
                     <button id="mobile-menu-button" class="text-gray-800">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <!-- Icon burger default -->
+                        <svg id="burger-icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
+
+                        <!-- Icon silang (akan disembunyikan pada awalnya) -->
+                        <svg id="close-icon" class="w-8 h-8 hidden" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
                     </button>
                 </div>
+
             </div>
         </div>
 
@@ -249,22 +271,22 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
-            <a href="#profile" class="hover:text-orange-500 transition-colors">@lang('messages.profile')</a>
-            <a href="#vision" class="hover:text-orange-500 transition-colors">@lang('messages.vision')</a>
-            <a href="#culture" class="hover:text-orange-500 transition-colors">@lang('messages.culture')</a>
-            <a href="#gallery" class="hover:text-orange-500 transition-colors">@lang('messages.gallery')</a>
-            <a href="#packages" class="hover:text-orange-500 transition-colors">@lang('messages.packages')</a>
-            <a href="#facility" class="hover:text-orange-500 transition-colors">@lang('messages.facility')</a>
-            <a href="#products" class="hover:text-orange-500 transition-colors">@lang('messages.products')</a>
-            <a href="#social" class="hover:text-orange-500 transition-colors">@lang('messages.social')</a>
+            <a href="#profile" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.profile')</a>
+            <a href="#vision" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.vision')</a>
+            <a href="#culture" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.culture')</a>
+            <a href="#gallery" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.gallery')</a>
+            <a href="#packages" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.packages')</a>
+            <a href="#facility" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.facility')</a>
+            <a href="#products" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.products')</a>
+            <a href="#social" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.social')</a>
             <div class="flex items-center gap-2 font-medium mt-4">
-                <a>@lang('messages.language_selector_id')</a>
+                <a href="locale/id">@lang('messages.language_selector_id')</a>
                 <span class="text-gray-300">|</span>
-                <a>@lang('messages.language_selector_en')</a>
+                <a href="locale/en">@lang('messages.language_selector_en')</a>
                 <span class="text-gray-300">|</span>
-                <a>@lang('messages.language_selector_cn')</a>
+                <a href="locale/zh">@lang('messages.language_selector_cn')</a>
                 <span class="text-gray-300">|</span>
-                <a>@lang('messages.language_selector_es')</a>
+                <a href="locale/es">@lang('messages.language_selector_es')</a>
             </div>
         </div>
 
@@ -682,8 +704,35 @@
     const mobileMenu = document.getElementById('mobile-menu');
     const closeMenu = document.getElementById('close-menu');
 
-    mobileMenuButton.addEventListener('click', () => mobileMenu.classList.remove('hidden'));
-    closeMenu.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    // Ikon burger dan silang
+    const burgerIcon = document.getElementById('burger-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    // Untuk membuka menu dan mengganti ikon
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden'); // Toggle visibility of the mobile menu
+        burgerIcon.classList.toggle('hidden'); // Sembunyikan ikon burger
+        closeIcon.classList.toggle('hidden'); // Tampilkan ikon silang
+    });
+
+    // Untuk menutup menu dan mengganti ikon
+    closeMenu.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden'); // Menyembunyikan menu
+        burgerIcon.classList.toggle('hidden'); // Tampilkan ikon burger
+        closeIcon.classList.toggle('hidden'); // Sembunyikan ikon silang
+    });
+
+    // Menutup menu saat salah satu menu item diklik
+    const menuLinks = document.querySelectorAll('.menu-link');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden'); // Menyembunyikan menu
+            burgerIcon.classList.remove('hidden'); // Tampilkan ikon burger
+            closeIcon.classList.add('hidden'); // Sembunyikan ikon silang
+        });
+    });
+
+
 
     // Modal Script
     function openModal(button) {
