@@ -1,4 +1,3 @@
-```blade
 <!DOCTYPE html>
 <html lang="id">
 
@@ -182,6 +181,10 @@
 </head>
 
 <body class="bg-white">
+     <!-- Loading Spinner -->
+     <div id="loading-spinner" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+        <div class="w-16 h-16 border-4 border-t-4 border-orange-500 border-solid rounded-full animate-spin"></div>
+    </div>
     <!-- Navbar Wrapper -->
     <div class="relative w-full min-h-screen md:h-screen overflow-hidden">
         <div
@@ -697,6 +700,26 @@
     </footer>
 
 </body>
+
+<script>
+    // Menampilkan Spinner saat halaman dimuat
+    window.addEventListener('load', () => {
+        const spinner = document.getElementById('loading-spinner');
+        spinner.classList.add('hidden'); // Sembunyikan spinner setelah halaman dimuat
+    });
+
+    // Menampilkan Spinner ketika ada event tertentu
+    function showLoading() {
+        const spinner = document.getElementById('loading-spinner');
+        spinner.classList.remove('hidden'); // Menampilkan spinner
+    }
+
+    // Menyembunyikan Spinner setelah proses selesai
+    function hideLoading() {
+        const spinner = document.getElementById('loading-spinner');
+        spinner.classList.add('hidden'); // Menyembunyikan spinner
+    }
+</script>
 
 <script>
     // Mobile Menu Script
