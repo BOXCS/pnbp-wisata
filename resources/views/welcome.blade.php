@@ -154,6 +154,17 @@
             filter: brightness(1.1);
             transition: filter 0.3s ease;
         }
+
+        #social .elfsight-app-7148802b-a989-44c0-bc48-4b53fbc340c2 {
+            max-height: 700px;
+            overflow-y: hidden;
+        }
+
+        #reviews .elfsight-app-e9e89592-b352-42d7-914e-f13a74838102 {
+        max-height: 400px; /* Tentukan tinggi maksimum */
+        overflow-y: hidden; /* Scroll jika konten melebihi batas */
+}
+
     </style>
 </head>
 

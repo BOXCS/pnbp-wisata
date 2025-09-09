@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 580,
+            "activePatchIndex": 582,
             "patches": [
                 {
                     "date": 1754227837245,
@@ -2328,6 +2328,14 @@
                 {
                     "date": 1757242824790,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -673,10 +673,8 @@\n \n     mobileMenuButton.addEventListener('click', () => mobileMenu.classList.remove('hidden'));\n     closeMenu.addEventListener('click', () => mobileMenu.classList.add('hidden'));\n \n-    let modalInterval = null;\n-\n     // Modal Script\n     function openModal(button) {\n         document.getElementById('modalTitle').innerText = button.dataset.title;\n         document.getElementById('modalPrice').innerText = button.dataset.price;\n"
+                },
+                {
+                    "date": 1757243393762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -468,9 +468,9 @@\n                                 class=\"absolute inset-0 w-full h-full object-cover transition-opacity duration-700 {{ $index === 0 ? 'opacity-100' : 'opacity-0' }}\"\n                                 data-carousel=\"{{ $package->id }}\">\n                         @endforeach\n                     </div>\n-                    <div class=\"absolute inset-0 bg-black bg-opacity-50 z-10\"></div>\n+                    <div class=\"absolute inset-0 bg-black bg-opacity-100 z-10\"></div>\n                     <div class=\"relative z-20 flex items-end justify-between px-6 py-4 text-white\">\n                         <div>\n                             <h3 class=\"text-xl font-semibold\">{{ $package->name }}</h3>\n                             <div class=\"text-yellow-400\">★★★☆☆</div>\n"
+                },
+                {
+                    "date": 1757243408830,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -468,9 +468,9 @@\n                                 class=\"absolute inset-0 w-full h-full object-cover transition-opacity duration-700 {{ $index === 0 ? 'opacity-100' : 'opacity-0' }}\"\n                                 data-carousel=\"{{ $package->id }}\">\n                         @endforeach\n                     </div>\n-                    <div class=\"absolute inset-0 bg-black bg-opacity-100 z-10\"></div>\n+                    <div class=\"absolute inset-0 bg-black bg-opacity-50 z-10\"></div>\n                     <div class=\"relative z-20 flex items-end justify-between px-6 py-4 text-white\">\n                         <div>\n                             <h3 class=\"text-xl font-semibold\">{{ $package->name }}</h3>\n                             <div class=\"text-yellow-400\">★★★☆☆</div>\n"
                 }
             ],
             "date": 1754227837245,
