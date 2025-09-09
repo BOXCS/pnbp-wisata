@@ -596,7 +596,7 @@
     <!-- Social Section dengan Elfsight Instagram Widget dan fade-in -->
     <section id="social" class="py-16 px-6 md:px-16 bg-white text-gray-800 fade-in">
         <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@DesaWisataArjasaOfficial
+        <h2 class="text-2xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@DesaWisataArjasaOfficial
         </h2>
 
         <!-- Elfsight Instagram Feed Widget -->
