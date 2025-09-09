@@ -183,7 +183,7 @@
 
 <body class="bg-white">
     <!-- Navbar Wrapper -->
-    <div class="relative w-full min-h-screen md:h-screen">
+    <div class="relative w-full min-h-screen md:h-screen overflow-hidden">
         <div
             class="absolute top-0 left-0 w-full flex flex-col justify-center items-center text-center py-52 px-6 sm:px-12 z-10">
 
