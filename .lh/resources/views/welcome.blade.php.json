@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 590,
+            "activePatchIndex": 591,
             "patches": [
                 {
                     "date": 1754227837245,
@@ -2368,6 +2368,10 @@
                 {
                     "date": 1757395340879,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -182,9 +182,9 @@\n </head>\n \n <body class=\"bg-white\">\n     <!-- Navbar Wrapper -->\n-    <div class=\"relative w-full min-h-screen md:h-screen\">\n+    <div class=\"relative w-full min-h-screen md:h-screen overflow-hidden\">\n         <div\n             class=\"absolute top-0 left-0 w-full flex flex-col justify-center items-center text-center py-52 px-6 sm:px-12 z-10\">\n \n             <div class=\"w-full\">\n"
+                },
+                {
+                    "date": 1757395586378,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -191,9 +191,9 @@\n                 <h1 class=\"text-base sm:text-2xl font-extralight text-white\" style=\"letter-spacing: 0.3em;\">\n                     @lang('messages.great_art_of_arjasa')\n                 </h1>\n \n-                <div class=\"w-96 h-1 bg-white mx-auto mt-5 mb-8\"></div>\n+                <div class=\"w-24 md:w-96 h-1 bg-white mx-auto mt-5 mb-8\"></div>\n                 <h1 class=\"text-2xl sm:text-5xl mt-4 font-robotoSlab font-light text-white leading-snug text-center\"\n                     style=\"letter-spacing: 0.2rem; lin\">\n                     @lang('messages.award')<br>\n                     <span class=\"text-white\">@lang('messages.village_name')</span>\n"
                 }
             ],
             "date": 1754227837245,

@@ -192,7 +192,7 @@
                     @lang('messages.great_art_of_arjasa')
                 </h1>
 
-                <div class="w-96 h-1 bg-white mx-auto mt-5 mb-8"></div>
+                <div class="w-24 md:w-96 h-1 bg-white mx-auto mt-5 mb-8"></div>
                 <h1 class="text-2xl sm:text-5xl mt-4 font-robotoSlab font-light text-white leading-snug text-center"
                     style="letter-spacing: 0.2rem; lin">
                     @lang('messages.award')<br>
