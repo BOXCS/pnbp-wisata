@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1754612131459,
@@ -12,6 +12,18 @@
                 {
                     "date": 1754612484433,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,8 @@\n     protected $fillable = ['name', 'description', 'price'];\n \n     public function images(): HasMany\n     {\n-        return $this->hasMany(PackageImage::class);\n+        return $this->hasMany(PackageImage::class, 'package_id');\n     }\n }\n \n"
+                },
+                {
+                    "date": 1757802240628,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,22 @@\n+<?php\n+\n+namespace App\\Models;\n+\n+use Illuminate\\Database\\Eloquent\\Model;\n+use Illuminate\\Database\\Eloquent\\Relations\\HasMany;\n+use Spatie\\Translatable\\HasTranslations;\n+\n+class Packages extends Model\n+{\n+    use HasTranslations;\n+\n+    protected $fillable = ['name', 'description', 'price'];\n+    \n+    public $translatable = ['name', 'description', 'price'];\n+\n+    public function images(): HasMany\n+    {\n+        return $this->hasMany(PackageImage::class, 'package_id');\n+    }\n+}\n+\n"
+                },
+                {
+                    "date": 1757802727216,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n <?php\n \n namespace App\\Models;\n \n+use Illuminate\\Database\\Eloquent\\Casts\\Attribute;\n use Illuminate\\Database\\Eloquent\\Model;\n use Illuminate\\Database\\Eloquent\\Relations\\HasMany;\n use Spatie\\Translatable\\HasTranslations;\n \n@@ -13,25 +14,35 @@\n     protected $fillable = ['name', 'description', 'price'];\n     \n     public $translatable = ['name', 'description', 'price'];\n \n-    public function images(): HasMany\n+    protected $casts = [\n+        'name' => 'array',\n+        'description' => 'array',\n+        'price' => 'array',\n+    ];\n+\n+    protected function formattedPrice(): Attribute\n     {\n-        return $this->hasMany(PackageImage::class, 'package_id');\n-    }\n-}\n+        return Attribute::get(function () {\n+            $locale = app()->getLocale();\n+            $prices = $this->price ?? [];\n \n-<?php\n+            $value = $prices[$locale] ?? $prices['id'] ?? null;\n \n-namespace App\\Models;\n+            if (! $value) {\n+                return '-';\n+            }\n \n-use Illuminate\\Database\\Eloquent\\Model;\n-use Illuminate\\Database\\Eloquent\\Relations\\HasMany;\n+            return match ($locale) {\n+                'en' => '$ ' . number_format((float) $value, 2),\n+                'zh' => '¥ ' . number_format((float) $value, 2),\n+                'es' => '€ ' . number_format((float) $value, 2),\n+                default => 'Rp ' . number_format((float) $value, 0, ',', '.'),\n+            };\n+        });\n+    }\n \n-class Packages extends Model\n-{\n-    protected $fillable = ['name', 'description', 'price'];\n-\n     public function images(): HasMany\n     {\n         return $this->hasMany(PackageImage::class, 'package_id');\n     }\n"
+                },
+                {
+                    "date": 1757803046169,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n     use HasTranslations;\n \n     protected $fillable = ['name', 'description', 'price'];\n     \n-    public $translatable = ['name', 'description', 'price'];\n+    public $translatable = ['name', 'description'];\n \n     protected $casts = [\n         'name' => 'array',\n         'description' => 'array',\n"
                 }
             ],
             "date": 1754612131459,

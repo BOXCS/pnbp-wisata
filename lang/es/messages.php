@@ -23,7 +23,7 @@ return [
     'navbar_social' => 'SOCIAL',
     'language_selector_id' => 'ID',
     'language_selector_en' => 'EN',
-    'language_selector_cn' => 'CN',
+    'language_selector_cn' => '中文',
     'language_selector_es' => 'ES',
     'mobile_menu_profile' => 'PERFIL',
     'mobile_menu_vision' => 'VISIÓN Y MISIÓN',

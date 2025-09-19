@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1754692962721,
@@ -24,6 +24,18 @@
                 {
                     "date": 1756555730793,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n \n use App\\Http\\Controllers\\CultureController;\n use App\\Http\\Controllers\\FacilityController;\n use App\\Http\\Controllers\\GalleryController;\n+use App\\Http\\Controllers\\LocaleController;\n use Illuminate\\Support\\Facades\\Route;\n \n Route::get('/', function () {\n     return view('welcome');\n@@ -12,4 +13,6 @@\n Route::get('/culture', [CultureController::class, 'index']);\n Route::get('/gallery', [GalleryController::class, 'index']);\n Route::get('/facility', [FacilityController::class, 'index'])->name('facilities.index');\n Route::get('/facility/{facility}', [FacilityController::class, 'show'])->name('facilities.show');\n+\n+Route::get('locale/{lang}',[LocaleController::class,'setLocale']);\n"
+                },
+                {
+                    "date": 1757890725308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,8 @@\n });\n \n Route::get('/culture', [CultureController::class, 'index']);\n Route::get('/gallery', [GalleryController::class, 'index']);\n-Route::get('/facility', [FacilityController::class, 'index'])->name('facilities.index');\n-Route::get('/facility/{facility}', [FacilityController::class, 'show'])->name('facilities.show');\n+Route::get('/facility',    [FacilityController::class, 'katalog'])->name('facilities.katalog');    // Katalog\n+Route::get('/facility/{id}', [FacilityController::class, 'show'])->name('facilities.show');    // (opsional)\n \n Route::get('locale/{lang}',[LocaleController::class,'setLocale']);\n"
+                },
+                {
+                    "date": 1757992890015,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n });\n \n Route::get('/culture', [CultureController::class, 'index']);\n Route::get('/gallery', [GalleryController::class, 'index']);\n-Route::get('/facility',    [FacilityController::class, 'katalog'])->name('facilities.katalog');    // Katalog\n+Route::get('/facility',    [FacilityController::class, 'katalog'])->name('facilities.index');\n+Route::get('/facility-more',    [FacilityController::class, 'katalog'])->name('facilities.katalog');    // Katalog\n Route::get('/facility/{id}', [FacilityController::class, 'show'])->name('facilities.show');    // (opsional)\n \n Route::get('locale/{lang}',[LocaleController::class,'setLocale']);\n"
+                },
+                {
+                    "date": 1758260059562,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,21 @@\n+<?php\n+\n+use App\\Http\\Controllers\\CultureController;\n+use App\\Http\\Controllers\\FacilityController;\n+use App\\Http\\Controllers\\GalleryController;\n+use App\\Http\\Controllers\\LocaleController;\n+use App\\Http\\Controllers\\UploadLinkController;\n+use Illuminate\\Support\\Facades\\Route;\n+\n+Route::get('/', function () {\n+    return view('welcome');\n+});\n+\n+Route::get('/culture', [CultureController::class, 'index']);\n+Route::get('/gallery', [GalleryController::class, 'index']);\n+Route::get('/facility',    [FacilityController::class, 'katalog'])->name('facilities.index');\n+Route::get('/facility-more',    [FacilityController::class, 'katalog'])->name('facilities.katalog');    // Katalog\n+Route::get('/facility/{id}', [FacilityController::class, 'show'])->name('facilities.show');    // (opsional)\n+Route::get('/social', [UploadLinkController::class, 'index']);\n+\n+Route::get('locale/{lang}',[LocaleController::class,'setLocale']);\n"
                 }
             ],
             "date": 1754692962721,

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app/Filament/Resources/FacilityResource/Pages/CreateFacility.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1757994254334,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1757994254334,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Filament\\Resources\\FacilityResource\\Pages;\n\nuse App\\Filament\\Resources\\FacilityResource;\nuse Filament\\Resources\\Pages\\CreateRecord;\n\nclass CreateFacility extends CreateRecord\n{\n    protected static string $resource = FacilityResource::class;\n\n    protected function mutateFormDataBeforeCreate(array $data): array\n    {\n        return $this->applyFallback($data);\n    }\n\n    private function applyFallback(array $data): array\n    {\n        foreach (['name', 'type', 'description'] as $field) {\n            $idValue = $data[$field]['id'] ?? null;\n            if ($idValue) {\n                foreach (['en', 'zh', 'es'] as $locale) {\n                    if (empty($data[$field][$locale])) {\n                        $data[$field][$locale] = $idValue;\n                    }\n                }\n            }\n        }\n        return $data;\n    }\n}\n"
+        }
+    ]
+}

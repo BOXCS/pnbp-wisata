@@ -1,0 +1,18 @@
+{
+    "sourceFile": "database/migrations/2025_09_12_214221_convert_culture_fields_to_json.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1757713352944,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1757713352944,
+            "name": "Commit-0",
+            "content": "<?php\n\nuse Illuminate\\Database\\Migrations\\Migration;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\nuse Illuminate\\Support\\Facades\\DB;\n\nreturn new class extends Migration\n{\n    public function up(): void\n    {\n        // 1. Tambah kolom baru sementara (JSON)\n        Schema::table('cultures', function (Blueprint $table) {\n            $table->json('name_trans')->nullable()->after('name');\n            $table->json('description_trans')->nullable()->after('description');\n        });\n\n        // 2. Copy data lama ke kolom JSON (set sebagai bahasa default: id)\n        DB::table('cultures')->get()->each(function ($culture) {\n            DB::table('cultures')\n                ->where('id', $culture->id)\n                ->update([\n                    'name_trans' => json_encode(['id' => $culture->name]),\n                    'description_trans' => json_encode(['id' => $culture->description]),\n                ]);\n        });\n\n        // 3. Hapus kolom lama & rename kolom baru\n        Schema::table('cultures', function (Blueprint $table) {\n            $table->dropColumn(['name', 'description']);\n        });\n\n        Schema::table('cultures', function (Blueprint $table) {\n            $table->renameColumn('name_trans', 'name');\n            $table->renameColumn('description_trans', 'description');\n        });\n    }\n\n    public function down(): void\n    {\n        // Balik lagi ke string (jaga-jaga rollback)\n        Schema::table('cultures', function (Blueprint $table) {\n            $table->string('name')->change();\n            $table->text('description')->nullable()->change();\n        });\n    }\n};\n\n"
+        }
+    ]
+}

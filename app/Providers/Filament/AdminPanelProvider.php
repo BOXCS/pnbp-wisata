@@ -18,6 +18,8 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Outerweb\FilamentTranslatableFields\Filament\Plugins\FilamentTranslatableFieldsPlugin;
+
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -43,10 +45,17 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 AuthUIEnhancerPlugin::make()
-                ->formPanelWidth('40%')
-                ->emptyPanelBackgroundImageUrl(asset('images/hero-bg2.webp'))
-                ->emptyPanelBackgroundImageOpacity('50%')
-                ,
+                    ->formPanelWidth('40%')
+                    ->emptyPanelBackgroundImageUrl(asset('images/hero-bg2.webp'))
+                    ->emptyPanelBackgroundImageOpacity('50%'),
+    
+                    FilamentTranslatableFieldsPlugin::make()
+                    ->supportedLocales([
+                        'id' => 'Indonesia',
+                        'en' => 'English',
+                        'zh' => 'China',
+                        'es' => 'Spain',
+                    ]),
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([

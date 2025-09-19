@@ -1,0 +1,18 @@
+{
+    "sourceFile": "app/Filament/Resources/UploadLinkResource.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1758259867503,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1758259867503,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Filament\\Resources;\n\nuse App\\Filament\\Resources\\UploadLinkResource\\Pages;\nuse App\\Filament\\Resources\\UploadLinkResource\\RelationManagers;\nuse App\\Models\\UploadLink;\nuse Filament\\Forms;\nuse Filament\\Forms\\Form;\nuse Filament\\Resources\\Resource;\nuse Filament\\Tables;\nuse Filament\\Tables\\Table;\nuse Illuminate\\Database\\Eloquent\\Builder;\nuse Illuminate\\Database\\Eloquent\\SoftDeletingScope;\n\nclass UploadLinkResource extends Resource\n{\n    protected static ?string $model = UploadLink::class;\n\n    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';\n\n    public static function form(Form $form): Form\n    {\n        return $form\n            ->schema([\n                Forms\\Components\\TextInput::make('title')\n                    ->label('Title')\n                    ->maxLength(255),\n\n                Forms\\Components\\FileUpload::make('image')\n                    ->label('Image')\n                    ->directory('upload-links') // simpan di storage/app/public/upload-links\n                    ->image()\n                    ->imageEditor()\n                    ->maxSize(2048),\n\n                Forms\\Components\\TextInput::make('link')\n                    ->label('Embed Link')\n                    ->url()\n                    ->prefixIcon('heroicon-o-link'),\n            ]);\n    }\n\n    public static function table(Table $table): Table\n    {\n        return $table\n            ->columns([\n                Tables\\Columns\\TextColumn::make('title')\n                    ->searchable()\n                    ->sortable(),\n\n                Tables\\Columns\\ImageColumn::make('image')\n                    ->square()\n                    ->label('Image'),\n\n                Tables\\Columns\\TextColumn::make('link')\n                    ->label('Embed Link')\n                    ->limit(50)\n                    ->url(fn($record) => $record->link, true),\n            ])\n            ->actions([\n                Tables\\Actions\\EditAction::make(),\n            ])\n            ->bulkActions([\n                Tables\\Actions\\BulkActionGroup::make([\n                    Tables\\Actions\\DeleteBulkAction::make(),\n                ]),\n            ]);\n    }\n\n\n    public static function getRelations(): array\n    {\n        return [\n            //\n        ];\n    }\n\n    public static function getPages(): array\n    {\n        return [\n            'index' => Pages\\ListUploadLinks::route('/'),\n            'create' => Pages\\CreateUploadLink::route('/create'),\n            'edit' => Pages\\EditUploadLink::route('/{record}/edit'),\n        ];\n    }\n}\n"
+        }
+    ]
+}

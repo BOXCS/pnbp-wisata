@@ -41,51 +41,67 @@ class TravelResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\Section::make()
-                ->schema([
-                    Forms\Components\TextInput::make('name')
-                        ->label('Nama Paket')
-                        ->required(),
-
-                    Forms\Components\Textarea::make('description')
-                        ->label('Deskripsi'),
-
-                    Forms\Components\Repeater::make('images')
-                        ->label('Gambar Paket')
-                        ->relationship('images')
+            Forms\Components\Tabs::make('Translations')
+                ->tabs([
+                    Forms\Components\Tabs\Tab::make('Indonesia')
                         ->schema([
-                            Forms\Components\FileUpload::make('image')
-                                ->label('Gambar')
-                                ->image()
-                                ->directory('package-images')
-                                ->visibility('public')
-                                ->preserveFilenames()
-                                ->imagePreviewHeight(150),
-                        ])
-                        ->columnSpanFull()
-                        ->addActionLabel('Tambah Gambar')
-                        ->columns(1),
-
-                    Forms\Components\TextInput::make('price')
-                        ->label('Harga')
-                        ->prefix('Rp')
-                        ->required()
-                        ->live(onBlur: false) // format saat user pindah fokus
-                        ->afterStateUpdated(function ($state, callable $set) {
-                            // Ambil angka saja
-                            $numericValue = preg_replace('/[^0-9]/', '', $state);
-
-                            // Format ribuan tanpa koma/desimal
-                            if ($numericValue !== '') {
-                                $set('price', number_format($numericValue, 0, ',', '.'));
-                            } else {
-                                $set('price', null);
-                            }
-                        })
-                        ->dehydrateStateUsing(fn($state) => str_replace('.', '', $state)) // simpan hanya angka murni
-                        ->rule('numeric'),
+                            Forms\Components\TextInput::make('name.id')
+                                ->label('Nama Paket')
+                                ->required(),
+                            Forms\Components\Textarea::make('description.id')
+                                ->label('Deskripsi'),
+                            Forms\Components\TextInput::make('price.id')
+                                ->label('Harga (IDR)')
+                                ->numeric(),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('English')
+                        ->schema([
+                            Forms\Components\TextInput::make('name.en')
+                                ->label('Package Name'),
+                            Forms\Components\Textarea::make('description.en')
+                                ->label('Description'),
+                            Forms\Components\TextInput::make('price.en')
+                                ->label('Price (USD)')
+                                ->numeric(),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('中文')
+                        ->schema([
+                            Forms\Components\TextInput::make('name.zh')
+                                ->label('套餐名称'),
+                            Forms\Components\Textarea::make('description.zh')
+                                ->label('描述'),
+                            Forms\Components\TextInput::make('price.zh')
+                                ->label('价格 (元)')
+                                ->numeric(),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('Español')
+                        ->schema([
+                            Forms\Components\TextInput::make('name.es')
+                                ->label('Nombre del Paquete'),
+                            Forms\Components\Textarea::make('description.es')
+                                ->label('Descripción'),
+                            Forms\Components\TextInput::make('price.es')
+                                ->label('Precio (EUR/MXN)')
+                                ->numeric(),
+                        ]),
                 ])
-                ->columns(1) // <<-- ini penting supaya semua field vertikal
+                ->columnSpanFull(),
+
+            Forms\Components\Repeater::make('images')
+                ->label('Gambar Paket')
+                ->relationship('images')
+                ->schema([
+                    Forms\Components\FileUpload::make('image')
+                        ->label('Gambar')
+                        ->image()
+                        ->directory('package-images')
+                        ->visibility('public')
+                        ->preserveFilenames()
+                        ->imagePreviewHeight(150),
+                ])
+                ->columnSpanFull()
+                ->addActionLabel('Tambah Gambar')
+                ->columns(1),
         ]);
     }
 
@@ -95,19 +111,36 @@ class TravelResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('Nama Paket')
+                    ->formatStateUsing(fn ($state) => $state[app()->getLocale()] ?? $state['id'] ?? '-')
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('price')
                     ->label('Harga')
-                    ->money('IDR', true),
+                    ->formatStateUsing(function ($state) {
+                        $locale = app()->getLocale();
+                        $value = $state[$locale] ?? $state['id'] ?? null;
+
+                        if (! $value) {
+                            return '-';
+                        }
+
+                        return match ($locale) {
+                            'en' => '$ ' . number_format($value, 2),
+                            'zh' => '¥ ' . number_format($value, 2),
+                            'es' => '€ ' . number_format($value, 2), // bisa diganti MXN kalau mau Peso
+                            default => 'Rp ' . number_format($value, 0, ',', '.'),
+                        };
+                    }),
 
                 Tables\Columns\TextColumn::make('description')
-                    ->limit(30),
+                    ->label('Deskripsi')
+                    ->formatStateUsing(fn ($state) => str($state[app()->getLocale()] ?? $state['id'] ?? '')->limit(50)),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
+
 
     public static function getRelations(): array
     {

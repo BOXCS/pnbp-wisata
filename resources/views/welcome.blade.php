@@ -1,34 +1,52 @@
 <!DOCTYPE html>
 <html lang="id">
 
+<style>
+    @media (max-width: 768px) {
+
+        /* hentikan animasi berat */
+        .fade-image {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        /* batasi tinggi hero agar tidak terlalu besar di mobile */
+        .h-5/6 {
+            height: 60vh;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .fade-image {
+            animation: none !important;
+        }
+    }
+</style>
+
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Great Art of Arjasa</title>
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        robotoSlab: ['"Roboto Slab"', 'serif'],
-                        josefinSlab: ['"Josefin Slab"', 'serif'],
-                    },
-                },
-            },
-        }
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        @font-face {
+            font-family: "Roboto Slab";
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Josefin Slab";
+            font-display: swap;
+        }
+    </style>
+
     <link
         href="https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&family=Sanchez:ital@0;1&display=swap"
         rel="stylesheet">
-
-    <!-- Elfsight Script untuk Google Reviews dan Instagram Feed -->
-    <script src="https://elfsightcdn.com/platform.js" async></script>
 
     <style>
         @keyframes imageFade {
@@ -177,65 +195,238 @@
             overflow-y: hidden;
             /* Scroll jika konten melebihi batas */
         }
+
+        @media (max-width:768px) {
+
+            .shadow-lg,
+            .shadow-md {
+                box-shadow: 0 4px 10px rgba(0, 0, 0, .08) !important;
+            }
+        }
     </style>
+
+    <style>
+        /* ===== Loader bawaan kamu (dipakai di full screen) ===== */
+        .loader {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            position: relative;
+            animation: rotate 1s linear infinite;
+        }
+
+        .loader::before,
+        .loader::after {
+            content: "";
+            box-sizing: border-box;
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 5px solid #FFF;
+            animation: prixClipFix 2s linear infinite;
+        }
+
+        .loader::after {
+            inset: 8px;
+            transform: rotate3d(90, 90, 0, 180deg);
+            border-color: #FF3D00;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0)
+            }
+
+            100% {
+                transform: rotate(360deg)
+            }
+        }
+
+        @keyframes prixClipFix {
+            0% {
+                clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0)
+            }
+
+            50% {
+                clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0)
+            }
+
+            75%,
+            100% {
+                clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%)
+            }
+        }
+
+        /* ===== Full-screen overlay + anti-FOUC ===== */
+        #app-loader {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0b0b0b;
+            z-index: 9999;
+        }
+
+        /* Sembunyikan aplikasi sampai siap */
+        [data-app] {
+            visibility: hidden
+        }
+
+        /* Saat siap, sembunyikan loader & tampilkan app */
+        .app-ready #app-loader {
+            display: none
+        }
+
+        .app-ready [data-app] {
+            visibility: visible
+        }
+    </style>
+
+
+    <!-- Tailwind CDN -->
+    <script defer src="https://cdn.tailwindcss.com" onload="window.__twReady = true"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        robotoSlab: ['"Roboto Slab"', 'serif'],
+                        josefinSlab: ['"Josefin Slab"', 'serif'],
+                    },
+                },
+            },
+        }
+    </script>
 </head>
 
+<script>
+    (function() {
+        const isMobile = matchMedia('(max-width:768px)').matches;
+        if (!isMobile) return;
+        const imgs = document.querySelectorAll('.fade-container .fade-image');
+        // Sisakan hanya gambar pertama
+        imgs.forEach((img, i) => {
+            if (i > 0) {
+                // Simpan src ke data-src untuk jaga-jaga lalu kosongkan agar tidak diunduh
+                img.dataset.src = img.getAttribute('src');
+                img.removeAttribute('src');
+                img.style.display = 'none';
+            }
+        });
+    })();
+</script>
+
+
 <body class="bg-white">
-     <!-- Loading Spinner -->
-     <div id="loading-spinner" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
-        <div class="w-16 h-16 border-4 border-t-4 border-orange-500 border-solid rounded-full animate-spin"></div>
-    </div>
-    <!-- Navbar Wrapper -->
-    <div class="relative w-full min-h-screen md:h-screen overflow-hidden">
-        <div
-            class="absolute top-0 left-0 w-full flex flex-col justify-center items-center text-center py-52 px-6 sm:px-12 z-10">
+    <!-- Loading Spinner -->
+    <div id="app-loader" role="status" aria-live="polite">
+        <div class="loader" aria-label="Loading"></div>
+      </div>
+    <div data-app>
+        <!-- Navbar Wrapper -->
+        <div class="relative w-full min-h-screen md:h-screen overflow-hidden">
+            <div
+                class="absolute top-0 left-0 w-full flex flex-col justify-center items-center text-center py-52 px-6 sm:px-12 z-10">
 
-            <div class="w-full">
-                <h1 class="text-base sm:text-2xl font-extralight text-white" style="letter-spacing: 0.3em;">
-                    @lang('messages.great_art_of_arjasa')
-                </h1>
+                <div class="w-full">
+                    <h1 class="text-base sm:text-2xl font-extralight text-white" style="letter-spacing: 0.3em;">
+                        @lang('messages.great_art_of_arjasa')
+                    </h1>
 
-                <div class="w-24 md:w-96 h-1 bg-white mx-auto mt-5 mb-8"></div>
-                <h1 class="text-2xl sm:text-5xl mt-4 font-robotoSlab font-light text-white leading-snug text-center"
-                    style="letter-spacing: 0.2rem; lin">
-                    @lang('messages.award')<br>
-                    <span class="text-white">@lang('messages.village_name')</span>
-                    <span class="text-transparent" style="-webkit-text-stroke: 1px white;">@lang('messages.village_thing')</span>
-                </h1>
+                    <div class="w-24 md:w-96 h-1 bg-white mx-auto mt-5 mb-8"></div>
+                    <h1 class="text-2xl sm:text-5xl mt-4 font-robotoSlab font-light text-white leading-snug text-center"
+                        style="letter-spacing: 0.2rem; lin">
+                        @lang('messages.award')<br>
+                        <span class="text-white">@lang('messages.village_name')</span>
+                        <span class="text-transparent" style="-webkit-text-stroke: 1px white;">@lang('messages.village_thing')</span>
+                    </h1>
+                </div>
             </div>
-        </div>
 
-        <!-- Navbar di atas gambar -->
-        <div class="fixed top-0 w-full h-fit bg-white shadow z-50 py-4">
-            <div class="relative flex items-center px-6 md:px-1 py-4 max-w-screen-xl mx-auto">
-                <!-- Logo di kiri -->
-                <div class="absolute left-0">
-                    <img src="images/logo-arjasa.svg" alt="Logo" class="h-20 md:h-20" />
+            <!-- Navbar di atas gambar -->
+            <div class="fixed top-0 w-full h-fit bg-white shadow z-50 py-4">
+                <div class="relative flex items-center px-6 md:px-1 py-4 max-w-screen-xl mx-auto">
+                    <!-- Logo di kiri -->
+                    <div class="absolute left-0">
+                        <img src="images/logo-arjasa.svg" alt="Logo" class="h-20 md:h-20" ... loading="lazy"
+                            decoding="async" />
+                    </div>
+
+                    <!-- Desktop Navbar di tengah -->
+                    <div class="hidden md:flex flex-col items-center justify-center w-full text-lg font-semibold">
+                        <nav class="flex gap-6">
+                            <a href="#profile"
+                                class="nav-link hover:text-orange-500 transition-colors">@lang('messages.profile')</a>
+                            <a href="#vision"
+                                class="nav-link hover:text-orange-500 transition-colors">@lang('messages.vision')</a>
+                            <a href="#culture"
+                                class="nav-link hover:text-orange-500 transition-colors">@lang('messages.culture')</a>
+                            <a href="#gallery"
+                                class="nav-link hover:text-orange-500 transition-colors">@lang('messages.gallery')</a>
+                            <a href="#packages"
+                                class="nav-link hover:text-orange-500 transition-colors">@lang('messages.packages')</a>
+                            <a href="#facility"
+                                class="nav-link hover:text-orange-500 transition-colors">@lang('messages.facility')</a>
+                            <a href="#products"
+                                class="nav-link hover:text-orange-500 transition-colors">@lang('messages.products')</a>
+                            <a href="#social"
+                                class="nav-link hover:text-orange-500 transition-colors">@lang('messages.social')</a>
+                        </nav>
+                    </div>
+
+                    <!-- Language Selector -->
+                    <div id="google_translate_element" class="absolute right-20 font-medium mt-1 hidden md:flex">
+                        <a href="locale/id">@lang('messages.language_selector_id')</a>
+                        <span class="text-gray-300">|</span>
+                        <a href="locale/en">@lang('messages.language_selector_en')</a>
+                        <span class="text-gray-300">|</span>
+                        <a href="locale/zh">@lang('messages.language_selector_cn')</a>
+                        <span class="text-gray-300">|</span>
+                        <a href="locale/es">@lang('messages.language_selector_es')</a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <div class="absolute right-0 md:hidden">
+                        <button id="mobile-menu-button" class="text-gray-800">
+                            <!-- Icon burger default -->
+                            <svg id="burger-icon" class="w-8 h-8" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+
+                            <!-- Icon silang (akan disembunyikan pada awalnya) -->
+                            <svg id="close-icon" class="w-8 h-8 hidden" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
                 </div>
+            </div>
 
-                <!-- Desktop Navbar di tengah -->
-                <div class="hidden md:flex flex-col items-center justify-center w-full text-lg font-semibold">
-                    <nav class="flex gap-6">
-                        <a href="#profile"
-                            class="nav-link hover:text-orange-500 transition-colors">@lang('messages.profile')</a>
-                        <a href="#vision" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.vision')</a>
-                        <a href="#culture"
-                            class="nav-link hover:text-orange-500 transition-colors">@lang('messages.culture')</a>
-                        <a href="#gallery"
-                            class="nav-link hover:text-orange-500 transition-colors">@lang('messages.gallery')</a>
-                        <a href="#packages"
-                            class="nav-link hover:text-orange-500 transition-colors">@lang('messages.packages')</a>
-                        <a href="#facility"
-                            class="nav-link hover:text-orange-500 transition-colors">@lang('messages.facility')</a>
-                        <a href="#products"
-                            class="nav-link hover:text-orange-500 transition-colors">@lang('messages.products')</a>
-                        <a href="#social"
-                            class="nav-link hover:text-orange-500 transition-colors">@lang('messages.social')</a>
-                    </nav>
-                </div>
-
-                <!-- Language Selector -->
-                <div class="absolute right-20 font-medium mt-1 hidden md:flex">
+            <!-- Mobile Menu -->
+            <div id="mobile-menu"
+                class="hidden fixed inset-0 bg-white z-40 flex flex-col items-center justify-center space-y-8 text-2xl">
+                <button id="close-menu" class="absolute top-4 right-4 text-gray-800">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                <a href="#profile" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.profile')</a>
+                <a href="#vision" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.vision')</a>
+                <a href="#culture" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.culture')</a>
+                <a href="#gallery" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.gallery')</a>
+                <a href="#packages" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.packages')</a>
+                <a href="#facility" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.facility')</a>
+                <a href="#products" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.products')</a>
+                <a href="#social" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.social')</a>
+                <div class="flex items-center gap-2 font-medium mt-4">
                     <a href="locale/id">@lang('messages.language_selector_id')</a>
                     <span class="text-gray-300">|</span>
                     <a href="locale/en">@lang('messages.language_selector_en')</a>
@@ -244,462 +435,615 @@
                     <span class="text-gray-300">|</span>
                     <a href="locale/es">@lang('messages.language_selector_es')</a>
                 </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="absolute right-0 md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-800">
-                        <!-- Icon burger default -->
-                        <svg id="burger-icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-
-                        <!-- Icon silang (akan disembunyikan pada awalnya) -->
-                        <svg id="close-icon" class="w-8 h-8 hidden" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu"
-            class="hidden fixed inset-0 bg-white z-40 flex flex-col items-center justify-center space-y-8 text-2xl">
-            <button id="close-menu" class="absolute top-4 right-4 text-gray-800">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-            <a href="#profile" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.profile')</a>
-            <a href="#vision" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.vision')</a>
-            <a href="#culture" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.culture')</a>
-            <a href="#gallery" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.gallery')</a>
-            <a href="#packages" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.packages')</a>
-            <a href="#facility" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.facility')</a>
-            <a href="#products" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.products')</a>
-            <a href="#social" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.social')</a>
-            <div class="flex items-center gap-2 font-medium mt-4">
-                <a href="locale/id">@lang('messages.language_selector_id')</a>
-                <span class="text-gray-300">|</span>
-                <a href="locale/en">@lang('messages.language_selector_en')</a>
-                <span class="text-gray-300">|</span>
-                <a href="locale/zh">@lang('messages.language_selector_cn')</a>
-                <span class="text-gray-300">|</span>
-                <a href="locale/es">@lang('messages.language_selector_es')</a>
-            </div>
-        </div>
-
-        <!-- Background Slideshow -->
-        <div class="absolute top-0 left-0 w-full h-5/6 z-0 overflow-hidden">
-            <div class="fade-container">
-                <img src="images/hero-bg2.jpeg" class="fade-image" />
-                <img src="images/hero-bg3 (1).jpg" class="fade-image" />
-                <img src="images/hero-bg4.jpg" class="fade-image" />
-                <div class="overlay"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="relative -mt-56 z-20 flex justify-center">
-        <div
-            class="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-6 py-10 bg-white rounded-xl shadow-lg">
-            <!-- Card 1 -->
-            <div class="flex items-start gap-4 bg-white p-4 card-hover">
-                <img src="images/clean-hands.svg" alt="Icon 1" class="w-20 h-20 object-contain">
-                <div>
-                    <h3 class="text-lg font-semibold mb-1">@lang('messages.cleanliness_and_beauty')</h3>
-                    <p class="text-sm text-gray-600">@lang('messages.cleanliness_description')</p>
-                </div>
             </div>
 
-            <!-- Card 2 -->
-            <div class="flex items-start gap-4 bg-white p-4 card-hover">
-                <img src="images/temple.svg" alt="Icon 2" class="w-20 h-20 object-contain">
-                <div>
-                    <h3 class="text-lg font-semibold mb-1">@lang('messages.cultural_preservation')</h3>
-                    <p class="text-sm text-gray-600">@lang('messages.cultural_description')</p>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="flex items-start gap-4 bg-white p-4 card-hover">
-                <img src="images/puzzle.png" alt="Icon 3" class="w-20 h-20 object-contain">
-                <div>
-                    <h3 class="text-lg font-semibold mb-1">@lang('messages.engaging_activities')</h3>
-                    <p class="text-sm text-gray-600">@lang('messages.activities_description')</p>
+            <!-- Background Slideshow -->
+            <div class="absolute top-0 left-0 w-full h-5/6 z-0 overflow-hidden">
+                <div class="fade-container">
+                    <img src="images/hero-bg2.jpeg" class="fade-image" loading="eager" decoding="async"
+                        fetchpriority="high" />
+                    <img src="images/hero-bg3 (1).jpg" class="fade-image" loading="lazy" decoding="async" />
+                    <img src="images/hero-bg4.jpg" class="fade-image" loading="lazy" decoding="async" />
+                    <div class="overlay"></div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Profile Section -->
-    <section id="profile" class="py-10 px-6 md:px-16 text-center bg-white">
-        <h2 class="text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">@lang('messages.profile_of_arjasa')</h2>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
-            @lang('messages.profile_description')
-        </p>
+        <div class="relative -mt-56 z-20 flex justify-center">
+            <div
+                class="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-6 py-10 bg-white rounded-xl shadow-lg">
+                <!-- Card 1 -->
+                <div class="flex items-start gap-4 bg-white p-4 card-hover">
+                    <img src="images/clean-hands.svg" alt="Icon 1" class="w-20 h-20 object-contain" ...
+                        loading="lazy" decoding="async">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-1">@lang('messages.cleanliness_and_beauty')</h3>
+                        <p class="text-sm text-gray-600">@lang('messages.cleanliness_description')</p>
+                    </div>
+                </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div class="bg-white p-6 rounded-lg shadow card-hover">
-                <img src="images/profile-klasik.svg" alt="Jejak Megalitikum" class="w-auto h-24 mx-auto mb-4" />
-                <h3 class="text-xl font-semibold mb-2 text-orange-600">@lang('messages.megalithic_and_classic')</h3>
-                <p class="text-gray-600 text-sm">
-                    @lang('messages.megalithic_description')
-                </p>
-            </div>
+                <!-- Card 2 -->
+                <div class="flex items-start gap-4 bg-white p-4 card-hover">
+                    <img src="images/temple.svg" alt="Icon 2" class="w-20 h-20 object-contain" ... loading="lazy"
+                        decoding="async">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-1">@lang('messages.cultural_preservation')</h3>
+                        <p class="text-sm text-gray-600">@lang('messages.cultural_description')</p>
+                    </div>
+                </div>
 
-            <div class="bg-white p-6 rounded-lg shadow card-hover">
-                <img src="images/profile-pasraman.svg" alt="Jejak Islam" class="w-auto h-24 mx-auto mb-4" />
-                <h3 class="text-xl font-semibold mb-2 text-orange-600">@lang('messages.islamic_heritage')</h3>
-                <p class="text-gray-600 text-sm">
-                    @lang('messages.islamic_description')
-                </p>
-            </div>
-
-            <div class="bg-white p-6 rounded-lg shadow card-hover">
-                <img src="images/profile-harmoni.svg" alt="Harmoni Tradisi" class="w-auto h-24 mx-auto mb-4" />
-                <h3 class="text-xl font-semibold mb-2 text-orange-600">@lang('messages.tradition_harmony')</h3>
-                <p class="text-gray-600 text-sm">
-                    @lang('messages.tradition_description')
-                </p>
+                <!-- Card 3 -->
+                <div class="flex items-start gap-4 bg-white p-4 card-hover">
+                    <img src="images/puzzle.png" alt="Icon 3" class="w-20 h-20 object-contain" ... loading="lazy"
+                        decoding="async">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-1">@lang('messages.engaging_activities')</h3>
+                        <p class="text-sm text-gray-600">@lang('messages.activities_description')</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- Visi & Misi Section -->
-    <section id="vision" class="relative py-16 px-6 md:px-16 text-white text-center bg-cover bg-center"
-        style="background-image: url('images/visi-bg.svg');">
-        <div class="relative z-10 max-w-4xl mx-auto">
-            <h2 class="text-3xl sm:text-4xl md:text-6xl font-extrabold mb-6 font-josefinSlab">@lang('messages.vision_and_mission')</h2>
-
-            <p class="text-lg sm:text-xl md:text-2xl leading-relaxed mb-8 italic">
-                @lang('messages.vision_description')
+        <!-- Profile Section -->
+        <section id="profile" class="py-10 px-6 md:px-16 text-center bg-white">
+            <h2 class="text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">@lang('messages.profile_of_arjasa')</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
+                @lang('messages.profile_description')
             </p>
 
-            <div class="text-left">
-                {{-- <p class="text-lg sm:text-xl font-semibold mb-4">Misi Desa Arjasa sebagai berikut:</p> --}}
-                <ul class="list-decimal list-inside pl-5 space-y-4 text-base sm:text-lg leading-relaxed">
-                    <li>@lang('messages.mission_list.0')</li>
-                    <li>@lang('messages.mission_list.1')</li>
-                    <li>@lang('messages.mission_list.2')</li>
-                    <li>@lang('messages.mission_list.3')</li>
-                    <li>@lang('messages.mission_list.4')</li>
-                    <li>@lang('messages.mission_list.5')</li>
-                    <li>@lang('messages.mission_list.6')</li>
-                </ul>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="bg-white p-6 rounded-lg shadow card-hover">
+                    <img src="images/profile-klasik.svg" alt="Jejak Megalitikum" class="w-auto h-24 mx-auto mb-4" ...
+                        loading="lazy" decoding="async" />
+                    <h3 class="text-xl font-semibold mb-2 text-orange-600">@lang('messages.megalithic_and_classic')</h3>
+                    <p class="text-gray-600 text-sm">
+                        @lang('messages.megalithic_description')
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow card-hover">
+                    <img src="images/profile-pasraman.svg" alt="Jejak Islam" class="w-auto h-24 mx-auto mb-4" ...
+                        loading="lazy" decoding="async" />
+                    <h3 class="text-xl font-semibold mb-2 text-orange-600">@lang('messages.islamic_heritage')</h3>
+                    <p class="text-gray-600 text-sm">
+                        @lang('messages.islamic_description')
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow card-hover">
+                    <img src="images/profile-harmoni.svg" alt="Harmoni Tradisi" class="w-auto h-24 mx-auto mb-4" ...
+                        loading="lazy" decoding="async" />
+                    <h3 class="text-xl font-semibold mb-2 text-orange-600">@lang('messages.tradition_harmony')</h3>
+                    <p class="text-gray-600 text-sm">
+                        @lang('messages.tradition_description')
+                    </p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Culture Section -->
-    <section id="culture" class="py-16 px-6 md:px-16 bg-white text-center">
-        <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">
-            @lang('messages.culture_of_arjasa')
-        </h2>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
-            @lang('messages.culture_description')
-        </p>
+        <!-- Visi & Misi Section -->
+        <section id="vision" class="relative py-16 px-6 md:px-16 text-white text-center bg-cover bg-center"
+            style="background-image: url('images/visi-bg.svg');">
+            <div class="relative z-10 max-w-4xl mx-auto">
+                <h2 class="text-3xl sm:text-4xl md:text-6xl font-extrabold mb-6 font-josefinSlab">@lang('messages.vision_and_mission')
+                </h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            @foreach ($cultures as $culture)
-                <div class="culture-item relative overflow-hidden rounded-lg shadow group">
-                    <!-- Gambar -->
-                    <img src="{{ asset('storage/' . $culture->image) }}" alt="{{ $culture->name }}"
-                        class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110" />
+                <p class="text-lg sm:text-xl md:text-2xl leading-relaxed mb-8 italic">
+                    @lang('messages.vision_description')
+                </p>
 
-                    <!-- Overlay -->
-                    <div
-                        class="absolute bottom-0 left-0 right-0 h-[30%] bg-black bg-opacity-60 
+                <div class="text-left">
+                    {{-- <p class="text-lg sm:text-xl font-semibold mb-4">Misi Desa Arjasa sebagai berikut:</p> --}}
+                    <ul class="list-decimal list-inside pl-5 space-y-4 text-base sm:text-lg leading-relaxed">
+                        <li>@lang('messages.mission_list.0')</li>
+                        <li>@lang('messages.mission_list.1')</li>
+                        <li>@lang('messages.mission_list.2')</li>
+                        <li>@lang('messages.mission_list.3')</li>
+                        <li>@lang('messages.mission_list.4')</li>
+                        <li>@lang('messages.mission_list.5')</li>
+                        <li>@lang('messages.mission_list.6')</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Culture Section -->
+        <section id="culture" class="py-16 px-6 md:px-16 bg-white text-center">
+            <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">
+                @lang('messages.culture_of_arjasa')
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
+                @lang('messages.culture_description')
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                @foreach ($cultures as $culture)
+                    <div class="culture-item relative overflow-hidden rounded-lg shadow group">
+                        <!-- Gambar -->
+                        <img src="{{ asset('storage/' . $culture->image) }}" alt="{{ $culture->name }}"
+                            class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                            ... loading="lazy" decoding="async" />
+
+                        <!-- Overlay -->
+                        <div
+                            class="absolute bottom-0 left-0 right-0 h-[30%] bg-black bg-opacity-60 
                                 transition-all duration-700 ease-in-out group-hover:h-full 
                                 flex flex-col justify-center items-center text-white p-4">
 
-                        <!-- Nama -->
-                        <h3
-                            class="text-xl font-semibold transform transition-all duration-700 
+                            <!-- Nama -->
+                            <h3
+                                class="text-xl font-semibold transform transition-all duration-700 
                                    group-hover:-translate-y-6">
-                            {{ $culture->name }}
-                        </h3>
+                                {{ $culture->name }}
+                            </h3>
 
-                        <!-- Deskripsi -->
-                        <p
-                            class="mt-2 opacity-0 translate-y-6 transition-all duration-700 delay-200 
+                            <!-- Deskripsi -->
+                            <p
+                                class="mt-2 opacity-0 translate-y-6 transition-all duration-700 delay-200 
                                   group-hover:opacity-100 group-hover:translate-y-0 text-sm">
-                            {{ $culture->description }}
-                        </p>
+                                {{ $culture->description }}
+                            </p>
 
-                        <div class="w-10 h-1 bg-orange-500 mx-auto mt-2"></div>
+                            <div class="w-10 h-1 bg-orange-500 mx-auto mt-2"></div>
+                        </div>
                     </div>
-                </div>
-            @endforeach
-        </div>
-    </section>
-
-
-
-    <!-- Destination Gallery -->
-    <section id="gallery" class="py-16 px-6 md:px-16 bg-gray-50 text-center">
-        <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">
-            @lang('messages.destination_gallery')
-        </h2>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
-            @lang('messages.destination_description')
-        </p>
-
-        <!-- Filter -->
-        <div class="flex flex-wrap justify-center gap-8 mb-16 text-gray-700 font-semibold text-lg">
-            <a href="#" class="filter-link hover:text-orange-500" data-filter="all">ALL</a>
-            @foreach ($categories as $category)
-                <a href="#" class="filter-link hover:text-orange-500"
-                    data-filter="category-{{ $category->id }}">
-                    {{ $category->name }}
-                </a>
-            @endforeach
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div class="flex flex-col gap-6">
-                <div id="main-display" class="w-full aspect-[16/9] rounded-lg shadow-lg">
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/zHBb5RIztBQ" frameborder="0"
-                        allowfullscreen></iframe>
-                </div>
-                <div id="gallery-carousel" class="flex overflow-x-auto gap-4 hidden">
-                    <div class="flex gap-4"></div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-4">
-                @foreach ($categories as $category)
-                    @foreach ($category->images as $image)
-                        <img src="{{ asset('storage/' . $image->image) }}" data-filter="category-{{ $category->id }}"
-                            class="gallery-thumb rounded-lg shadow-md w-full h-full object-cover cursor-pointer" />
-                    @endforeach
                 @endforeach
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Packages Section -->
-    <section id="packages" class="py-16 px-6 md:px-16 bg-white text-center">
-        <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-2 font-josefinSlab">
-            @lang('messages.packages_title')
-        </h2>
-        <p class="text-lg text-gray-600 mb-12">
-            @lang('messages.packages_description')
-        </p>
 
-        <div class="flex flex-wrap justify-center gap-6">
-            @foreach ($packages as $package)
-                <div class="w-full md:w-[48%] rounded-2xl overflow-hidden shadow-md relative package-card">
-                    <!-- Carousel -->
-                    <div id="carousel-{{ $package->id }}" class="relative h-96 overflow-hidden">
-                        @foreach ($package->images as $index => $img)
-                            <img src="{{ asset('storage/' . $img->image) }}"
-                                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 {{ $index === 0 ? 'opacity-100' : 'opacity-0' }}"
-                                data-carousel="{{ $package->id }}">
-                        @endforeach
-                    </div>
-                    <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
-                    <div class="relative z-20 flex items-end justify-between px-6 py-4 text-white">
-                        <div>
-                            <h3 class="text-xl font-semibold">{{ $package->name }}</h3>
-                            <div class="text-yellow-400">★★★☆☆</div>
-                            <p class="text-orange-300 font-bold">Rp. {{ number_format($package->price, 0, ',', '.') }}
-                            </p>
+
+        <!-- Destination Gallery -->
+        <section id="gallery" class="py-16 px-6 md:px-16 bg-gray-50 text-center">
+            <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 font-josefinSlab">
+                @lang('messages.destination_gallery')
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
+                @lang('messages.destination_description')
+            </p>
+
+            <!-- Filter -->
+            <div class="flex flex-wrap justify-center gap-8 mb-16 text-gray-700 font-semibold text-lg">
+                <a href="#" class="filter-link hover:text-orange-500" data-filter="all">ALL</a>
+                @foreach ($categories as $category)
+                    <a href="#" class="filter-link hover:text-orange-500"
+                        data-filter="category-{{ $category->id }}">
+                        {{ $category->name }}
+                    </a>
+                @endforeach
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="flex flex-col gap-6">
+                    <div id="main-display" class="w-full aspect-[16/9] rounded-lg shadow-lg relative">
+                        <!-- iframe asli -->
+                        <div id="main-display" class="w-full aspect-[16/9] rounded-lg shadow-lg relative">
+                            <button id="yt-lite"
+                                class="absolute inset-0 z-10 flex items-center justify-center text-white text-6xl bg-black/30">▶</button>
+                            <img alt="Video" loading="lazy" decoding="async"
+                                src="https://img.youtube.com/vi/zHBb5RIztBQ/hqdefault.jpg"
+                                class="w-full h-full rounded-lg object-cover">
                         </div>
-                        <button class="bg-white text-blue-600 px-3 py-1 rounded-lg" data-title="{{ $package->name }}"
-                            data-price="Rp. {{ number_format($package->price, 0, ',', '.') }}"
-                            data-description="{{ $package->description }}" data-images='@json($package->images->pluck('image'))'
-                            onclick="openModal(this)">
-                            @lang('messages.see_details')
-                        </button>
+
+
+                        <!-- fallback thumbnail (hidden dulu) -->
+                        <a id="yt-fallback" href="https://youtu.be/zHBb5RIztBQ" target="_blank"
+                            class="hidden absolute inset-0">
+                            <img src="https://img.youtube.com/vi/zHBb5RIztBQ/hqdefault.jpg" alt="Video Thumbnail"
+                                class="w-full h-full rounded-lg object-cover" ... loading="lazy" decoding="async" />
+                            <span
+                                class="absolute inset-0 flex items-center justify-center text-white text-5xl bg-black/40">
+                                ▶
+                            </span>
+                        </a>
+                    </div>
+
+                    <div id="gallery-carousel" class="flex overflow-x-auto gap-4 hidden">
+                        <div class="flex gap-4"></div>
                     </div>
                 </div>
-            @endforeach
+
+                <div class="grid grid-cols-2 gap-4">
+                    @foreach ($categories as $category)
+                        @foreach ($category->images as $image)
+                            <img src="{{ asset('storage/' . $image->image) }}"
+                                data-filter="category-{{ $category->id }}"
+                                class="gallery-thumb rounded-lg shadow-md w-full h-full object-cover cursor-pointer"
+                                ... loading="lazy" decoding="async" />
+                        @endforeach
+                    @endforeach
+                </div>
+            </div>
+        </section>
+
+        <!-- Packages Section -->
+        <section id="packages" class="py-16 px-6 md:px-16 bg-white text-center">
+            <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-2 font-josefinSlab">
+                @lang('messages.packages_title')
+            </h2>
+            <p class="text-lg text-gray-600 mb-12">
+                @lang('messages.packages_description')
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-6">
+                @foreach ($packages as $package)
+                    <div class="w-full md:w-[48%] rounded-2xl overflow-hidden shadow-md relative package-card">
+                        <!-- Carousel -->
+                        <div id="carousel-{{ $package->id }}" class="relative h-96 overflow-hidden">
+                            @foreach ($package->images as $index => $img)
+                                <img src="{{ asset('storage/' . $img->image) }}"
+                                    class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 {{ $index === 0 ? 'opacity-100' : 'opacity-0' }}"
+                                    data-carousel="{{ $package->id }}" ... loading="lazy" decoding="async">
+                            @endforeach
+                        </div>
+                        <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+                        <div class="relative z-20 flex items-end justify-between px-6 py-4 text-white">
+                            <div>
+                                <h3 class="text-xl font-semibold">{{ $package->name }}</h3>
+                                <div class="text-yellow-400">★★★☆☆</div>
+                                <p class="text-orange-300 font-bold">
+                                    {{ $package->formatted_price }}
+                                </p>
+                            </div>
+                            <button class="bg-white text-blue-600 px-3 py-1 rounded-lg"
+                                data-title="{{ $package->name }}" data-price="{{ $package->formatted_price }}"
+                                data-description="{{ $package->description }}"
+                                data-images='@json($package->images->pluck('image'))' onclick="openModal(this)">
+                                @lang('messages.see_details')
+                            </button>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </section>
+
+
+        <!-- Modal for Packages -->
+        <div id="destinationModal"
+            class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center">
+            <div class="bg-white rounded-xl p-6 w-[90%] max-w-3xl relative">
+                <button onclick="closeModal()"
+                    class="absolute top-2 right-2 text-gray-500 text-xl font-bold">&times;</button>
+                <h3 id="modalTitle" class="text-2xl font-bold mb-2"></h3>
+                <p id="modalPrice" class="text-orange-500 font-semibold mb-4"></p>
+                <p id="modalDescription" class="text-gray-700 mb-4"></p>
+
+                <!-- Ganti iframe jadi div kosong untuk isi carousel -->
+                <div id="modalCarouselContainer" class="relative w-full h-64 overflow-hidden rounded-lg"></div>
+            </div>
         </div>
-    </section>
 
 
-    <!-- Modal for Packages -->
-    <div id="destinationModal"
-        class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center">
-        <div class="bg-white rounded-xl p-6 w-[90%] max-w-3xl relative">
-            <button onclick="closeModal()"
-                class="absolute top-2 right-2 text-gray-500 text-xl font-bold">&times;</button>
-            <h3 id="modalTitle" class="text-2xl font-bold mb-2"></h3>
-            <p id="modalPrice" class="text-orange-500 font-semibold mb-4"></p>
-            <p id="modalDescription" class="text-gray-700 mb-4"></p>
+        <!-- Facility Section -->
+        <section id="facility" class="py-16 px-6 md:px-16 bg-white text-gray-800">
+            <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@lang('messages.facility')</h2>
+            <p class="text-center text-lg max-w-2xl mx-auto mb-12">
+                @lang('messages.facility_description')
+            </p>
 
-            <!-- Ganti iframe jadi div kosong untuk isi carousel -->
-            <div id="modalCarouselContainer" class="relative w-full h-64 overflow-hidden rounded-lg"></div>
-        </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {{-- Kolom Besar 1 Gambar --}}
+                @if ($imageFacilities->isNotEmpty())
+                    <div class="relative h-[36rem] rounded-lg overflow-hidden facility-card"
+                        style="background-image: url('{{ asset('storage/' . $imageFacilities[0]->image) }}'); background-size: cover;">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-start justify-end p-6">
+                            <h3 class="text-white text-2xl font-bold mb-3">{{ $imageFacilities[0]->name }}</h3>
+                            <a href="{{ route('facilities.index') }}"
+                                class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
+                                @lang('messages.view_facility')
+                            </a>
+                        </div>
+                    </div>
+                @endif
+
+                {{-- Kolom Tengah 2 Gambar --}}
+                <div class="flex flex-col gap-6">
+                    @foreach ($imageFacilities->skip(1) as $facility)
+                        <div class="relative h-[17rem] rounded-lg overflow-hidden facility-card"
+                            style="background-image: url('{{ asset('storage/' . $facility->image) }}'); background-size: cover;">
+                            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                                <h4 class="text-white font-bold text-lg">{{ $facility->name }}</h4>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                {{-- Kolom Kanan 2 Deskripsi --}}
+                <div class="flex flex-col gap-6">
+                    @forelse ($facilitiesByType as $type => $items)
+                      @php
+                        // Ambil satu deskripsi yang tidak null untuk dijadikan ringkasan type
+                        $desc = optional($items->firstWhere('description', '!=', null))->description;
+                      @endphp
+                  
+                      <div class="p-6 bg-gray-100 rounded-lg shadow facility-card">
+                        <h3 class="text-xl font-bold mb-2">{{ mb_strtoupper($type, 'UTF-8') }}</h3>
+                  
+                        @if ($desc)
+                          <p class="text-gray-600 mb-4 text-sm">{{ \Illuminate\Support\Str::limit($desc, 200) }}</p>
+                        @endif
+                  
+                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 mb-4">
+                          @foreach ($items as $f)
+                            <li>{{ $f->name }}</li>
+                          @endforeach
+                        </ul>
+                  
+                        {{-- Opsional: link ke halaman index terfilter type --}}
+                        <a href="{{ route('facilities.index', ['type' => $type]) }}"
+                           class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
+                           @lang('messages.view_more')
+                        </a>
+                      </div>
+                    @empty
+                      <div class="p-6 bg-gray-50 rounded-lg text-gray-500 text-sm">
+                        @lang('messages.no_facility_text')
+                      </div>
+                    @endforelse
+                  </div>
+            </div>
+        </section>
+
+        <!-- products Section -->
+        <section id="products" class="py-16 px-6 md:px-16 bg-white text-gray-800">
+            <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@lang('messages.products')</h2>
+            <p class="text-center text-lg max-w-2xl mx-auto mb-12">
+                @lang('messages.products_description')
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                @foreach ($products as $product)
+                    <div class="products-item relative h-[20rem] rounded-lg overflow-hidden shadow"
+                        style="background-image: url('{{ asset('storage/' . $product->image) }}'); background-size: cover;">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-start justify-end p-6">
+                            <h3 class="text-white text-2xl font-bold mb-3">{{ $product->name }}</h3>
+                            <p class="text-gray-200 text-sm mb-3">{{ Str::limit($product->description, 80) }}</p>
+                            <span
+                                class="bg-orange-500 text-white px-3 py-1 rounded text-xs">{{ strtoupper($product->type) }}</span>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </section>
+
+
+        <!-- Social Section -->
+        <!-- Social Section dengan Elfsight Instagram Widget dan fade-in -->
+        <section id="social" class="py-16 px-6 md:px-16 bg-white text-gray-800 fade-in">
+            <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
+            <h2 class="text-2xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@DesaWisataArjasaOfficial
+            </h2>
+
+            <!-- Elfsight Instagram Feed Widget -->
+            <div class="elfsight-app-7148802b-a989-44c0-bc48-4b53fbc340c2" data-elfsight-app-lazy></div>
+        </section>
+
+        <!-- Reviews Section dengan Elfsight Widget dan fade-in -->
+        <section id="reviews" class="py-16 px-6 md:px-16 bg-white text-gray-800 fade-in">
+            <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@lang('messages.what_customers_say')</h2>
+            <p class="text-center text-lg max-w-2xl mx-auto mb-12">
+                @lang('messages.reviews_description')
+            </p>
+
+            <!-- Elfsight Google Reviews Widget -->
+            <div class="elfsight-app-e9e89592-b352-42d7-914e-f13a74838102" data-elfsight-app-lazy></div>
+        </section>
+
+        <!-- What's Happening Section -->
+        <section id="happening" class="py-16 px-6 md:px-16 bg-white text-gray-800">
+            <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@lang('messages.what_is_happening')</h2>
+            <p class="text-center text-lg max-w-2xl mx-auto mb-12">
+                @lang('messages.happening_description')
+            </p>
+
+            <div class="flex justify-center">
+                <div class="w-full md:w-[90%] h-[450px] rounded-lg overflow-hidden shadow-lg relative">
+                    <a id="gmaps-lite" href="#"
+                        class="absolute inset-0 z-10 flex items-center justify-center text-white text-3xl bg-black/20">▶</a>
+                    <img alt="Lokasi Desa Arjasa" loading="lazy" decoding="async" class="w-full h-full object-cover"
+                        src="https://maps.googleapis.com/maps/api/staticmap?center=-8.115953060346706,113.73451588487477&zoom=15&size=1200x450&markers=color:orange|-8.115953060346706,113.73451588487477&key=YOUR_API_KEY">
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black text-white py-8 px-6 md:px-16">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="font-bold mb-4">@lang('messages.footer.arjasa')</h4>
+                    <p class="text-sm">{!! __('messages.footer.address') !!}</p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">@lang('messages.footer.information')</h4>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="#" class="hover:text-orange-500">@lang('messages.footer_info.about_us')</a></li>
+                        <li><a href="#" class="hover:text-orange-500">@lang('messages.footer_info.contact')</a></li>
+                        <li><a href="#" class="hover:text-orange-500">@lang('messages.footer_info.privacy_policy')</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">@lang('messages.footer.quick_links')</h4>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="#profile" class="hover:text-orange-500">@lang('messages.profile')</a></li>
+                        <li><a href="#culture" class="hover:text-orange-500">@lang('messages.culture')</a></li>
+                        <li><a href="#gallery" class="hover:text-orange-500">@lang('messages.gallery')</a></li>
+                        <li><a href="#packages" class="hover:text-orange-500">@lang('messages.packages')</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">@lang('messages.social_media')</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="hover:text-orange-500">Facebook</a>
+                        <a href="#" class="hover:text-orange-500">Twitter</a>
+                        <a href="#" class="hover:text-orange-500">Instagram</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-8 text-sm">
+                © 2024 Desa Wisata Arjasa. All Rights Reserved.
+            </div>
+        </footer>
     </div>
 
+    <script>
+        (function() {
+            // 1) Tunggu Tailwind CDN siap (via onload), window load, dan (opsional) font
+            const waitTailwind = new Promise(r => {
+                if (window.__twReady) r();
+                else {
+                    const t = setInterval(() => {
+                        if (window.__twReady) {
+                            clearInterval(t);
+                            r();
+                        }
+                    }, 30);
+                    // fallback jika onload tidak terpanggil:
+                    setTimeout(() => {
+                        clearInterval(t);
+                        r();
+                    }, 3000);
+                }
+            });
 
-    <!-- Facility Section -->
-    <section id="facility" class="py-16 px-6 md:px-16 bg-white text-gray-800">
-        <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@lang('messages.facility')</h2>
-        <p class="text-center text-lg max-w-2xl mx-auto mb-12">
-            @lang('messages.facility_description')
-        </p>
+            const waitWindowLoad = new Promise(r => {
+                if (document.readyState === 'complete') r();
+                else window.addEventListener('load', r, {
+                    once: true
+                });
+            });
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {{-- Kolom Besar 1 Gambar --}}
-            @if ($imageFacilities->isNotEmpty())
-                <div class="relative h-[36rem] rounded-lg overflow-hidden facility-card"
-                    style="background-image: url('{{ asset('storage/' . $imageFacilities[0]->image) }}'); background-size: cover;">
-                    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-start justify-end p-6">
-                        <h3 class="text-white text-2xl font-bold mb-3">{{ $imageFacilities[0]->name }}</h3>
-                        <a href="{{ route('facilities.index') }}"
-                            class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
-                            @lang('messages.view_facility')
-                        </a>
-                    </div>
-                </div>
-            @endif
+            const waitFonts = ('fonts' in document) ?
+                document.fonts.ready.catch(() => {}) :
+                Promise.resolve();
 
-            {{-- Kolom Tengah 2 Gambar --}}
-            <div class="flex flex-col gap-6">
-                @foreach ($imageFacilities->skip(1) as $facility)
-                    <div class="relative h-[17rem] rounded-lg overflow-hidden facility-card"
-                        style="background-image: url('{{ asset('storage/' . $facility->image) }}'); background-size: cover;">
-                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                            <h4 class="text-white font-bold text-lg">{{ $facility->name }}</h4>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+            // 2) Race + timeout global agar tidak “terkunci” jika ada yang gagal
+            const timeout = new Promise(r => setTimeout(r, 4000));
 
-            {{-- Kolom Kanan 2 Deskripsi --}}
-            <div class="flex flex-col gap-6">
-                @foreach ($textFacilities as $facility)
-                    <div class="p-6 bg-gray-100 rounded-lg shadow facility-card">
-                        <h3 class="text-xl font-bold mb-2">{{ strtoupper($facility->name) }}</h3>
-                        <p class="text-gray-600 mb-4 text-sm">{{ $facility->description }}</p>
-                        <a href="{{ route('facilities.show', $facility->id) }}"
-                            class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
-                            @lang('messages.view_more')
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
+            Promise.race([
+                Promise.all([waitTailwind, waitWindowLoad, waitFonts]),
+                timeout
+            ]).then(() => {
+                document.documentElement.classList.add('app-ready');
+            });
+        })();
+    </script>
 
-    <!-- products Section -->
-    <section id="products" class="py-16 px-6 md:px-16 bg-white text-gray-800">
-        <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@lang('messages.products')</h2>
-        <p class="text-center text-lg max-w-2xl mx-auto mb-12">
-            @lang('messages.products_description')
-        </p>
+    <!-- (Opsional) Fallback jika JS mati -->
+    <noscript>
+        <style>
+            #app-loader {
+                display: none !important
+            }
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            @foreach ($products as $product)
-                <div class="products-item relative h-[20rem] rounded-lg overflow-hidden shadow"
-                    style="background-image: url('{{ asset('storage/' . $product->image) }}'); background-size: cover;">
-                    <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-start justify-end p-6">
-                        <h3 class="text-white text-2xl font-bold mb-3">{{ $product->name }}</h3>
-                        <p class="text-gray-200 text-sm mb-3">{{ Str::limit($product->description, 80) }}</p>
-                        <span
-                            class="bg-orange-500 text-white px-3 py-1 rounded text-xs">{{ strtoupper($product->type) }}</span>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </section>
-
-
-    <!-- Social Section -->
-    <!-- Social Section dengan Elfsight Instagram Widget dan fade-in -->
-    <section id="social" class="py-16 px-6 md:px-16 bg-white text-gray-800 fade-in">
-        <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-2xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@DesaWisataArjasaOfficial
-        </h2>
-
-        <!-- Elfsight Instagram Feed Widget -->
-        <div class="elfsight-app-7148802b-a989-44c0-bc48-4b53fbc340c2" data-elfsight-app-lazy></div>
-    </section>
-
-    <!-- Reviews Section dengan Elfsight Widget dan fade-in -->
-    <section id="reviews" class="py-16 px-6 md:px-16 bg-white text-gray-800 fade-in">
-        <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@lang('messages.what_customers_say')</h2>
-        <p class="text-center text-lg max-w-2xl mx-auto mb-12">
-            @lang('messages.reviews_description')
-        </p>
-
-        <!-- Elfsight Google Reviews Widget -->
-        <div class="elfsight-app-e9e89592-b352-42d7-914e-f13a74838102" data-elfsight-app-lazy></div>
-    </section>
-
-    <!-- What's Happening Section -->
-    <section id="happening" class="py-16 px-6 md:px-16 bg-white text-gray-800">
-        <div class="w-16 h-1 bg-orange-500 mx-auto mb-4"></div>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-2 font-josefinSlab">@lang('messages.what_is_happening')</h2>
-        <p class="text-center text-lg max-w-2xl mx-auto mb-12">
-            @lang('messages.happening_description')
-        </p>
-
-        <div class="flex justify-center">
-            <div class="w-full md:w-[90%] h-[450px] rounded-lg overflow-hidden shadow-lg">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.857847011082!2d113.73451588487477!3d-8.115953060346706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6953f62ed30bb%3A0xeda68b0d4c733f41!2sKantor%20Desa%20Arjasa!5e0!3m2!1sid!2sid!4v1754348200377!5m2!1sid!2sid"
-                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-black text-white py-8 px-6 md:px-16">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-                <h4 class="font-bold mb-4">@lang('messages.footer.arjasa')</h4>
-                <p class="text-sm">{!! __('messages.footer.address') !!}</p>
-            </div>
-
-            <div>
-                <h4 class="font-bold mb-4">@lang('messages.footer.information')</h4>
-                <ul class="text-sm space-y-2">
-                    <li><a href="#" class="hover:text-orange-500">@lang('messages.footer_info.about_us')</a></li>
-                    <li><a href="#" class="hover:text-orange-500">@lang('messages.footer_info.contact')</a></li>
-                    <li><a href="#" class="hover:text-orange-500">@lang('messages.footer_info.privacy_policy')</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-bold mb-4">@lang('messages.footer.quick_links')</h4>
-                <ul class="text-sm space-y-2">
-                    <li><a href="#profile" class="hover:text-orange-500">@lang('messages.profile')</a></li>
-                    <li><a href="#culture" class="hover:text-orange-500">@lang('messages.culture')</a></li>
-                    <li><a href="#gallery" class="hover:text-orange-500">@lang('messages.gallery')</a></li>
-                    <li><a href="#packages" class="hover:text-orange-500">@lang('messages.packages')</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-bold mb-4">@lang('messages.social_media')</h4>
-                <div class="flex gap-4">
-                    <a href="#" class="hover:text-orange-500">Facebook</a>
-                    <a href="#" class="hover:text-orange-500">Twitter</a>
-                    <a href="#" class="hover:text-orange-500">Instagram</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="text-center mt-8 text-sm">
-            © 2024 Desa Wisata Arjasa. All Rights Reserved.
-        </div>
-    </footer>
-
+            [data-app] {
+                visibility: visible !important
+            }
+        </style>
+    </noscript>
 </body>
+</body>
+
+<script>
+    (function() {
+        const lazyElfsight = [{
+                sel: '.elfsight-app-7148802b-a989-44c0-bc48-4b53fbc340c2'
+            }, // Instagram
+            {
+                sel: '.elfsight-app-e9e89592-b352-42d7-914e-f13a74838102'
+            } // Reviews
+        ];
+        const loadPlatform = () => {
+            if (window.__elf_loaded) return;
+            window.__elf_loaded = true;
+            const s = document.createElement('script');
+            s.src = 'https://elfsightcdn.com/platform.js';
+            s.async = true;
+            document.head.appendChild(s);
+        };
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) loadPlatform();
+            });
+        }, {
+            rootMargin: '400px'
+        });
+        lazyElfsight.forEach(({
+            sel
+        }) => {
+            const el = document.querySelector(sel);
+            if (el) io.observe(el);
+        });
+    })();
+</script>
+
+
+<script>
+    document.getElementById('yt-lite')?.addEventListener('click', function() {
+        const wrap = document.getElementById('main-display');
+        wrap.innerHTML = `<iframe class="w-full h-full" loading="lazy"
+        src="https://www.youtube.com/embed/zHBb5RIztBQ?autoplay=1"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>`;
+    });
+</script>
+
+
+<script>
+    document.getElementById('gmaps-lite')?.addEventListener('click', function(e) {
+        e.preventDefault();
+        const wrap = this.parentElement;
+        wrap.innerHTML = `<iframe loading="lazy" style="border:0" allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.857847011082!2d113.73451588487477!3d-8.115953060346706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6953f62ed30bb%3A0xeda68b0d4c733f41!2sKantor%20Desa%20Arjasa!5e0!3m2!1sid!2sid!4v1754348200377!5m2!1sid!2sid"
+        width="100%" height="100%"></iframe>`;
+    });
+</script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const iframe = document.getElementById("yt-iframe");
+        const fallback = document.getElementById("yt-fallback");
+
+        // Kalau iframe gagal load (blocked / error), ganti dengan thumbnail
+        iframe.addEventListener("error", function() {
+            iframe.classList.add("hidden");
+            fallback.classList.remove("hidden");
+        });
+
+        // Tambahan: kalau 3 detik iframe tidak bisa render, fallback juga dipakai
+        setTimeout(() => {
+            if (iframe.contentWindow === null || iframe.clientHeight === 0) {
+                iframe.classList.add("hidden");
+                fallback.classList.remove("hidden");
+            }
+        }, 3000);
+    });
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'id'
+            includedLanguage: 'id, en, zh, es'
+        }, 'google_translate_element');
+    }
+</script>
 
 <script>
     // Menampilkan Spinner saat halaman dimuat
@@ -779,7 +1123,7 @@
 
     function resetGallery() {
         mainDisplay.innerHTML =
-            '<iframe class="w-full h-full rounded-lg shadow-lg" src="https://www.youtube.com/embed/zHBb5RIztBQ" frameborder="0" allowfullscreen></iframe>';
+            '<iframe class="w-full h-full rounded-lg shadow-lg" src="https://www.youtube.com/embed/zHBb5RIztBQ" frameborder="0" allowfullscreen ... loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
         carousel.classList.add('hidden');
         carouselInner.innerHTML = '';
     }
@@ -797,10 +1141,10 @@
             const thumbs = document.querySelectorAll(`img[data-filter="${filter}"]`);
             if (thumbs.length > 0) {
                 mainDisplay.innerHTML =
-                    `<img src="${thumbs[0].src}" class="w-full h-full object-cover rounded-lg shadow-lg" />`;
+                    `<img src="${thumbs[0].src}" class="w-full h-full object-cover rounded-lg shadow-lg" ... loading="lazy" decoding="async" />`;
                 carousel.classList.remove('hidden');
                 carouselInner.innerHTML = Array.from(thumbs).map(img =>
-                    `<img src="${img.src}" class="h-32 rounded-lg shadow-md object-cover" />`
+                    `<img src="${img.src}" class="h-32 rounded-lg shadow-md object-cover" ... loading="lazy" decoding="async" />`
                 ).join('');
             }
         });
@@ -841,7 +1185,7 @@
         const modalContainer = document.getElementById('modalCarouselContainer');
         modalContainer.innerHTML = images.map((img, i) => `
             <img src="/storage/${img}" 
-                 class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === 0 ? 'opacity-100' : 'opacity-0'}"
+                 class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === 0 ? 'opacity-100' : 'opacity-0'}" ... loading="lazy" decoding="async"
                  data-modal-carousel>
         `).join('');
 
