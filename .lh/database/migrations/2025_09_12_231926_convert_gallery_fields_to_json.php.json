@@ -1,0 +1,18 @@
+{
+    "sourceFile": "database/migrations/2025_09_12_231926_convert_gallery_fields_to_json.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1757727395660,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1757727395659,
+            "name": "Commit-0",
+            "content": "<?php\n\nuse Illuminate\\Database\\Migrations\\Migration;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\nuse Illuminate\\Support\\Facades\\DB;\n\nreturn new class extends Migration\n{\n    public function up(): void\n    {\n        // 1. Tambah kolom baru sementara (JSON)\n        Schema::table('gallery_categories', function (Blueprint $table) {\n            $table->json('name_trans')->nullable()->after('name');\n        });\n\n        // 2. Copy data lama ke kolom JSON (set sebagai bahasa default: id)\n        DB::table('gallery_categories')->get()->each(function ($culture) {\n            DB::table('gallery_categories')\n                ->where('id', $culture->id)\n                ->update([\n                    'name_trans' => json_encode([\n                        'id' => $culture->name,\n                        'en' => null,\n                        'es' => null,\n                        'zh' => null,\n                    ]),\n                ]);\n        });\n\n        // 3. Hapus kolom lama & rename kolom baru\n        Schema::table('gallery_categories', function (Blueprint $table) {\n            $table->dropColumn(['name']);\n        });\n\n        Schema::table('gallery_categories', function (Blueprint $table) {\n            $table->renameColumn('name_trans', 'name');\n        });\n    }\n\n    public function down(): void\n    {\n        // Balik lagi ke string (jaga-jaga rollback)\n        Schema::table('gallery_categories', function (Blueprint $table) {\n            $table->string('name')->change();\n        });\n    }\n};\n"
+        }
+    ]
+}

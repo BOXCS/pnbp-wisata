@@ -1,0 +1,18 @@
+{
+    "sourceFile": "database/migrations/2025_09_13_222217_convert_package_fields_to_json.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1757802167092,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1757802167092,
+            "name": "Commit-0",
+            "content": "<?php\n\nuse Illuminate\\Database\\Migrations\\Migration;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\nuse Illuminate\\Support\\Facades\\DB;\n\nreturn new class extends Migration\n{\n    public function up(): void\n    {\n        // 1. Tambah kolom JSON sementara\n        Schema::table('packages', function (Blueprint $table) {\n            $table->json('name_trans')->nullable()->after('name');\n            $table->json('description_trans')->nullable()->after('description');\n            $table->json('price_trans')->nullable()->after('price');\n        });\n\n        // 2. Copy data lama → JSON (default \"id\")\n        DB::table('packages')->get()->each(function ($pkg) {\n            DB::table('packages')\n                ->where('id', $pkg->id)\n                ->update([\n                    'name_trans'        => json_encode(['id' => $pkg->name]),\n                    'description_trans' => json_encode(['id' => $pkg->description]),\n                    'price_trans'       => json_encode([\n                        'id' => $pkg->price,   // IDR\n                        'en' => null,          // USD\n                        'zh' => null,          // Yuan\n                        'es' => null,          // bisa pakai Euro atau MXN, sesuaikan\n                    ]),\n                ]);\n        });\n\n        // 3. Hapus kolom lama\n        Schema::table('packages', function (Blueprint $table) {\n            $table->dropColumn(['name', 'description', 'price']);\n        });\n\n        // 4. Rename JSON kolom baru ke nama asli\n        Schema::table('packages', function (Blueprint $table) {\n            $table->renameColumn('name_trans', 'name');\n            $table->renameColumn('description_trans', 'description');\n            $table->renameColumn('price_trans', 'price');\n        });\n    }\n\n    public function down(): void\n    {\n        // Balik ke struktur lama\n        Schema::table('packages', function (Blueprint $table) {\n            $table->string('name')->change();\n            $table->text('description')->nullable()->change();\n            $table->decimal('price', 12, 2)->nullable()->change();\n        });\n    }\n};\n"
+        }
+    ]
+}

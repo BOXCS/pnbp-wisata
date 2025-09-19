@@ -30,29 +30,51 @@ class GalleryResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\Select::make('gallery_category_id')
-                    ->label('Kategori')
-                    ->relationship('category', 'name')
-                    ->searchable()
-                    ->preload()
-                    ->createOptionForm([
-                        Forms\Components\TextInput::make('name')
-                            ->label('Nama Kategori')
-                            ->required(),
-                    ])
-                    ->required(),
+        return $form->schema([
+            Forms\Components\Select::make('gallery_category_id')
+                ->label('Kategori')
+                ->relationship('category', 'name')
+                ->searchable()
+                ->preload()
+                ->createOptionForm([
+                    Forms\Components\Tabs::make('Translatable')
+                        ->tabs([
+                            Forms\Components\Tabs\Tab::make('Indonesia')
+                                ->schema([
+                                    Forms\Components\TextInput::make('name.id')
+                                        ->label('Nama Kategori')
+                                        ->required(),
+                                ]),
+                            Forms\Components\Tabs\Tab::make('English')
+                                ->schema([
+                                    Forms\Components\TextInput::make('name.en')
+                                        ->label('Category Name')
+                                        ->required(),
+                                ]),
+                            Forms\Components\Tabs\Tab::make('Español')
+                                ->schema([
+                                    Forms\Components\TextInput::make('name.es')
+                                        ->label('Nombre de Categoría'),
+                                ]),
+                            Forms\Components\Tabs\Tab::make('中文')
+                                ->schema([
+                                    Forms\Components\TextInput::make('name.zh')
+                                        ->label('分类名称'),
+                                ]),
+                        ]),
+                ])
+                ->required(),
 
-
-                Forms\Components\FileUpload::make('image')
-                    ->label('Gambar')
-                    ->image()
-                    ->directory('gallery-images')
-                    ->visibility('public')
-                    ->required(),
-            ]);
+            Forms\Components\FileUpload::make('image')
+                ->label('Gambar')
+                ->image()
+                ->directory('gallery-images')
+                ->visibility('public')
+                ->required(),
+        ]);
     }
+
+
 
     public static function table(Table $table): Table
     {

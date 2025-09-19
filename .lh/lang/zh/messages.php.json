@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1756555543662,
@@ -44,6 +44,10 @@
                 {
                     "date": 1757241085543,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -68,8 +68,9 @@\n     'facility' => '设施',\n     'facility_description' => '阿尔贾萨村的旅游支持设施，确保游客的舒适。',\n     'view_facility' => '查看所有设施',\n     'view_more' => '查看更多',\n+    'products_description' => '阿贾萨特色手信，值得带回家作为纪念品。',\n     'social_media' => '@DesaWisataArjasaOfficial',\n     'what_customers_say' => '我们客户的声音',\n     'reviews_description' => '阅读评论、推荐和反馈，了解更多关于这个独特目的地的信息。',\n     'what_is_happening' => '发生了什么',\n"
+                },
+                {
+                    "date": 1757767646302,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     'navbar_products' => '产品',\n     'navbar_social' => '社交',\n     'language_selector_id' => 'ID',\n     'language_selector_en' => 'EN',\n-    'language_selector_cn' => 'CN',\n+    'language_selector_cn' => '中文',\n     'language_selector_es' => 'ES',\n     'mobile_menu_profile' => '个人资料',\n     'mobile_menu_vision' => '愿景与使命',\n     'mobile_menu_culture' => '文化',\n"
                 }
             ],
             "date": 1756555543662,

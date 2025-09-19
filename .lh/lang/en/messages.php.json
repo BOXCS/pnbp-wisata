@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 11,
+            "activePatchIndex": 12,
             "patches": [
                 {
                     "date": 1756555496477,
@@ -52,6 +52,10 @@
                 {
                     "date": 1757242313440,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,10 +66,10 @@\n     'packages_description' => 'The best tourist attractions based on the level of interest of Arjasa tourists and the popularity of these attractions',\n     'see_details' => 'See Details',\n     'facility' => 'Facility',\n     'facility_description' => 'Supporting facilities for tourism in Arjasa Village that will pamper the visitors.',\n-    // 'view_facility' => 'View All Facility',\n-    // 'view_more' => 'View More',\n+    'view_facility' => 'View All Facility',\n+    'view_more' => 'View More',\n     'products_description' => 'Souvenirs typical of Arjasa that you must bring home as mementos.',\n     'social_media' => '@DesaWisataArjasaOfficial',\n     'what_customers_say' => 'WHAT OUR CUSTOMERS SAY',\n     'reviews_description' => 'Read reviews, testimonials, and feedback to learn more about this unique destination.',\n"
+                },
+                {
+                    "date": 1757767666094,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     'navbar_products' => 'PRODUCTS',\n     'navbar_social' => 'SOCIAL',\n     'language_selector_id' => 'ID',\n     'language_selector_en' => 'EN',\n-    'language_selector_cn' => 'CN',\n+    'language_selector_cn' => '中文',\n     'language_selector_es' => 'ES',\n     'mobile_menu_profile' => 'PROFILE',\n     'mobile_menu_vision' => 'VISION & MISSION',\n     'mobile_menu_culture' => 'CULTURE',\n"
                 }
             ],
             "date": 1756555496477,

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 11,
+            "activePatchIndex": 12,
             "patches": [
                 {
                     "date": 1756555592693,
@@ -52,6 +52,10 @@
                 {
                     "date": 1757241032528,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,8 +69,9 @@\n     'facility' => 'Fasilitas',\n     'facility_description' => 'Fasilitas pendukung wisata di Desa Arjasa yang siap memanjakan pengunjung.',\n     'view_facility' => 'Lihat Semua Fasilitas',\n     'view_more' => 'Lihat Semua',\n+    'products_description' => 'Oleh-oleh khas Arjasa yang wajib dibawa pulang sebagai kenang-kenangan.',\n     'social_media' => '@DesaWisataArjasaOfficial',\n     'what_customers_say' => 'APA KATA PELANGGAN KAMI',\n     'reviews_description' => 'Baca ulasan, testimoni, dan masukan untuk mengetahui lebih lanjut tentang destinasi unik ini.',\n     'what_is_happening' => 'Apa yang Terjadi',\n"
+                },
+                {
+                    "date": 1757767652565,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n     'navbar_products' => 'PRODUK',\n     'navbar_social' => 'SOSIAL',\n     'language_selector_id' => 'ID',\n     'language_selector_en' => 'EN',\n-    'language_selector_cn' => 'CN',\n+    'language_selector_cn' => '中文',\n     'language_selector_es' => 'ES',\n     'mobile_menu_profile' => 'PROFIL',\n     'mobile_menu_vision' => 'VISI & MISI',\n     'mobile_menu_culture' => 'BUDAYA',\n"
                 }
             ],
             "date": 1756555592693,

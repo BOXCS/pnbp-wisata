@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 22,
+            "activePatchIndex": 24,
             "patches": [
                 {
                     "date": 1754541328297,
@@ -96,6 +96,14 @@
                 {
                     "date": 1754706234302,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n             ])\n             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\\\Filament\\\\Widgets')\n             ->widgets([\n                 Widgets\\AccountWidget::class,\n-                Widgets\\FilamentInfoWidget::class,\n+                // Widgets\\FilamentInfoWidget::class,\n             ])\n             ->middleware([\n                 EncryptCookies::class,\n                 AddQueuedCookiesToResponse::class,\n"
+                },
+                {
+                    "date": 1757714925366,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,11 @@\n use Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken;\n use Illuminate\\Routing\\Middleware\\SubstituteBindings;\n use Illuminate\\Session\\Middleware\\StartSession;\n use Illuminate\\View\\Middleware\\ShareErrorsFromSession;\n+use Outerweb\\FilamentTranslatableFields\\Filament\\Plugins\\FilamentTranslatableFieldsPlugin;\n \n+\n class AdminPanelProvider extends PanelProvider\n {\n     public function panel(Panel $panel): Panel\n     {\n@@ -42,12 +44,13 @@\n                 Pages\\Dashboard::class,\n             ])\n             ->plugins([\n                 AuthUIEnhancerPlugin::make()\n-                ->formPanelWidth('40%')\n-                ->emptyPanelBackgroundImageUrl(asset('images/hero-bg2.webp'))\n-                ->emptyPanelBackgroundImageOpacity('50%')\n-                ,\n+                    ->formPanelWidth('40%')\n+                    ->emptyPanelBackgroundImageUrl(asset('images/hero-bg2.webp'))\n+                    ->emptyPanelBackgroundImageOpacity('50%'),\n+    \n+                FilamentTranslatableFieldsPlugin::make(),\n             ])\n             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\\\Filament\\\\Widgets')\n             ->widgets([\n                 Widgets\\AccountWidget::class,\n"
+                },
+                {
+                    "date": 1757715087962,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,15 @@\n                     ->formPanelWidth('40%')\n                     ->emptyPanelBackgroundImageUrl(asset('images/hero-bg2.webp'))\n                     ->emptyPanelBackgroundImageOpacity('50%'),\n     \n-                FilamentTranslatableFieldsPlugin::make(),\n+                    FilamentTranslatableFieldsPlugin::make()\n+                    ->supportedLocales([\n+                        'id' => 'Indonesia',\n+                        'en' => 'English',\n+                        'zh' => 'China',\n+                        'es' => 'Spain',\n+                    ]),\n             ])\n             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\\\Filament\\\\Widgets')\n             ->widgets([\n                 Widgets\\AccountWidget::class,\n"
                 }
             ],
             "date": 1754541328297,
