@@ -631,9 +631,9 @@
                                         </div>
                                     </div>
                                 @endif
-                            @elseif($first->embed_link && str_contains($first->embed_link, 'instagram.com'))
+                            @elseif($first->clean_link && str_contains($first->clean_link, 'instagram.com'))
                                 <div class="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-pink-200 to-pink-300"
-                                    data-type="instagram" data-embed="{{ $first->embed_link }}">
+                                    data-type="instagram" data-embed="{{ $first->clean_link }}">
                                     <i class="fab fa-instagram text-pink-600 text-5xl"></i>
                                 </div>
                             @elseif($first->image)
