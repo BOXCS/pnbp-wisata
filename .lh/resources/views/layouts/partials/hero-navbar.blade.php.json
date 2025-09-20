@@ -1,0 +1,18 @@
+{
+    "sourceFile": "resources/views/layouts/partials/hero-navbar.blade.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1758411207290,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1758411207290,
+            "name": "Commit-0",
+            "content": "{{-- resources/views/layouts/partials/hero-navbar.blade.php --}}\r\n\r\n<nav class=\"bg-black bg-opacity-70 text-white fixed top-0 inset-x-0 z-50\">\r\n    <div class=\"container mx-auto px-4 py-4 flex items-center justify-between\">\r\n        {{-- Logo --}}\r\n        <a href=\"{{ url('/') }}\" class=\"text-2xl font-bold text-orange-500\">\r\n            Great Art of Arjasa\r\n        </a>\r\n\r\n        {{-- Menu Desktop --}}\r\n        <ul class=\"hidden md:flex space-x-8 font-josefinSlab\">\r\n            <li><a href=\"{{ url('/') }}\" class=\"nav-link hover:text-orange-400\">Home</a></li>\r\n            <li><a href=\"{{ route('facilities.index') }}\" class=\"nav-link hover:text-orange-400\">Facilities</a></li>\r\n            <li><a href=\"{{ url('/culture') }}\" class=\"nav-link hover:text-orange-400\">Culture</a></li>\r\n            <li><a href=\"{{ url('/packages') }}\" class=\"nav-link hover:text-orange-400\">Packages</a></li>\r\n            <li><a href=\"{{ url('/products') }}\" class=\"nav-link hover:text-orange-400\">Products</a></li>\r\n        </ul>\r\n\r\n        {{-- Tombol Mobile --}}\r\n        <button id=\"menu-toggle\" class=\"md:hidden text-white focus:outline-none\">\r\n            <svg xmlns=\"http://www.w3.org/2000/svg\" class=\"h-6 w-6\" fill=\"none\"\r\n                 viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2\">\r\n                <path stroke-linecap=\"round\" stroke-linejoin=\"round\"\r\n                      d=\"M4 6h16M4 12h16M4 18h16\"/>\r\n            </svg>\r\n        </button>\r\n    </div>\r\n\r\n    {{-- Menu Mobile --}}\r\n    <div id=\"mobile-menu\" class=\"md:hidden bg-black bg-opacity-90 text-white px-6 py-4 space-y-4 hidden\">\r\n        <a href=\"{{ url('/') }}\" class=\"block hover:text-orange-400\">Home</a>\r\n        <a href=\"{{ route('facilities.index') }}\" class=\"block hover:text-orange-400\">Facilities</a>\r\n        <a href=\"{{ url('/culture') }}\" class=\"block hover:text-orange-400\">Culture</a>\r\n        <a href=\"{{ url('/packages') }}\" class=\"block hover:text-orange-400\">Packages</a>\r\n        <a href=\"{{ url('/products') }}\" class=\"block hover:text-orange-400\">Products</a>\r\n    </div>\r\n</nav>\r\n\r\n<script>\r\n    document.addEventListener('DOMContentLoaded', () => {\r\n        const toggleBtn = document.getElementById('menu-toggle');\r\n        const mobileMenu = document.getElementById('mobile-menu');\r\n\r\n        toggleBtn.addEventListener('click', () => {\r\n            mobileMenu.classList.toggle('hidden');\r\n            mobileMenu.classList.toggle('open');\r\n        });\r\n    });\r\n</script>\r\n"
+        }
+    ]
+}

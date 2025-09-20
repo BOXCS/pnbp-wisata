@@ -653,93 +653,6 @@
                                 {{ $uploadLinks->count() }}</span>
                         </div>
                     </div>
-
-                    {{-- CAROUSEL --}}
-                    <div class="relative">
-                        <button id="prevBtn"
-                            class="absolute -left-3 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white shadow p-2 hover:bg-gray-50 focus:outline-none"
-                            aria-label="Previous">
-                            ‹
-                        </button>
-
-                        <div id="gallery-carousel"
-                            class="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory px-1 py-2 scrollbar-thin scrollbar-thumb-gray-300"
-                            role="listbox" aria-label="Media Thumbnails">
-                            @foreach ($uploadLinks as $index => $item)
-                                @php
-                                    $type = null;
-                                    $thumbSrc = null;
-                                    $embed = null;
-                                    $title = $item->title ?? 'Media';
-                                    if ($item->embed_link && str_contains($item->embed_link, 'youtube.com/embed')) {
-                                        preg_match('/embed\/([a-zA-Z0-9_-]+)/', $item->embed_link, $m);
-                                        $ytId = $m[1] ?? null;
-                                        if ($ytId) {
-                                            $type = 'youtube';
-                                            $thumbSrc = "https://img.youtube.com/vi/{$ytId}/hqdefault.jpg";
-                                            $embed = $item->embed_link;
-                                        }
-                                    } elseif ($item->embed_link && str_contains($item->embed_link, 'instagram.com')) {
-                                        $type = 'instagram';
-                                        $embed = $item->embed_link;
-                                    } elseif ($item->image) {
-                                        $type = 'image';
-                                        $thumbSrc = asset('storage/' . $item->image);
-                                        $embed = $thumbSrc;
-                                    }
-                                @endphp
-
-                                @if ($type === 'youtube')
-                                    <button
-                                        class="thumb snap-start relative w-44 h-24 shrink-0 rounded-lg overflow-hidden border border-transparent focus:outline-none focus:ring-2 focus:ring-orange-500 {{ $index === 0 ? 'ring-2 ring-orange-500' : '' }}"
-                                        @if ($type === 'instagram') onclick="window.open('{{ $embed }}','_blank')" @endif
-                                        data-type="{{ $type }}" data-embed="{{ $embed }}"
-                                        data-index="{{ $index }}" role="option"
-                                        aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
-                                    @elseif($type === 'instagram')
-                                        @php
-                                            $thumbSrc = $item->image ? asset('storage/' . $item->image) : null;
-                                        @endphp
-                                        <button
-                                            class="thumb snap-start relative w-44 h-24 shrink-0 rounded-lg overflow-hidden border border-transparent focus:outline-none focus:ring-2 focus:ring-orange-500 {{ $index === 0 ? 'ring-2 ring-orange-500' : '' }}"
-                                            data-type="instagram" data-embed="{{ $embed }}"
-                                            data-index="{{ $index }}" role="option"
-                                            aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
-
-                                            @if ($thumbSrc)
-                                                <img src="{{ $thumbSrc }}" alt="{{ $title }}"
-                                                    class="w-full h-full object-cover" loading="lazy"
-                                                    decoding="async">
-                                                <div
-                                                    class="absolute inset-0 flex items-center justify-center bg-black/30">
-                                                    <i class="fab fa-instagram text-white text-2xl"></i>
-                                                </div>
-                                            @else
-                                                <div
-                                                    class="w-full h-full bg-pink-200 flex items-center justify-center">
-                                                    <i class="fab fa-instagram text-pink-600 text-3xl"></i>
-                                                </div>
-                                            @endif
-                                        </button>
-                                    @elseif($type === 'image')
-                                        <button
-                                            class="thumb snap-start relative w-44 h-24 shrink-0 rounded-lg overflow-hidden border border-transparent focus:outline-none focus:ring-2 focus:ring-orange-500 {{ $index === 0 ? 'ring-2 ring-orange-500' : '' }}"
-                                            data-type="image" data-embed="{{ $embed }}"
-                                            data-index="{{ $index }}" role="option"
-                                            aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
-                                            <img src="{{ $thumbSrc }}" alt="{{ $title }}"
-                                                class="w-full h-full object-cover" loading="lazy" decoding="async">
-                                        </button>
-                                @endif
-                            @endforeach
-                        </div>
-
-                        <button id="nextBtn"
-                            class="absolute -right-3 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white shadow p-2 hover:bg-gray-50 focus:outline-none"
-                            aria-label="Next">
-                            ›
-                        </button>
-                    </div>
                 </div>
 
                 {{-- RIGHT: 2x2 Grid dengan pagination sederhana --}}
@@ -783,7 +696,7 @@
 
                                     <button
                                         class="grid-thumb relative w-full aspect-video overflow-hidden rounded-lg group cursor-pointer"
-                                        @if ($type === 'instagram') onclick="window.open('{{ $embed }}','_blank')" @endif
+                                        @if ($type === 'instagram') @endif
                                         data-type="{{ $type }}" data-embed="{{ $embed }}">
                                         @if ($thumbSrc)
                                             <img src="{{ $thumbSrc }}" alt="{{ $title }}"
@@ -922,7 +835,7 @@
                         style="background-image: url('{{ asset('storage/' . $imageFacilities[0]->image) }}'); background-size: cover;">
                         <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-start justify-end p-6">
                             <h3 class="text-white text-2xl font-bold mb-3">{{ $imageFacilities[0]->name }}</h3>
-                            <a href="{{ route('facilities.index') }}"
+                            <a href="{{ route('facilities.katalog') }}"
                                 class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
                                 @lang('messages.view_facility')
                             </a>
