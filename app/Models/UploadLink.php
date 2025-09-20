@@ -12,26 +12,28 @@ class UploadLink extends Model
         'link',
     ];
 
-    // accessor: otomatis ubah link youtube jadi embed
+    /**
+     * Accessor: embed link otomatis.
+     */
     public function getEmbedLinkAttribute()
     {
         $url = $this->link;
 
-        if (!$url) {
-            return null;
-        }
+        if (!$url) return null;
 
-        // format watch?v=...
+        // YouTube
         if (str_contains($url, 'watch?v=')) {
             return str_replace('watch?v=', 'embed/', $url);
         }
-
-        // format youtu.be/...
         if (str_contains($url, 'youtu.be/')) {
             return str_replace('youtu.be/', 'www.youtube.com/embed/', $url);
         }
 
-        // kalau sudah embed atau bukan youtube, kembalikan apa adanya
+        // Instagram
+        if (str_contains($url, 'instagram.com')) {
+            return rtrim($url, '/') . '/embed';
+        }
+
         return $url;
     }
 }

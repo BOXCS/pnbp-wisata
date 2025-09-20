@@ -605,102 +605,249 @@
             </p>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {{-- LEFT: Main + Carousel --}}
                 <div class="flex flex-col gap-6">
                     {{-- MAIN DISPLAY --}}
-                    <div id="main-display" class="w-full aspect-[16/9] rounded-lg shadow-lg relative overflow-hidden">
+                    <div id="main-display"
+                        class="relative w-full aspect-video rounded-xl shadow-lg overflow-hidden bg-gray-200">
                         @if ($uploadLinks->isNotEmpty())
                             @php $first = $uploadLinks->first(); @endphp
 
-                            @if ($first->embed_link)
-                                {{-- video thumbnail dulu --}}
+                            @if ($first->embed_link && str_contains($first->embed_link, 'youtube.com/embed'))
                                 @php
-                                    preg_match('/embed\/([a-zA-Z0-9_-]+)/', $first->embed_link, $matches);
-                                    $ytId = $matches[1] ?? null;
+                                    preg_match('/embed\/([a-zA-Z0-9_-]+)/', $first->embed_link, $m);
+                                    $ytId = $m[1] ?? null;
                                 @endphp
                                 @if ($ytId)
-                                    <div class="relative w-full aspect-video overflow-hidden rounded-lg group cursor-pointer"
+                                    <div class="relative w-full h-full group" data-type="youtube"
                                         data-embed="{{ $first->embed_link }}">
-                                        {{-- Thumbnail --}}
                                         <img src="https://img.youtube.com/vi/{{ $ytId }}/hqdefault.jpg"
                                             alt="YouTube thumbnail"
                                             class="absolute inset-0 w-full h-full object-cover">
-
-                                        {{-- Overlay --}}
-                                        {{-- <div
-                                            class="absolute inset-0 flex items-center justify-center bg-green/40 group-hover:bg-green/50 transition-colors">
+                                        {{-- Overlay play button --}}
+                                        <div
+                                            class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
                                             <span class="text-white text-6xl">▶</span>
-                                        </div> --}}
+                                        </div>
                                     </div>
                                 @endif
-                            @elseif ($first->image)
+                            @elseif($first->embed_link && str_contains($first->embed_link, 'instagram.com'))
+                                <div class="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-pink-200 to-pink-300"
+                                    data-type="instagram" data-embed="{{ $first->embed_link }}">
+                                    <i class="fab fa-instagram text-pink-600 text-5xl"></i>
+                                </div>
+                            @elseif($first->image)
                                 <img src="{{ asset('storage/' . $first->image) }}" alt="{{ $first->title }}"
-                                    class="w-full h-full rounded-lg object-cover">
+                                    class="absolute inset-0 w-full h-full object-cover" data-type="image"
+                                    data-embed="{{ asset('storage/' . $first->image) }}">
+                            @else
+                                <div class="flex items-center justify-center h-full text-gray-500">No media</div>
                             @endif
+                        @else
+                            <div class="flex items-center justify-center h-full text-gray-500">No media</div>
                         @endif
+
+                        {{-- MAIN CONTROLS (optional show/hide) --}}
+                        <div class="pointer-events-none absolute bottom-3 right-3">
+                            <span id="counter" class="px-2 py-1 text-xs rounded bg-black/50 text-white">1 /
+                                {{ $uploadLinks->count() }}</span>
+                        </div>
                     </div>
 
                     {{-- CAROUSEL --}}
-                    <div id="gallery-carousel" class="flex overflow-x-auto gap-4">
-                        @foreach ($uploadLinks->skip(1) as $item)
-                            @if ($item->embed_link)
+                    <div class="relative">
+                        <button id="prevBtn"
+                            class="absolute -left-3 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white shadow p-2 hover:bg-gray-50 focus:outline-none"
+                            aria-label="Previous">
+                            ‹
+                        </button>
+
+                        <div id="gallery-carousel"
+                            class="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory px-1 py-2 scrollbar-thin scrollbar-thumb-gray-300"
+                            role="listbox" aria-label="Media Thumbnails">
+                            @foreach ($uploadLinks as $index => $item)
                                 @php
-                                    preg_match('/embed\/([a-zA-Z0-9_-]+)/', $item->embed_link, $matches);
-                                    $ytId = $matches[1] ?? null;
+                                    $type = null;
+                                    $thumbSrc = null;
+                                    $embed = null;
+                                    $title = $item->title ?? 'Media';
+                                    if ($item->embed_link && str_contains($item->embed_link, 'youtube.com/embed')) {
+                                        preg_match('/embed\/([a-zA-Z0-9_-]+)/', $item->embed_link, $m);
+                                        $ytId = $m[1] ?? null;
+                                        if ($ytId) {
+                                            $type = 'youtube';
+                                            $thumbSrc = "https://img.youtube.com/vi/{$ytId}/hqdefault.jpg";
+                                            $embed = $item->embed_link;
+                                        }
+                                    } elseif ($item->embed_link && str_contains($item->embed_link, 'instagram.com')) {
+                                        $type = 'instagram';
+                                        $embed = $item->embed_link;
+                                    } elseif ($item->image) {
+                                        $type = 'image';
+                                        $thumbSrc = asset('storage/' . $item->image);
+                                        $embed = $thumbSrc;
+                                    }
                                 @endphp
-                                @if ($ytId)
-                                    <div class="video-thumb relative w-40 h-24 cursor-pointer"
-                                        data-embed="{{ $item->embed_link }}">
-                                        <img src="https://img.youtube.com/vi/{{ $ytId }}/hqdefault.jpg"
-                                            class="w-full h-full object-cover rounded-lg">
-                                        <div
-                                            class="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-3xl">
-                                            ▶</div>
-                                    </div>
+
+                                @if ($type === 'youtube')
+                                    <button
+                                        class="thumb snap-start relative w-44 h-24 shrink-0 rounded-lg overflow-hidden border border-transparent focus:outline-none focus:ring-2 focus:ring-orange-500 {{ $index === 0 ? 'ring-2 ring-orange-500' : '' }}"
+                                        data-type="youtube" data-embed="{{ $embed }}"
+                                        data-index="{{ $index }}" role="option"
+                                        aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
+                                        <img src="{{ $thumbSrc }}" alt="YouTube thumbnail"
+                                            class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                        <div class="absolute inset-0 flex items-center justify-center bg-black/35">
+                                            <span class="text-white text-2xl">▶</span>
+                                        </div>
+                                    </button>
+                                @elseif($type === 'instagram')
+                                    @php
+                                        $thumbSrc = $item->image ? asset('storage/' . $item->image) : null;
+                                    @endphp
+                                    <button
+                                        class="thumb snap-start relative w-44 h-24 shrink-0 rounded-lg overflow-hidden border border-transparent focus:outline-none focus:ring-2 focus:ring-orange-500 {{ $index === 0 ? 'ring-2 ring-orange-500' : '' }}"
+                                        data-type="instagram" data-embed="{{ $embed }}"
+                                        data-index="{{ $index }}" role="option"
+                                        aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
+
+                                        @if ($thumbSrc)
+                                            <img src="{{ $thumbSrc }}" alt="{{ $title }}"
+                                                class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                            <div class="absolute inset-0 flex items-center justify-center bg-black/30">
+                                                <i class="fab fa-instagram text-white text-2xl"></i>
+                                            </div>
+                                        @else
+                                            <div class="w-full h-full bg-pink-200 flex items-center justify-center">
+                                                <i class="fab fa-instagram text-pink-600 text-3xl"></i>
+                                            </div>
+                                        @endif
+                                    </button>
+                                @elseif($type === 'image')
+                                    <button
+                                        class="thumb snap-start relative w-44 h-24 shrink-0 rounded-lg overflow-hidden border border-transparent focus:outline-none focus:ring-2 focus:ring-orange-500 {{ $index === 0 ? 'ring-2 ring-orange-500' : '' }}"
+                                        data-type="image" data-embed="{{ $embed }}"
+                                        data-index="{{ $index }}" role="option"
+                                        aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
+                                        <img src="{{ $thumbSrc }}" alt="{{ $title }}"
+                                            class="w-full h-full object-cover" loading="lazy" decoding="async">
+                                    </button>
                                 @endif
-                            @elseif ($item->image)
-                                <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}"
-                                    class="gallery-thumb w-40 h-24 rounded-lg object-cover cursor-pointer">
-                            @endif
-                        @endforeach
+                            @endforeach
+                        </div>
+
+                        <button id="nextBtn"
+                            class="absolute -right-3 top-1/2 -translate-y-1/2 z-10 rounded-full bg-white shadow p-2 hover:bg-gray-50 focus:outline-none"
+                            aria-label="Next">
+                            ›
+                        </button>
                     </div>
                 </div>
 
-                {{-- GRID --}}
-                <div class="grid grid-cols-2 gap-4">
-                    @foreach ($uploadLinks as $item)
-                        @if ($item->embed_link)
-                            @php
-                                preg_match('/embed\/([a-zA-Z0-9_-]+)/', $item->embed_link, $matches);
-                                $ytId = $matches[1] ?? null;
-                            @endphp
-                            @if ($ytId)
-                            <div 
-                              class="relative w-full aspect-video overflow-hidden rounded-lg group cursor-pointer"
-                              data-embed="{{ $first->embed_link }}"
-                            >
-                              {{-- Thumbnail --}}
-                              <img 
-                                src="https://img.youtube.com/vi/{{ $ytId }}/hqdefault.jpg" 
-                                alt="YouTube thumbnail"
-                                class="absolute inset-0 w-full h-full object-cover"
-                              >
-                          
-                              {{-- Overlay --}}
-                              <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/50 transition-colors">
-                                <span class="text-white text-6xl">▶</span>
-                              </div>
+                {{-- RIGHT: 2x2 Grid dengan pagination sederhana --}}
+                <div class="relative">
+                    @php
+                        $chunks = $uploadLinks->chunk(4);
+                    @endphp
+
+                    <div id="grid-slides" class="relative">
+                        @foreach ($chunks as $pageIndex => $chunk)
+                            <div class="grid grid-cols-2 gap-4 {{ $pageIndex === 0 ? '' : 'hidden' }}"
+                                data-page="{{ $pageIndex }}">
+                                @foreach ($chunk as $item)
+                                    @php
+                                        $type = null;
+                                        $thumbSrc = null;
+                                        $embed = null;
+                                        $title = $item->title ?? 'Media';
+
+                                        if ($item->embed_link && str_contains($item->embed_link, 'youtube.com/embed')) {
+                                            preg_match('/embed\/([a-zA-Z0-9_-]+)/', $item->embed_link, $m);
+                                            $ytId = $m[1] ?? null;
+                                            if ($ytId) {
+                                                $type = 'youtube';
+                                                $thumbSrc = "https://img.youtube.com/vi/{$ytId}/hqdefault.jpg";
+                                                $embed = $item->embed_link;
+                                            }
+                                        } elseif (
+                                            $item->embed_link &&
+                                            str_contains($item->embed_link, 'instagram.com')
+                                        ) {
+                                            $type = 'instagram';
+                                            $embed = $item->embed_link;
+                                            $thumbSrc = $item->image ? asset('storage/' . $item->image) : null;
+                                        } elseif ($item->image) {
+                                            $type = 'image';
+                                            $thumbSrc = asset('storage/' . $item->image);
+                                            $embed = $thumbSrc;
+                                        }
+                                    @endphp
+
+                                    <button
+                                        class="grid-thumb relative w-full aspect-video overflow-hidden rounded-lg group cursor-pointer"
+                                        data-type="{{ $type }}" data-embed="{{ $embed }}">
+                                        @if ($thumbSrc)
+                                            <img src="{{ $thumbSrc }}" alt="{{ $title }}"
+                                                class="absolute inset-0 w-full h-full object-cover" loading="lazy"
+                                                decoding="async">
+                                        @endif
+
+                                        {{-- Overlay --}}
+                                        @if ($type === 'youtube')
+                                            <div
+                                                class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
+                                                <span class="text-white text-5xl">▶</span>
+                                            </div>
+                                        @elseif ($type === 'instagram')
+                                            <div
+                                                class="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
+                                                <i class="fab fa-instagram text-white text-3xl"></i>
+                                            </div>
+                                        @endif
+                                    </button>
+                                @endforeach
                             </div>
-                          @endif
-                          
-                        @elseif ($item->image)
-                            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}"
-                                class="gallery-thumb rounded-lg shadow-md w-full h-48 object-cover cursor-pointer">
-                        @endif
-                    @endforeach
-                </div>
-            </div>
+                        @endforeach
+                    </div>
+                    <div class="flex justify-center items-center gap-4 mt-4">
+                        <button id="prevGrid"
+                            class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm">‹
+                            Prev</button>
+                        <span id="gridCounter" class="text-sm text-gray-600">
+                            1 / {{ $chunks->count() }}
+                        </span>
+                        <button id="nextGrid"
+                            class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 text-gray-700 text-sm">Next
+                            ›</button>
+                    </div>
         </section>
 
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const slides = document.querySelectorAll("#grid-slides > div");
+                const counter = document.getElementById("gridCounter");
+                let currentPage = 0;
+
+                function showPage(index) {
+                    slides.forEach((s, i) => {
+                        s.classList.toggle("hidden", i !== index);
+                    });
+                    counter.textContent = `${index + 1} / ${slides.length}`;
+                }
+
+                document.getElementById("prevGrid").addEventListener("click", () => {
+                    currentPage = (currentPage - 1 + slides.length) % slides.length;
+                    showPage(currentPage);
+                });
+
+                document.getElementById("nextGrid").addEventListener("click", () => {
+                    currentPage = (currentPage + 1) % slides.length;
+                    showPage(currentPage);
+                });
+
+                showPage(currentPage); // init
+            });
+        </script>
 
         <!-- Packages Section -->
         <section id="packages" class="py-16 px-6 md:px-16 bg-white text-center">
@@ -1113,38 +1260,103 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const mainDisplay = document.getElementById("main-display");
+        const counterEl = document.getElementById("counter");
+        const carousel = document.getElementById("gallery-carousel");
+        const thumbs = Array.from(carousel?.querySelectorAll(".thumb") || []);
+        const gridThumbs = Array.from(document.querySelectorAll(".grid-thumb"));
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
 
-        // fungsi untuk ganti konten di main display
-        function setMainDisplay(content) {
-            mainDisplay.innerHTML = "";
-            mainDisplay.appendChild(content);
+        let currentIndex = 0;
+        const total = thumbs.length;
+        if (counterEl) counterEl.textContent = `${total ? 1 : 0} / ${total}`;
+
+        function renderMain(type, embed) {
+            if (!mainDisplay) return;
+            if (type === "youtube" || type === "instagram") {
+                mainDisplay.innerHTML = `
+            <iframe src="${embed}" title="${type} embed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen class="absolute inset-0 w-full h-full rounded-xl"></iframe>`;
+            } else if (type === "image") {
+                mainDisplay.innerHTML = `
+            <img src="${embed}" alt="Gallery image" class="absolute inset-0 w-full h-full object-cover rounded-xl">`;
+            }
         }
 
-        // handle klik video thumbnail
-        document.querySelectorAll(".video-thumb").forEach(el => {
-            el.addEventListener("click", () => {
-                const embed = el.getAttribute("data-embed");
-                const iframe = document.createElement("iframe");
-                iframe.src = embed + "?autoplay=1";
-                iframe.setAttribute("frameborder", "0");
-                iframe.setAttribute("allowfullscreen", "true");
-                iframe.className = "w-full h-full rounded-lg";
-                setMainDisplay(iframe);
+        function setActive(i) {
+            thumbs.forEach((t, idx) => {
+                t.classList.toggle("ring-2", idx === i);
+                t.classList.toggle("ring-orange-500", idx === i);
+                t.setAttribute("aria-selected", idx === i ? "true" : "false");
             });
+            currentIndex = i;
+            if (counterEl) counterEl.textContent = `${i + 1} / ${total}`;
+            // Snap to active
+            const el = thumbs[i];
+            if (el && carousel) {
+                const left = el.offsetLeft - (carousel.clientWidth - el.clientWidth) / 2;
+                carousel.scrollTo({
+                    left,
+                    behavior: "smooth"
+                });
+            }
+        }
+
+        function handleThumbClick(el) {
+            const type = el.dataset.type;
+            const embed = el.dataset.embed;
+            const idx = parseInt(el.dataset.index ?? currentIndex, 10) || 0;
+            renderMain(type, embed);
+            if (el.classList.contains("thumb")) setActive(idx);
+        }
+
+        // Init: attach listeners
+        thumbs.forEach((t) => t.addEventListener("click", () => handleThumbClick(t)));
+        gridThumbs.forEach((g) => g.addEventListener("click", () => handleThumbClick(g)));
+
+        // Prev/Next
+        function go(delta) {
+            if (!total) return;
+            let ni = currentIndex + delta;
+            if (ni < 0) ni = 0;
+            if (ni >= total) ni = total - 1;
+            const el = thumbs[ni];
+            if (el) {
+                renderMain(el.dataset.type, el.dataset.embed);
+                setActive(ni);
+            }
+        }
+        prevBtn?.addEventListener("click", () => go(-1));
+        nextBtn?.addEventListener("click", () => go(1));
+
+        // Keyboard navigation on carousel focus
+        carousel?.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowRight") {
+                e.preventDefault();
+                go(1);
+            }
+            if (e.key === "ArrowLeft") {
+                e.preventDefault();
+                go(-1);
+            }
         });
 
-        // handle klik image thumbnail
-        document.querySelectorAll(".gallery-thumb").forEach(el => {
-            el.addEventListener("click", () => {
-                const img = document.createElement("img");
-                img.src = el.src;
-                img.className = "w-full h-full rounded-lg object-cover";
-                setMainDisplay(img);
-            });
+        // Click on main display when it's a YouTube thumb to convert to iframe
+        // (in case initial state is an image/overlay)
+        mainDisplay?.addEventListener("click", (e) => {
+            const holder = mainDisplay.querySelector("[data-type][data-embed]");
+            if (holder) {
+                renderMain(holder.dataset.type, holder.dataset.embed);
+            }
         });
+
+        // If there is at least one thumb, ensure main matches first thumb for consistency
+        if (thumbs[0]) {
+            renderMain(thumbs[0].dataset.type, thumbs[0].dataset.embed);
+            setActive(0);
+        }
     });
 </script>
-
 
 <script>
     // Mobile Menu Script
