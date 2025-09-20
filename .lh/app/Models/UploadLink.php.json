@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1758260359184,
@@ -28,6 +28,14 @@
                 {
                     "date": 1758366960316,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,28 @@\n         'link',\n     ];\n \n     /**\n+     * Bersihkan link Instagram (hapus query string & pastikan format clean).\n+     */\n+    public function getCleanLinkAttribute()\n+    {\n+        if (!$this->link) {\n+            return null;\n+        }\n+\n+        $url = $this->link;\n+\n+        // kalau Instagram, hapus query string (?utm_source, ?igsh, dll)\n+        if (str_contains($url, 'instagram.com')) {\n+            $url = preg_replace('/\\?.*/', '', $url); // hapus ? dan setelahnya\n+            return rtrim($url, '/'); // pastikan tanpa slash di belakang\n+        }\n+\n+        return $url;\n+    }\n+\n+    /**\n      * Accessor: embed link otomatis.\n      */\n     public function getEmbedLinkAttribute()\n     {\n@@ -28,11 +48,11 @@\n         if (str_contains($url, 'youtu.be/')) {\n             return str_replace('youtu.be/', 'www.youtube.com/embed/', $url);\n         }\n \n-        // Instagram\n+        // Instagram → lebih baik buka langsung clean link\n         if (str_contains($url, 'instagram.com')) {\n-            return rtrim($url, '/') . '/embed';\n+            return $this->clean_link; // pakai yang sudah dibersihkan\n         }\n \n         return $url;\n     }\n"
+                },
+                {
+                    "date": 1758367343158,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,28 +12,8 @@\n         'link',\n     ];\n \n     /**\n-     * Bersihkan link Instagram (hapus query string & pastikan format clean).\n-     */\n-    public function getCleanLinkAttribute()\n-    {\n-        if (!$this->link) {\n-            return null;\n-        }\n-\n-        $url = $this->link;\n-\n-        // kalau Instagram, hapus query string (?utm_source, ?igsh, dll)\n-        if (str_contains($url, 'instagram.com')) {\n-            $url = preg_replace('/\\?.*/', '', $url); // hapus ? dan setelahnya\n-            return rtrim($url, '/'); // pastikan tanpa slash di belakang\n-        }\n-\n-        return $url;\n-    }\n-\n-    /**\n      * Accessor: embed link otomatis.\n      */\n     public function getEmbedLinkAttribute()\n     {\n@@ -48,11 +28,11 @@\n         if (str_contains($url, 'youtu.be/')) {\n             return str_replace('youtu.be/', 'www.youtube.com/embed/', $url);\n         }\n \n-        // Instagram → lebih baik buka langsung clean link\n+        // Instagram\n         if (str_contains($url, 'instagram.com')) {\n-            return $this->clean_link; // pakai yang sudah dibersihkan\n+            return rtrim($url, '/') . '/embed';\n         }\n \n         return $url;\n     }\n"
+                },
+                {
+                    "date": 1758367498444,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,12 @@\n         }\n \n         // Instagram\n         if (str_contains($url, 'instagram.com')) {\n-            return rtrim($url, '/') . '/embed';\n+            // buang query string (?utm_source=...) biar aman\n+            $cleanUrl = strtok($url, '?');\n+\n+            return rtrim($cleanUrl, '/') . '/embed';\n         }\n \n         return $url;\n     }\n"
                 }
             ],
             "date": 1758260359184,

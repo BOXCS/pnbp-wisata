@@ -13,26 +13,6 @@ class UploadLink extends Model
     ];
 
     /**
-     * Bersihkan link Instagram (hapus query string & pastikan format clean).
-     */
-    public function getCleanLinkAttribute()
-    {
-        if (!$this->link) {
-            return null;
-        }
-
-        $url = $this->link;
-
-        // kalau Instagram, hapus query string (?utm_source, ?igsh, dll)
-        if (str_contains($url, 'instagram.com')) {
-            $url = preg_replace('/\?.*/', '', $url); // hapus ? dan setelahnya
-            return rtrim($url, '/'); // pastikan tanpa slash di belakang
-        }
-
-        return $url;
-    }
-
-    /**
      * Accessor: embed link otomatis.
      */
     public function getEmbedLinkAttribute()
@@ -49,9 +29,12 @@ class UploadLink extends Model
             return str_replace('youtu.be/', 'www.youtube.com/embed/', $url);
         }
 
-        // Instagram → lebih baik buka langsung clean link
+        // Instagram
         if (str_contains($url, 'instagram.com')) {
-            return $this->clean_link; // pakai yang sudah dibersihkan
+            // buang query string (?utm_source=...) biar aman
+            $cleanUrl = strtok($url, '?');
+
+            return rtrim($cleanUrl, '/') . '/embed';
         }
 
         return $url;
