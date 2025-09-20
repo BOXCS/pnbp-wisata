@@ -323,7 +323,7 @@
     <!-- Loading Spinner -->
     <div id="app-loader" role="status" aria-live="polite">
         <div class="loader" aria-label="Loading"></div>
-      </div>
+    </div>
     <div data-app>
         <!-- Navbar Wrapper -->
         <div class="relative w-full min-h-screen md:h-screen overflow-hidden">
@@ -604,59 +604,103 @@
                 @lang('messages.destination_description')
             </p>
 
-            <!-- Filter -->
-            <div class="flex flex-wrap justify-center gap-8 mb-16 text-gray-700 font-semibold text-lg">
-                <a href="#" class="filter-link hover:text-orange-500" data-filter="all">ALL</a>
-                @foreach ($categories as $category)
-                    <a href="#" class="filter-link hover:text-orange-500"
-                        data-filter="category-{{ $category->id }}">
-                        {{ $category->name }}
-                    </a>
-                @endforeach
-            </div>
-
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div class="flex flex-col gap-6">
-                    <div id="main-display" class="w-full aspect-[16/9] rounded-lg shadow-lg relative">
-                        <!-- iframe asli -->
-                        <div id="main-display" class="w-full aspect-[16/9] rounded-lg shadow-lg relative">
-                            <button id="yt-lite"
-                                class="absolute inset-0 z-10 flex items-center justify-center text-white text-6xl bg-black/30">▶</button>
-                            <img alt="Video" loading="lazy" decoding="async"
-                                src="https://img.youtube.com/vi/zHBb5RIztBQ/hqdefault.jpg"
-                                class="w-full h-full rounded-lg object-cover">
-                        </div>
+                    {{-- MAIN DISPLAY --}}
+                    <div id="main-display" class="w-full aspect-[16/9] rounded-lg shadow-lg relative overflow-hidden">
+                        @if ($uploadLinks->isNotEmpty())
+                            @php $first = $uploadLinks->first(); @endphp
 
+                            @if ($first->embed_link)
+                                {{-- video thumbnail dulu --}}
+                                @php
+                                    preg_match('/embed\/([a-zA-Z0-9_-]+)/', $first->embed_link, $matches);
+                                    $ytId = $matches[1] ?? null;
+                                @endphp
+                                @if ($ytId)
+                                    <div class="relative w-full aspect-video overflow-hidden rounded-lg group cursor-pointer"
+                                        data-embed="{{ $first->embed_link }}">
+                                        {{-- Thumbnail --}}
+                                        <img src="https://img.youtube.com/vi/{{ $ytId }}/hqdefault.jpg"
+                                            alt="YouTube thumbnail"
+                                            class="absolute inset-0 w-full h-full object-cover">
 
-                        <!-- fallback thumbnail (hidden dulu) -->
-                        <a id="yt-fallback" href="https://youtu.be/zHBb5RIztBQ" target="_blank"
-                            class="hidden absolute inset-0">
-                            <img src="https://img.youtube.com/vi/zHBb5RIztBQ/hqdefault.jpg" alt="Video Thumbnail"
-                                class="w-full h-full rounded-lg object-cover" ... loading="lazy" decoding="async" />
-                            <span
-                                class="absolute inset-0 flex items-center justify-center text-white text-5xl bg-black/40">
-                                ▶
-                            </span>
-                        </a>
+                                        {{-- Overlay --}}
+                                        {{-- <div
+                                            class="absolute inset-0 flex items-center justify-center bg-green/40 group-hover:bg-green/50 transition-colors">
+                                            <span class="text-white text-6xl">▶</span>
+                                        </div> --}}
+                                    </div>
+                                @endif
+                            @elseif ($first->image)
+                                <img src="{{ asset('storage/' . $first->image) }}" alt="{{ $first->title }}"
+                                    class="w-full h-full rounded-lg object-cover">
+                            @endif
+                        @endif
                     </div>
 
-                    <div id="gallery-carousel" class="flex overflow-x-auto gap-4 hidden">
-                        <div class="flex gap-4"></div>
+                    {{-- CAROUSEL --}}
+                    <div id="gallery-carousel" class="flex overflow-x-auto gap-4">
+                        @foreach ($uploadLinks->skip(1) as $item)
+                            @if ($item->embed_link)
+                                @php
+                                    preg_match('/embed\/([a-zA-Z0-9_-]+)/', $item->embed_link, $matches);
+                                    $ytId = $matches[1] ?? null;
+                                @endphp
+                                @if ($ytId)
+                                    <div class="video-thumb relative w-40 h-24 cursor-pointer"
+                                        data-embed="{{ $item->embed_link }}">
+                                        <img src="https://img.youtube.com/vi/{{ $ytId }}/hqdefault.jpg"
+                                            class="w-full h-full object-cover rounded-lg">
+                                        <div
+                                            class="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-3xl">
+                                            ▶</div>
+                                    </div>
+                                @endif
+                            @elseif ($item->image)
+                                <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}"
+                                    class="gallery-thumb w-40 h-24 rounded-lg object-cover cursor-pointer">
+                            @endif
+                        @endforeach
                     </div>
                 </div>
 
+                {{-- GRID --}}
                 <div class="grid grid-cols-2 gap-4">
-                    @foreach ($categories as $category)
-                        @foreach ($category->images as $image)
-                            <img src="{{ asset('storage/' . $image->image) }}"
-                                data-filter="category-{{ $category->id }}"
-                                class="gallery-thumb rounded-lg shadow-md w-full h-full object-cover cursor-pointer"
-                                ... loading="lazy" decoding="async" />
-                        @endforeach
+                    @foreach ($uploadLinks as $item)
+                        @if ($item->embed_link)
+                            @php
+                                preg_match('/embed\/([a-zA-Z0-9_-]+)/', $item->embed_link, $matches);
+                                $ytId = $matches[1] ?? null;
+                            @endphp
+                            @if ($ytId)
+                            <div 
+                              class="relative w-full aspect-video overflow-hidden rounded-lg group cursor-pointer"
+                              data-embed="{{ $first->embed_link }}"
+                            >
+                              {{-- Thumbnail --}}
+                              <img 
+                                src="https://img.youtube.com/vi/{{ $ytId }}/hqdefault.jpg" 
+                                alt="YouTube thumbnail"
+                                class="absolute inset-0 w-full h-full object-cover"
+                              >
+                          
+                              {{-- Overlay --}}
+                              <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/50 transition-colors">
+                                <span class="text-white text-6xl">▶</span>
+                              </div>
+                            </div>
+                          @endif
+                          
+                        @elseif ($item->image)
+                            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}"
+                                class="gallery-thumb rounded-lg shadow-md w-full h-48 object-cover cursor-pointer">
+                        @endif
                     @endforeach
                 </div>
             </div>
         </section>
+
 
         <!-- Packages Section -->
         <section id="packages" class="py-16 px-6 md:px-16 bg-white text-center">
@@ -755,36 +799,37 @@
                 {{-- Kolom Kanan 2 Deskripsi --}}
                 <div class="flex flex-col gap-6">
                     @forelse ($facilitiesByType as $type => $items)
-                      @php
-                        // Ambil satu deskripsi yang tidak null untuk dijadikan ringkasan type
-                        $desc = optional($items->firstWhere('description', '!=', null))->description;
-                      @endphp
-                  
-                      <div class="p-6 bg-gray-100 rounded-lg shadow facility-card">
-                        <h3 class="text-xl font-bold mb-2">{{ mb_strtoupper($type, 'UTF-8') }}</h3>
-                  
-                        @if ($desc)
-                          <p class="text-gray-600 mb-4 text-sm">{{ \Illuminate\Support\Str::limit($desc, 200) }}</p>
-                        @endif
-                  
-                        <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 mb-4">
-                          @foreach ($items as $f)
-                            <li>{{ $f->name }}</li>
-                          @endforeach
-                        </ul>
-                  
-                        {{-- Opsional: link ke halaman index terfilter type --}}
-                        <a href="{{ route('facilities.index', ['type' => $type]) }}"
-                           class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
-                           @lang('messages.view_more')
-                        </a>
-                      </div>
+                        @php
+                            // Ambil satu deskripsi yang tidak null untuk dijadikan ringkasan type
+                            $desc = optional($items->firstWhere('description', '!=', null))->description;
+                        @endphp
+
+                        <div class="p-6 bg-gray-100 rounded-lg shadow facility-card">
+                            <h3 class="text-xl font-bold mb-2">{{ mb_strtoupper($type, 'UTF-8') }}</h3>
+
+                            @if ($desc)
+                                <p class="text-gray-600 mb-4 text-sm">{{ \Illuminate\Support\Str::limit($desc, 200) }}
+                                </p>
+                            @endif
+
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1 mb-4">
+                                @foreach ($items as $f)
+                                    <li>{{ $f->name }}</li>
+                                @endforeach
+                            </ul>
+
+                            {{-- Opsional: link ke halaman index terfilter type --}}
+                            <a href="{{ route('facilities.index', ['type' => $type]) }}"
+                                class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">
+                                @lang('messages.view_more')
+                            </a>
+                        </div>
                     @empty
-                      <div class="p-6 bg-gray-50 rounded-lg text-gray-500 text-sm">
-                        @lang('messages.no_facility_text')
-                      </div>
+                        <div class="p-6 bg-gray-50 rounded-lg text-gray-500 text-sm">
+                            @lang('messages.no_facility_text')
+                        </div>
                     @endforelse
-                  </div>
+                </div>
             </div>
         </section>
 
@@ -1064,6 +1109,42 @@
         spinner.classList.add('hidden'); // Menyembunyikan spinner
     }
 </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const mainDisplay = document.getElementById("main-display");
+
+        // fungsi untuk ganti konten di main display
+        function setMainDisplay(content) {
+            mainDisplay.innerHTML = "";
+            mainDisplay.appendChild(content);
+        }
+
+        // handle klik video thumbnail
+        document.querySelectorAll(".video-thumb").forEach(el => {
+            el.addEventListener("click", () => {
+                const embed = el.getAttribute("data-embed");
+                const iframe = document.createElement("iframe");
+                iframe.src = embed + "?autoplay=1";
+                iframe.setAttribute("frameborder", "0");
+                iframe.setAttribute("allowfullscreen", "true");
+                iframe.className = "w-full h-full rounded-lg";
+                setMainDisplay(iframe);
+            });
+        });
+
+        // handle klik image thumbnail
+        document.querySelectorAll(".gallery-thumb").forEach(el => {
+            el.addEventListener("click", () => {
+                const img = document.createElement("img");
+                img.src = el.src;
+                img.className = "w-full h-full rounded-lg object-cover";
+                setMainDisplay(img);
+            });
+        });
+    });
+</script>
+
 
 <script>
     // Mobile Menu Script

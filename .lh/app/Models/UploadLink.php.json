@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1758260359184,
@@ -12,6 +12,10 @@
                 {
                     "date": 1758260508152,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,6 +11,7 @@\n \n     protected $fillable = [\n         'title',\n         'link',\n+        'image',\n     ];\n }\n"
+                },
+                {
+                    "date": 1758348379275,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,37 @@\n <?php\n \n namespace App\\Models;\n \n-use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\n use Illuminate\\Database\\Eloquent\\Model;\n \n class UploadLink extends Model\n {\n-    use HasFactory;\n-\n     protected $fillable = [\n         'title',\n+        'image',\n         'link',\n-        'image',\n     ];\n+\n+    // accessor: otomatis ubah link youtube jadi embed\n+    public function getEmbedLinkAttribute()\n+    {\n+        $url = $this->link;\n+\n+        if (!$url) {\n+            return null;\n+        }\n+\n+        // format watch?v=...\n+        if (str_contains($url, 'watch?v=')) {\n+            return str_replace('watch?v=', 'embed/', $url);\n+        }\n+\n+        // format youtu.be/...\n+        if (str_contains($url, 'youtu.be/')) {\n+            return str_replace('youtu.be/', 'www.youtube.com/embed/', $url);\n+        }\n+\n+        // kalau sudah embed atau bukan youtube, kembalikan apa adanya\n+        return $url;\n+    }\n }\n"
                 }
             ],
             "date": 1758260359184,
