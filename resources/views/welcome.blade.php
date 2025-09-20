@@ -692,46 +692,44 @@
                                 @if ($type === 'youtube')
                                     <button
                                         class="thumb snap-start relative w-44 h-24 shrink-0 rounded-lg overflow-hidden border border-transparent focus:outline-none focus:ring-2 focus:ring-orange-500 {{ $index === 0 ? 'ring-2 ring-orange-500' : '' }}"
-                                        data-type="youtube" data-embed="{{ $embed }}"
+                                        @if ($type === 'instagram') onclick="window.open('{{ $embed }}','_blank')" @endif
+                                        data-type="{{ $type }}" data-embed="{{ $embed }}"
                                         data-index="{{ $index }}" role="option"
                                         aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
-                                        <img src="{{ $thumbSrc }}" alt="YouTube thumbnail"
-                                            class="w-full h-full object-cover" loading="lazy" decoding="async">
-                                        <div class="absolute inset-0 flex items-center justify-center bg-black/35">
-                                            <span class="text-white text-2xl">▶</span>
-                                        </div>
-                                    </button>
-                                @elseif($type === 'instagram')
-                                    @php
-                                        $thumbSrc = $item->image ? asset('storage/' . $item->image) : null;
-                                    @endphp
-                                    <button
-                                        class="thumb snap-start relative w-44 h-24 shrink-0 rounded-lg overflow-hidden border border-transparent focus:outline-none focus:ring-2 focus:ring-orange-500 {{ $index === 0 ? 'ring-2 ring-orange-500' : '' }}"
-                                        data-type="instagram" data-embed="{{ $embed }}"
-                                        data-index="{{ $index }}" role="option"
-                                        aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
+                                    @elseif($type === 'instagram')
+                                        @php
+                                            $thumbSrc = $item->image ? asset('storage/' . $item->image) : null;
+                                        @endphp
+                                        <button
+                                            class="thumb snap-start relative w-44 h-24 shrink-0 rounded-lg overflow-hidden border border-transparent focus:outline-none focus:ring-2 focus:ring-orange-500 {{ $index === 0 ? 'ring-2 ring-orange-500' : '' }}"
+                                            data-type="instagram" data-embed="{{ $embed }}"
+                                            data-index="{{ $index }}" role="option"
+                                            aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
 
-                                        @if ($thumbSrc)
+                                            @if ($thumbSrc)
+                                                <img src="{{ $thumbSrc }}" alt="{{ $title }}"
+                                                    class="w-full h-full object-cover" loading="lazy"
+                                                    decoding="async">
+                                                <div
+                                                    class="absolute inset-0 flex items-center justify-center bg-black/30">
+                                                    <i class="fab fa-instagram text-white text-2xl"></i>
+                                                </div>
+                                            @else
+                                                <div
+                                                    class="w-full h-full bg-pink-200 flex items-center justify-center">
+                                                    <i class="fab fa-instagram text-pink-600 text-3xl"></i>
+                                                </div>
+                                            @endif
+                                        </button>
+                                    @elseif($type === 'image')
+                                        <button
+                                            class="thumb snap-start relative w-44 h-24 shrink-0 rounded-lg overflow-hidden border border-transparent focus:outline-none focus:ring-2 focus:ring-orange-500 {{ $index === 0 ? 'ring-2 ring-orange-500' : '' }}"
+                                            data-type="image" data-embed="{{ $embed }}"
+                                            data-index="{{ $index }}" role="option"
+                                            aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
                                             <img src="{{ $thumbSrc }}" alt="{{ $title }}"
                                                 class="w-full h-full object-cover" loading="lazy" decoding="async">
-                                            <div class="absolute inset-0 flex items-center justify-center bg-black/30">
-                                                <i class="fab fa-instagram text-white text-2xl"></i>
-                                            </div>
-                                        @else
-                                            <div class="w-full h-full bg-pink-200 flex items-center justify-center">
-                                                <i class="fab fa-instagram text-pink-600 text-3xl"></i>
-                                            </div>
-                                        @endif
-                                    </button>
-                                @elseif($type === 'image')
-                                    <button
-                                        class="thumb snap-start relative w-44 h-24 shrink-0 rounded-lg overflow-hidden border border-transparent focus:outline-none focus:ring-2 focus:ring-orange-500 {{ $index === 0 ? 'ring-2 ring-orange-500' : '' }}"
-                                        data-type="image" data-embed="{{ $embed }}"
-                                        data-index="{{ $index }}" role="option"
-                                        aria-selected="{{ $index === 0 ? 'true' : 'false' }}">
-                                        <img src="{{ $thumbSrc }}" alt="{{ $title }}"
-                                            class="w-full h-full object-cover" loading="lazy" decoding="async">
-                                    </button>
+                                        </button>
                                 @endif
                             @endforeach
                         </div>
@@ -785,6 +783,7 @@
 
                                     <button
                                         class="grid-thumb relative w-full aspect-video overflow-hidden rounded-lg group cursor-pointer"
+                                        @if ($type === 'instagram') onclick="window.open('{{ $embed }}','_blank')" @endif
                                         data-type="{{ $type }}" data-embed="{{ $embed }}">
                                         @if ($thumbSrc)
                                             <img src="{{ $thumbSrc }}" alt="{{ $title }}"
