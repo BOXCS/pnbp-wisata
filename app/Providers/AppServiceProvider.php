@@ -43,10 +43,8 @@ class AppServiceProvider extends ServiceProvider
                 ->pluck('type');
 
             // Ambil semua facility dari 2 type tsb, lalu group by type
-            $facilitiesByType = Facility::whereIn('type', $topTypes)
-                ->orderBy('type')
-                ->orderBy('name')
-                ->get()
+            $facilitiesByType = Facility::all()
+                ->filter(fn($f) => in_array(strtolower(trim($f->type)), $topTypes->map(fn($t) => strtolower($t))->toArray()))
                 ->groupBy('type');
 
             $uploadLinks = UploadLink::latest()->get();
