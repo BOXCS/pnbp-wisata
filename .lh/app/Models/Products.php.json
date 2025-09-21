@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1754680020837,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1758437195876,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,13 +3,21 @@\n namespace App\\Models;\n \n use Illuminate\\Database\\Eloquent\\Factories\\HasFactory;\n use Illuminate\\Database\\Eloquent\\Model;\n+use Spatie\\Translatable\\HasTranslations;\n \n class Products extends Model\n {\n     use HasFactory;\n+    use HasTranslations;\n \n+    public $translatable = [\n+        'name',\n+        'type',\n+        'description',\n+    ];\n+\n     protected $fillable = [\n         'name',\n         'type',\n         'description',\n"
                 }
             ],
             "date": 1754680020837,

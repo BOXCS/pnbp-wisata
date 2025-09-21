@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductsResource\Pages;
-use App\Filament\Resources\ProductsResource\RelationManagers;
 use App\Models\Products;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProductsResource extends Resource
 {
@@ -33,32 +30,59 @@ class ProductsResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\Section::make()
-                ->schema([
-                    Forms\Components\TextInput::make('name')
-                        ->label('Nama Produk')
-                        ->required(),
-
-                    Forms\Components\TextInput::make('type')
-                        ->label('Jenis Produk')
-                        ->placeholder('Contoh: Wisata, Penginapan, Transportasi')
-                        ->maxLength(255),
-
-                    Forms\Components\Textarea::make('description')
-                        ->label('Deskripsi'),
-
-                    Forms\Components\FileUpload::make('image')
-                        ->label('Gambar')
-                        ->image()
-                        ->directory('product-images')
-                        ->visibility('public')
-                        ->preserveFilenames()
-                        ->imagePreviewHeight('250')
-                        ->openable()
-                        ->downloadable()
-                        ->columnSpanFull(),
+            Forms\Components\Tabs::make('Translations')
+                ->tabs([
+                    Forms\Components\Tabs\Tab::make('Indonesia')
+                        ->schema([
+                            Forms\Components\TextInput::make('name.id')
+                                ->label('Nama Produk')
+                                ->required(),
+                            Forms\Components\TextInput::make('type.id')
+                                ->label('Jenis Produk')
+                                ->placeholder('Contoh: Wisata, Penginapan, Transportasi'),
+                            Forms\Components\Textarea::make('description.id')
+                                ->label('Deskripsi'),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('English')
+                        ->schema([
+                            Forms\Components\TextInput::make('name.en')
+                                ->label('Product Name'),
+                            Forms\Components\TextInput::make('type.en')
+                                ->label('Product Type'),
+                            Forms\Components\Textarea::make('description.en')
+                                ->label('Description'),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('中文')
+                        ->schema([
+                            Forms\Components\TextInput::make('name.zh')
+                                ->label('产品名称'),
+                            Forms\Components\TextInput::make('type.zh')
+                                ->label('产品类别'),
+                            Forms\Components\Textarea::make('description.zh')
+                                ->label('描述'),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('Español')
+                        ->schema([
+                            Forms\Components\TextInput::make('name.es')
+                                ->label('Nombre del Producto'),
+                            Forms\Components\TextInput::make('type.es')
+                                ->label('Tipo de Producto'),
+                            Forms\Components\Textarea::make('description.es')
+                                ->label('Descripción'),
+                        ]),
                 ])
-                ->columns(1) // <<-- ini penting supaya semua field vertikal
+                ->columnSpanFull(),
+
+            Forms\Components\FileUpload::make('image')
+                ->label('Gambar')
+                ->image()
+                ->directory('product-images')
+                ->visibility('public')
+                ->preserveFilenames()
+                ->imagePreviewHeight('250')
+                ->openable()
+                ->downloadable()
+                ->columnSpanFull(),
         ]);
     }
 
@@ -73,11 +97,13 @@ class ProductsResource extends Resource
 
                 Tables\Columns\TextColumn::make('name')
                     ->label('Nama')
+                    ->formatStateUsing(fn ($state) => $state[app()->getLocale()] ?? $state['id'] ?? '-')
                     ->searchable()
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('type')
                     ->label('Jenis')
+                    ->formatStateUsing(fn ($state) => $state[app()->getLocale()] ?? $state['id'] ?? '-')
                     ->searchable()
                     ->sortable(),
 
@@ -86,9 +112,7 @@ class ProductsResource extends Resource
                     ->dateTime('d M Y')
                     ->sortable(),
             ])
-            ->filters([
-                // filter opsional bisa ditambah di sini
-            ])
+            ->filters([])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
@@ -96,9 +120,7 @@ class ProductsResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array

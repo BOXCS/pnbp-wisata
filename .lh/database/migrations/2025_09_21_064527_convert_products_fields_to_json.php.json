@@ -1,0 +1,18 @@
+{
+    "sourceFile": "database/migrations/2025_09_21_064527_convert_products_fields_to_json.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1758437154014,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1758437154014,
+            "name": "Commit-0",
+            "content": "<?php\n\nuse Illuminate\\Database\\Migrations\\Migration;\nuse Illuminate\\Database\\Schema\\Blueprint;\nuse Illuminate\\Support\\Facades\\Schema;\nuse Illuminate\\Support\\Facades\\DB;\n\nreturn new class extends Migration\n{\n    public function up(): void\n    {\n        // 1. Tambah kolom JSON sementara\n        Schema::table('products', function (Blueprint $table) {\n            $table->json('name_trans')->nullable()->after('name');\n            $table->json('type_trans')->nullable()->after('type');\n            $table->json('description_trans')->nullable()->after('description');\n        });\n\n        // 2. Copy data lama → JSON (default \"id\")\n        DB::table('products')->get()->each(function ($product) {\n            DB::table('products')\n                ->where('id', $product->id)\n                ->update([\n                    'name_trans'        => json_encode(['id' => $product->name]),\n                    'type_trans'        => json_encode(['id' => $product->type]),\n                    'description_trans' => json_encode(['id' => $product->description]),\n                ]);\n        });\n\n        // 3. Hapus kolom lama\n        Schema::table('products', function (Blueprint $table) {\n            $table->dropColumn(['name', 'type', 'description']);\n        });\n\n        // 4. Rename JSON kolom baru ke nama asli\n        Schema::table('products', function (Blueprint $table) {\n            $table->renameColumn('name_trans', 'name');\n            $table->renameColumn('type_trans', 'type');\n            $table->renameColumn('description_trans', 'description');\n        });\n    }\n\n    public function down(): void\n    {\n        // Balik ke struktur lama\n        Schema::table('products', function (Blueprint $table) {\n            $table->string('name')->change();\n            $table->string('type')->nullable()->change();\n            $table->text('description')->nullable()->change();\n        });\n    }\n};\n"
+        }
+    ]
+}
