@@ -1,49 +1,77 @@
-{{-- resources/views/layouts/partials/hero-navbar.blade.php --}}
+<!-- Navbar di atas gambar -->
+<div class="fixed top-0 w-full h-fit bg-white shadow z-50 py-4">
+    <div class="relative flex items-center px-6 md:px-1 py-4 max-w-screen-xl mx-auto">
+        <!-- Logo di kiri -->
+        <div class="absolute left-0">
+            <img src="images/logo-arjasa.svg" alt="Logo" class="h-20 md:h-20" ... loading="lazy" decoding="async" />
+        </div>
 
-<nav class="bg-black bg-opacity-70 text-white fixed top-0 inset-x-0 z-50">
-    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
-        {{-- Logo --}}
-        <a href="{{ url('/') }}" class="text-2xl font-bold text-orange-500">
-            Great Art of Arjasa
-        </a>
+        <!-- Desktop Navbar di tengah -->
+        <div class="hidden md:flex flex-col items-center justify-center w-full text-lg font-semibold">
+            <nav class="flex gap-6">
+                <a href="#profile" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.profile')</a>
+                <a href="#vision" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.vision')</a>
+                <a href="#culture" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.culture')</a>
+                <a href="#gallery" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.gallery')</a>
+                <a href="#packages" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.packages')</a>
+                <a href="#facility" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.facility')</a>
+                <a href="#products" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.products')</a>
+                <a href="#social" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.social')</a>
+            </nav>
+        </div>
 
-        {{-- Menu Desktop --}}
-        <ul class="hidden md:flex space-x-8 font-josefinSlab">
-            <li><a href="{{ url('/') }}" class="nav-link hover:text-orange-400">Home</a></li>
-            <li><a href="{{ route('facilities.index') }}" class="nav-link hover:text-orange-400">Facilities</a></li>
-            <li><a href="{{ url('/culture') }}" class="nav-link hover:text-orange-400">Culture</a></li>
-            <li><a href="{{ url('/packages') }}" class="nav-link hover:text-orange-400">Packages</a></li>
-            <li><a href="{{ url('/products') }}" class="nav-link hover:text-orange-400">Products</a></li>
-        </ul>
+        <!-- Language Selector -->
+        <div id="google_translate_element" class="absolute right-20 font-medium mt-1 hidden md:flex">
+            <a href="locale/id">@lang('messages.language_selector_id')</a>
+            <span class="text-gray-300">|</span>
+            <a href="locale/en">@lang('messages.language_selector_en')</a>
+            <span class="text-gray-300">|</span>
+            <a href="locale/zh">@lang('messages.language_selector_cn')</a>
+            <span class="text-gray-300">|</span>
+            <a href="locale/es">@lang('messages.language_selector_es')</a>
+        </div>
 
-        {{-- Tombol Mobile --}}
-        <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-        </button>
+        <!-- Mobile Menu Button -->
+        <div class="absolute right-0 md:hidden">
+            <button id="mobile-menu-button" class="text-gray-800">
+                <!-- Icon burger default -->
+                <svg id="burger-icon" class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+
+                <!-- Icon silang (akan disembunyikan pada awalnya) -->
+                <svg id="close-icon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
     </div>
+</div>
 
-    {{-- Menu Mobile --}}
-    <div id="mobile-menu" class="md:hidden bg-black bg-opacity-90 text-white px-6 py-4 space-y-4 hidden">
-        <a href="{{ url('/') }}" class="block hover:text-orange-400">Home</a>
-        <a href="{{ route('facilities.index') }}" class="block hover:text-orange-400">Facilities</a>
-        <a href="{{ url('/culture') }}" class="block hover:text-orange-400">Culture</a>
-        <a href="{{ url('/packages') }}" class="block hover:text-orange-400">Packages</a>
-        <a href="{{ url('/products') }}" class="block hover:text-orange-400">Products</a>
+<!-- Mobile Menu -->
+<div id="mobile-menu"
+    class="hidden fixed inset-0 bg-white z-40 flex flex-col items-center justify-center space-y-8 text-2xl">
+    <button id="close-menu" class="absolute top-4 right-4 text-gray-800">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+    </button>
+    <a href="#profile" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.profile')</a>
+    <a href="#vision" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.vision')</a>
+    <a href="#culture" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.culture')</a>
+    <a href="#gallery" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.gallery')</a>
+    <a href="#packages" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.packages')</a>
+    <a href="#facility" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.facility')</a>
+    <a href="#products" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.products')</a>
+    <a href="#social" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.social')</a>
+    <div class="flex items-center gap-2 font-medium mt-4">
+        <a href="locale/id">@lang('messages.language_selector_id')</a>
+        <span class="text-gray-300">|</span>
+        <a href="locale/en">@lang('messages.language_selector_en')</a>
+        <span class="text-gray-300">|</span>
+        <a href="locale/zh">@lang('messages.language_selector_cn')</a>
+        <span class="text-gray-300">|</span>
+        <a href="locale/es">@lang('messages.language_selector_es')</a>
     </div>
-</nav>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const toggleBtn = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        toggleBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            mobileMenu.classList.toggle('open');
-        });
-    });
-</script>
+</div>
