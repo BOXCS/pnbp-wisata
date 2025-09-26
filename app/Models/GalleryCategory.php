@@ -18,4 +18,15 @@ class GalleryCategory extends Model
     {
         return $this->hasMany(GalleryImage::class);
     }
+
+    public function getTranslated(string $field, string $locale = null): ?string
+    {
+        $locale = $locale ?? app()->getLocale();
+        $value = $this->getTranslation($field, $locale);
+
+        if ($value) return $value;
+
+        return $this->getTranslation($field, 'id')
+            ?? collect($this->getTranslations($field))->first();
+    }
 }

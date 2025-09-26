@@ -16,4 +16,24 @@ class EditGallery extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        return $this->applyFallback($data);
+    }
+
+    protected function applyFallback(array $data): array
+    {
+        $idValue = $data['name']['id'] ?? null;
+
+        if ($idValue) {
+            foreach (['en', 'zh', 'es'] as $locale) {
+                if (empty($data['name'][$locale])) {
+                    $data['name'][$locale] = $idValue;
+                }
+            }
+        }
+
+        return $data;
+    }
 }

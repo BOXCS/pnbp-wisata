@@ -19,4 +19,21 @@ class Facility extends Model
         'description',
         'image',
     ];
+
+    protected $casts = [
+        'name' => 'array',
+        'type' => 'array',
+        'description' => 'array',
+    ];
+    
+    public function getTranslated(string $field, string $locale = null): ?string
+    {
+        $locale = $locale ?? app()->getLocale();
+        $value = $this->getTranslation($field, $locale);
+
+        if ($value) return $value;
+
+        return $this->getTranslation($field, 'id')
+            ?? collect($this->getTranslations($field))->first();
+    }
 }

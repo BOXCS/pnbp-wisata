@@ -27,37 +27,47 @@ class FacilityResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\Section::make('Multi Language')
-                ->schema([
-                    Forms\Components\Tabs::make('Translations')
-                        ->tabs([
-                            Forms\Components\Tabs\Tab::make('Indonesia (id)')
-                                ->schema([
-                                    Forms\Components\TextInput::make('name.id')->label('Nama Fasilitas')->required(),
-                                    Forms\Components\TextInput::make('type.id')->label('Jenis Fasilitas'),
-                                    Forms\Components\Textarea::make('description.id')->label('Deskripsi'),
-                                ]),
-                            Forms\Components\Tabs\Tab::make('English (en)')
-                                ->schema([
-                                    Forms\Components\TextInput::make('name.en')->label('Facility Name'),
-                                    Forms\Components\TextInput::make('type.en')->label('Facility Type'),
-                                    Forms\Components\Textarea::make('description.en')->label('Description'),
-                                ]),
-                            Forms\Components\Tabs\Tab::make('中文 (zh)')
-                                ->schema([
-                                    Forms\Components\TextInput::make('name.zh')->label('设施名称'),
-                                    Forms\Components\TextInput::make('type.zh')->label('设施类型'),
-                                    Forms\Components\Textarea::make('description.zh')->label('描述'),
-                                ]),
-                            Forms\Components\Tabs\Tab::make('Español (es)')
-                                ->schema([
-                                    Forms\Components\TextInput::make('name.es')->label('Nombre de la instalación'),
-                                    Forms\Components\TextInput::make('type.es')->label('Tipo de instalación'),
-                                    Forms\Components\Textarea::make('description.es')->label('Descripción'),
-                                ]),
-                        ])
-                        ->columnSpanFull(),
-                ]),
+            Forms\Components\Tabs::make('Translations')
+                ->tabs([
+                    Forms\Components\Tabs\Tab::make('Indonesia (id)')
+                        ->schema([
+                            Forms\Components\TextInput::make('name.id')
+                                ->label('Nama Fasilitas')
+                                ->required(),
+                            Forms\Components\TextInput::make('type.id')
+                                ->label('Jenis Fasilitas'),
+                            Forms\Components\Textarea::make('description.id')
+                                ->label('Deskripsi'),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('English (en)')
+                        ->schema([
+                            Forms\Components\TextInput::make('name.en')
+                                ->label('Facility Name'),
+                            Forms\Components\TextInput::make('type.en')
+                                ->label('Facility Type'),
+                            Forms\Components\Textarea::make('description.en')
+                                ->label('Description'),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('中文 (zh)')
+                        ->schema([
+                            Forms\Components\TextInput::make('name.zh')
+                                ->label('设施名称'),
+                            Forms\Components\TextInput::make('type.zh')
+                                ->label('设施类型'),
+                            Forms\Components\Textarea::make('description.zh')
+                                ->label('描述'),
+                        ]),
+                    Forms\Components\Tabs\Tab::make('Español (es)')
+                        ->schema([
+                            Forms\Components\TextInput::make('name.es')
+                                ->label('Nombre de la instalación'),
+                            Forms\Components\TextInput::make('type.es')
+                                ->label('Tipo de instalación'),
+                            Forms\Components\Textarea::make('description.es')
+                                ->label('Descripción'),
+                        ]),
+                ])
+                ->columnSpanFull(),
 
             Forms\Components\FileUpload::make('image')
                 ->label('Gambar')
@@ -85,13 +95,13 @@ class FacilityResource extends Resource
 
                 Tables\Columns\TextColumn::make('name')
                     ->label('Nama')
-                    ->formatStateUsing(fn ($state) => $state[app()->getLocale()] ?? $state['id'] ?? '-')
+                    ->getStateUsing(fn ($record) => $record->getTranslated('name'))
                     ->searchable()
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('type')
                     ->label('Jenis')
-                    ->formatStateUsing(fn ($state) => $state[app()->getLocale()] ?? $state['id'] ?? '-')
+                    ->getStateUsing(fn ($record) => $record->getTranslated('type'))
                     ->searchable()
                     ->sortable(),
 

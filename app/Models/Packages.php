@@ -13,7 +13,7 @@ class Packages extends Model
 
     protected $fillable = ['name', 'description', 'price'];
     
-    public $translatable = ['name', 'description'];
+    public $translatable = ['name', 'description', 'price'];
 
     protected $casts = [
         'name' => 'array',
@@ -45,6 +45,17 @@ class Packages extends Model
     public function images(): HasMany
     {
         return $this->hasMany(PackageImage::class, 'package_id');
+    }
+
+    public function getTranslated(string $field, string $locale = null): ?string
+    {
+        $locale = $locale ?? app()->getLocale();
+        $value = $this->getTranslation($field, $locale);
+
+        if ($value) return $value;
+
+        return $this->getTranslation($field, 'id')
+            ?? collect($this->getTranslations($field))->first();
     }
 }
 

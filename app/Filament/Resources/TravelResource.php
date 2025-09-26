@@ -111,30 +111,30 @@ class TravelResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('Nama Paket')
-                    ->formatStateUsing(fn ($state) => $state[app()->getLocale()] ?? $state['id'] ?? '-')
+                    ->getStateUsing(fn ($record) => $record->getTranslated('name'))
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('price')
                     ->label('Harga')
-                    ->formatStateUsing(function ($state) {
+                    ->formatStateUsing(function ($state, $record) {
                         $locale = app()->getLocale();
-                        $value = $state[$locale] ?? $state['id'] ?? null;
-
+                        $value = $record->getTranslation('price', $locale) ?? $record->getTranslation('price', 'id');
+    
                         if (! $value) {
                             return '-';
                         }
-
+    
                         return match ($locale) {
-                            'en' => '$ ' . number_format($value, 2),
-                            'zh' => '¥ ' . number_format($value, 2),
-                            'es' => '€ ' . number_format($value, 2), // bisa diganti MXN kalau mau Peso
-                            default => 'Rp ' . number_format($value, 0, ',', '.'),
+                            'en' => '$ ' . number_format((float) $value, 2),
+                            'zh' => '¥ ' . number_format((float) $value, 2),
+                            'es' => '€ ' . number_format((float) $value, 2), // bisa diganti MXN untuk Peso
+                            default => 'Rp ' . number_format((float) $value, 0, ',', '.'),
                         };
                     }),
 
                 Tables\Columns\TextColumn::make('description')
                     ->label('Deskripsi')
-                    ->formatStateUsing(fn ($state) => str($state[app()->getLocale()] ?? $state['id'] ?? '')->limit(50)),
+                    ->getStateUsing(fn ($record) => $record->getTranslated('description'))
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),

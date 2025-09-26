@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\GalleryResource\Pages;
 use App\Models\GalleryImage;
-use App\Models\GalleryCategory;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -16,11 +15,8 @@ class GalleryResource extends Resource
     protected static ?string $model = GalleryImage::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
-
     protected static ?string $navigationGroup = 'Data';
-
     protected static ?string $navigationLabel = 'Gallery';
-
     protected static ?string $pluralModelLabel = 'Daftar Gallery';
 
     public static function getNavigationBadge(): ?string
@@ -37,31 +33,18 @@ class GalleryResource extends Resource
                 ->searchable()
                 ->preload()
                 ->createOptionForm([
-                    Forms\Components\Tabs::make('Translatable')
-                        ->tabs([
-                            Forms\Components\Tabs\Tab::make('Indonesia')
-                                ->schema([
-                                    Forms\Components\TextInput::make('name.id')
-                                        ->label('Nama Kategori')
-                                        ->required(),
-                                ]),
-                            Forms\Components\Tabs\Tab::make('English')
-                                ->schema([
-                                    Forms\Components\TextInput::make('name.en')
-                                        ->label('Category Name')
-                                        ->required(),
-                                ]),
-                            Forms\Components\Tabs\Tab::make('Español')
-                                ->schema([
-                                    Forms\Components\TextInput::make('name.es')
-                                        ->label('Nombre de Categoría'),
-                                ]),
-                            Forms\Components\Tabs\Tab::make('中文')
-                                ->schema([
-                                    Forms\Components\TextInput::make('name.zh')
-                                        ->label('分类名称'),
-                                ]),
-                        ]),
+                    Forms\Components\TextInput::make('name.id')
+                        ->label('Nama Kategori (ID)')
+                        ->required(),
+
+                    Forms\Components\TextInput::make('name.en')
+                        ->label('Category Name (EN)'),
+
+                    Forms\Components\TextInput::make('name.es')
+                        ->label('Nombre de Categoría (ES)'),
+
+                    Forms\Components\TextInput::make('name.zh')
+                        ->label('分类名称 (ZH)'),
                 ])
                 ->required(),
 
@@ -74,22 +57,20 @@ class GalleryResource extends Resource
         ]);
     }
 
-
-
     public static function table(Table $table): Table
     {
-        return $table
-            ->columns([
-                Tables\Columns\ImageColumn::make('image')
-                    ->label('Gambar'),
+        return $table->columns([
+            Tables\Columns\ImageColumn::make('image')
+                ->label('Gambar'),
 
-                Tables\Columns\TextColumn::make('category.name')
-                    ->label('Kategori')
-                    ->searchable(),
-            ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
-            ]);
+            Tables\Columns\TextColumn::make('category.name')
+                ->label('Kategori')
+                ->getStateUsing(fn ($record) => $record->getTranslated('category.name'))
+                ->searchable(),
+        ])
+        ->bulkActions([
+            Tables\Actions\DeleteBulkAction::make(),
+        ]);
     }
 
     public static function getPages(): array

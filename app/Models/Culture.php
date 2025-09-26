@@ -18,10 +18,19 @@ class Culture extends Model
         'description',
         'image',
     ];
-    
+
     protected $casts = [
         'image' => 'array', // jika menggunakan multiple upload
-        // atau
-        'image' => 'string', // jika single upload
     ];
+
+    public function getTranslated(string $field, string $locale = null): ?string
+    {
+        $locale = $locale ?? app()->getLocale();
+        $value = $this->getTranslation($field, $locale);
+
+        if ($value) return $value;
+
+        return $this->getTranslation($field, 'id')
+            ?? collect($this->getTranslations($field))->first();
+    }
 }

@@ -31,48 +31,36 @@ class CultureResource extends Resource
                 ->tabs([
                     Forms\Components\Tabs\Tab::make('Indonesia')
                         ->schema([
-                            Forms\Components\TextInput::make('name_id')
+                            Forms\Components\TextInput::make('name.id')
                                 ->label('Nama Budaya')
-                                ->required()
-                                ->afterStateHydrated(fn ($set, $record) => $set('name_id', $record?->getTranslation('name', 'id')))
-                                ->dehydrateStateUsing(fn ($state, $record) => $record->setTranslation('name', 'id', $state)),
-                            Forms\Components\Textarea::make('description_id')
-                                ->label('Deskripsi')
-                                ->afterStateHydrated(fn ($set, $record) => $set('description_id', $record?->getTranslation('description', 'id')))
-                                ->dehydrateStateUsing(fn ($state, $record) => $record->setTranslation('description', 'id', $state)),
+                                ->required(),
+
+                            Forms\Components\Textarea::make('description.id')
+                                ->label('Deskripsi'),
                         ]),
                     Forms\Components\Tabs\Tab::make('English')
                         ->schema([
-                            Forms\Components\TextInput::make('name_en')
-                                ->label('Culture Name')
-                                ->afterStateHydrated(fn ($set, $record) => $set('name_en', $record?->getTranslation('name', 'en')))
-                                ->dehydrateStateUsing(fn ($state, $record) => $record->setTranslation('name', 'en', $state)),
-                            Forms\Components\Textarea::make('description_en')
-                                ->label('Description')
-                                ->afterStateHydrated(fn ($set, $record) => $set('description_en', $record?->getTranslation('description', 'en')))
-                                ->dehydrateStateUsing(fn ($state, $record) => $record->setTranslation('description', 'en', $state)),
+                            Forms\Components\TextInput::make('name.en')
+                                ->label('Culture Name'),
+
+                            Forms\Components\Textarea::make('description.en')
+                                ->label('Description'),
                         ]),
                     Forms\Components\Tabs\Tab::make('Español')
                         ->schema([
-                            Forms\Components\TextInput::make('name_es')
-                                ->label('Nombre de la Cultura')
-                                ->afterStateHydrated(fn ($set, $record) => $set('name_es', $record?->getTranslation('name', 'es')))
-                                ->dehydrateStateUsing(fn ($state, $record) => $record->setTranslation('name', 'es', $state)),
-                            Forms\Components\Textarea::make('description_es')
-                                ->label('Descripción')
-                                ->afterStateHydrated(fn ($set, $record) => $set('description_es', $record?->getTranslation('description', 'es')))
-                                ->dehydrateStateUsing(fn ($state, $record) => $record->setTranslation('description', 'es', $state)),
+                            Forms\Components\TextInput::make('name.es')
+                                ->label('Nombre de la Cultura'),
+
+                            Forms\Components\Textarea::make('description.es')
+                                ->label('Descripción'),
                         ]),
                     Forms\Components\Tabs\Tab::make('中文')
                         ->schema([
-                            Forms\Components\TextInput::make('name_zh')
-                                ->label('文化名称')
-                                ->afterStateHydrated(fn ($set, $record) => $set('name_zh', $record?->getTranslation('name', 'zh')))
-                                ->dehydrateStateUsing(fn ($state, $record) => $record->setTranslation('name', 'zh', $state)),
-                            Forms\Components\Textarea::make('description_zh')
-                                ->label('描述')
-                                ->afterStateHydrated(fn ($set, $record) => $set('description_zh', $record?->getTranslation('description', 'zh')))
-                                ->dehydrateStateUsing(fn ($state, $record) => $record->setTranslation('description', 'zh', $state)),
+                            Forms\Components\TextInput::make('name.zh')
+                                ->label('文化名称'),
+
+                            Forms\Components\Textarea::make('description.zh')
+                                ->label('描述'),
                         ]),
                 ])
                 ->columnSpanFull(),
@@ -95,21 +83,19 @@ class CultureResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Nama Budaya (ID)')
-                    ->getStateUsing(fn ($record) => $record->getTranslation('name', 'id'))
+                    ->label('Nama Budaya')
+                    ->getStateUsing(fn ($record) => $record->getTranslated('name'))
                     ->searchable(),
 
                 Tables\Columns\TextColumn::make('description')
-                    ->label('Deskripsi (ID)')
-                    ->getStateUsing(fn ($record) => $record->getTranslation('description', 'id'))
-                    ->limit(30),
+                    ->label('Deskripsi')
+                    ->getStateUsing(fn ($record) => $record->getTranslated('description')),
 
                 Tables\Columns\ImageColumn::make('image')
                     ->label('Gambar')
                     ->disk('public')
                     ->height(50)
-                    ->width(50)
-                    ->visibility('public'),
+                    ->width(50),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
