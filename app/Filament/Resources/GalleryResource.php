@@ -12,6 +12,8 @@ use Filament\Tables\Table;
 
 class GalleryResource extends Resource
 {
+    protected static bool $shouldRegisterNavigation = false;
+
     protected static ?string $model = GalleryImage::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
