@@ -3,11 +3,43 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 8,
             "patches": [
                 {
                     "date": 1754682562204,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1759398751804,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,5 @@\n-Logo Arjasa\n\\ No newline at end of file\n+{{-- resources/views/vendor/filament-panels/components/logo.blade.php --}}\r\n+\r\n+<img src=\"{{ asset('images/logo-arjasa.svg') }}\" \r\n+     alt=\"Logo Arjasa\" \r\n+     class=\"h-10\">\r\n"
+                },
+                {
+                    "date": 1759398840153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +0,0 @@\n-{{-- resources/views/vendor/filament-panels/components/logo.blade.php --}}\r\n-\r\n-<img src=\"{{ asset('images/logo-arjasa.svg') }}\" \r\n-     alt=\"Logo Arjasa\" \r\n-     class=\"h-10\">\r\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1759399107097,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,5 @@\n-\n+{{-- resources/views/vendor/filament-panels/components/logo.blade.php --}}\r\n+\r\n+<img src=\"{{ asset('images/logo-arjasa.svg') }}\" \r\n+     alt=\"Logo Arjasa\" \r\n+     class=\"h-10\">\r\n"
+                },
+                {
+                    "date": 1759399258145,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n {{-- resources/views/vendor/filament-panels/components/logo.blade.php --}}\r\n \r\n <img src=\"{{ asset('images/logo-arjasa.svg') }}\" \r\n      alt=\"Logo Arjasa\" \r\n-     class=\"h-10\">\r\n+     class=\"h-20\">\r\n"
+                },
+                {
+                    "date": 1759399372948,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n {{-- resources/views/vendor/filament-panels/components/logo.blade.php --}}\r\n \r\n <img src=\"{{ asset('images/logo-arjasa.svg') }}\" \r\n      alt=\"Logo Arjasa\" \r\n-     class=\"h-20\">\r\n+     class=\"h-14\">\r\n"
+                },
+                {
+                    "date": 1759399380649,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n {{-- resources/views/vendor/filament-panels/components/logo.blade.php --}}\r\n \r\n <img src=\"{{ asset('images/logo-arjasa.svg') }}\" \r\n      alt=\"Logo Arjasa\" \r\n-     class=\"h-14\">\r\n+     class=\"h-10\">\r\n"
+                },
+                {
+                    "date": 1759399387051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n {{-- resources/views/vendor/filament-panels/components/logo.blade.php --}}\r\n \r\n <img src=\"{{ asset('images/logo-arjasa.svg') }}\" \r\n      alt=\"Logo Arjasa\" \r\n-     class=\"h-10\">\r\n+     class=\"h-12\">\r\n"
+                },
+                {
+                    "date": 1759400357410,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,1 @@\n-{{-- resources/views/vendor/filament-panels/components/logo.blade.php --}}\r\n-\r\n-<img src=\"{{ asset('images/logo-arjasa.svg') }}\" \r\n-     alt=\"Logo Arjasa\" \r\n-     class=\"h-12\">\r\n+<img src=\"{{ asset('images/logo-arjasa.svg') }}\" alt=\"Logo\" class=\"h-10\">\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1754682562203,

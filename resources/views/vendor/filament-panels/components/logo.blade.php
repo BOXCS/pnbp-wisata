@@ -1,1 +1,1 @@
-Logo Arjasa
+<img src="{{ asset('images/logo-arjasa.svg') }}" alt="Logo" class="h-10">

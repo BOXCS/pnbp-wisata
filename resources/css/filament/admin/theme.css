@@ -1,3 +1,25 @@
 @import '../../../../vendor/filament/filament/resources/css/theme.css';
 
 @config 'tailwind.config.js';
+
+/* === Override Light Mode === */
+:root {
+    color-scheme: light; /* browser paksa light */
+}
+
+/* Nonaktifkan dark mode Filament */
+[data-theme="dark"] {
+    background-color: white !important;
+    color: #111827 !important;
+}
+
+/* Override background dan teks panel */
+body, .filament-app-layout {
+    background-color: white !important;
+    color: #111827 !important;
+}
+
+/* Override warna primary amber */
+:root {
+    --filament-primary: #f59e0b; /* amber sesuai konfigurasi */
+}

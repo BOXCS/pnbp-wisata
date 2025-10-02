@@ -1,0 +1,26 @@
+{
+    "sourceFile": "resources/css/filament/admin/theme.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1759399351432,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1759400061718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n @import '../../../../vendor/filament/filament/resources/css/theme.css';\n \n @config 'tailwind.config.js';\n \n+@import './auth.css';\n+\n /* === Override Light Mode === */\n :root {\n     color-scheme: light; /* browser paksa light */\n }\n"
+                },
+                {
+                    "date": 1759400083681,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,25 @@\n+@import '../../../../vendor/filament/filament/resources/css/theme.css';\n+\n+@config 'tailwind.config.js';\n+\n+/* === Override Light Mode === */\n+:root {\n+    color-scheme: light; /* browser paksa light */\n+}\n+\n+/* Nonaktifkan dark mode Filament */\n+[data-theme=\"dark\"] {\n+    background-color: white !important;\n+    color: #111827 !important;\n+}\n+\n+/* Override background dan teks panel */\n+body, .filament-app-layout {\n+    background-color: white !important;\n+    color: #111827 !important;\n+}\n+\n+/* Override warna primary amber */\n+:root {\n+    --filament-primary: #f59e0b; /* amber sesuai konfigurasi */\n+}\n"
+                }
+            ],
+            "date": 1759399351432,
+            "name": "Commit-0",
+            "content": "@import '../../../../vendor/filament/filament/resources/css/theme.css';\n\n@config 'tailwind.config.js';\n\n/* === Override Light Mode === */\n:root {\n    color-scheme: light; /* browser paksa light */\n}\n\n/* Nonaktifkan dark mode Filament */\n[data-theme=\"dark\"] {\n    background-color: white !important;\n    color: #111827 !important;\n}\n\n/* Override background dan teks panel */\nbody, .filament-app-layout {\n    background-color: white !important;\n    color: #111827 !important;\n}\n\n/* Override warna primary amber */\n:root {\n    --filament-primary: #f59e0b; /* amber sesuai konfigurasi */\n}\n"
+        }
+    ]
+}

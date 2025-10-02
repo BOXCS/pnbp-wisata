@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 24,
+            "activePatchIndex": 28,
             "patches": [
                 {
                     "date": 1754541328297,
@@ -104,6 +104,22 @@
                 {
                     "date": 1757715087962,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,9 +48,15 @@\n                     ->formPanelWidth('40%')\n                     ->emptyPanelBackgroundImageUrl(asset('images/hero-bg2.webp'))\n                     ->emptyPanelBackgroundImageOpacity('50%'),\n     \n-                FilamentTranslatableFieldsPlugin::make(),\n+                    FilamentTranslatableFieldsPlugin::make()\n+                    ->supportedLocales([\n+                        'id' => 'Indonesia',\n+                        'en' => 'English',\n+                        'zh' => 'China',\n+                        'es' => 'Spain',\n+                    ]),\n             ])\n             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\\\Filament\\\\Widgets')\n             ->widgets([\n                 Widgets\\AccountWidget::class,\n"
+                },
+                {
+                    "date": 1759399244782,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n     public function panel(Panel $panel): Panel\n     {\n         return $panel\n             ->default()\n+            ->defaultTheme('light')\n             ->id('admin')\n             ->path('admin')\n             ->login()\n             ->colors([\n"
+                },
+                {
+                    "date": 1759399310836,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,8 @@\n     public function panel(Panel $panel): Panel\n     {\n         return $panel\n             ->default()\n-            ->defaultTheme('light')\n             ->id('admin')\n             ->path('admin')\n             ->login()\n             ->colors([\n"
+                },
+                {
+                    "date": 1759399999095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,12 @@\n             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])\n             ->sidebarCollapsibleOnDesktop()\n             ->font('Poppins')\n             ->favicon('images/logo-arjasa.svg')\n-            ->viteTheme('resources/css/filament/admin/theme.css')\n+            ->viteTheme([\n+                'resources/css/filament/admin/theme.css',\n+                'resources/css/filament/admin/auth.css',\n+            ])\n             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\\\Filament\\\\Resources')\n             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\\\Filament\\\\Pages')\n             ->pages([\n                 Pages\\Dashboard::class,\n"
+                },
+                {
+                    "date": 1759400094862,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,12 +36,9 @@\n             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])\n             ->sidebarCollapsibleOnDesktop()\n             ->font('Poppins')\n             ->favicon('images/logo-arjasa.svg')\n-            ->viteTheme([\n-                'resources/css/filament/admin/theme.css',\n-                'resources/css/filament/admin/auth.css',\n-            ])\n+            ->viteTheme('resources/css/filament/admin/theme.css')\n             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\\\Filament\\\\Resources')\n             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\\\Filament\\\\Pages')\n             ->pages([\n                 Pages\\Dashboard::class,\n"
                 }
             ],
             "date": 1754541328297,
