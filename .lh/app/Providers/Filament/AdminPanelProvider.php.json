@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 28,
+            "activePatchIndex": 29,
             "patches": [
                 {
                     "date": 1754541328297,
@@ -120,6 +120,10 @@
                 {
                     "date": 1759400094862,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,12 +36,9 @@\n             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])\n             ->sidebarCollapsibleOnDesktop()\n             ->font('Poppins')\n             ->favicon('images/logo-arjasa.svg')\n-            ->viteTheme([\n-                'resources/css/filament/admin/theme.css',\n-                'resources/css/filament/admin/auth.css',\n-            ])\n+            ->viteTheme('resources/css/filament/admin/theme.css')\n             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\\\Filament\\\\Resources')\n             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\\\Filament\\\\Pages')\n             ->pages([\n                 Pages\\Dashboard::class,\n"
+                },
+                {
+                    "date": 1759400692900,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n \n namespace App\\Providers\\Filament;\n \n use DiogoGPinto\\AuthUIEnhancer\\AuthUIEnhancerPlugin;\n+use Filament\\Enums\\ThemeMode;\n use Filament\\Http\\Middleware\\Authenticate;\n use Filament\\Http\\Middleware\\AuthenticateSession;\n use Filament\\Http\\Middleware\\DisableBladeIconComponents;\n use Filament\\Http\\Middleware\\DispatchServingFilamentEvent;\n@@ -26,8 +27,9 @@\n     public function panel(Panel $panel): Panel\n     {\n         return $panel\n             ->default()\n+            ->defaultThemeMode(ThemeMode::Light)\n             ->id('admin')\n             ->path('admin')\n             ->login()\n             ->colors([\n"
                 }
             ],
             "date": 1754541328297,

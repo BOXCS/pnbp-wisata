@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use DiogoGPinto\AuthUIEnhancer\AuthUIEnhancerPlugin;
+use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -27,6 +28,7 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
+            ->defaultThemeMode(ThemeMode::Light)
             ->id('admin')
             ->path('admin')
             ->login()
