@@ -545,14 +545,14 @@
                 <p class="text-sm">{!! __('messages.footer.address') !!}</p>
             </div>
 
-            <div>
+            {{-- <div>
                 <h4 class="font-bold mb-4">@lang('messages.footer.information')</h4>
                 <ul class="text-sm space-y-2">
                     <li><a href="#" class="hover:text-orange-500">@lang('messages.footer_info.about_us')</a></li>
                     <li><a href="#" class="hover:text-orange-500">@lang('messages.footer_info.contact')</a></li>
                     <li><a href="#" class="hover:text-orange-500">@lang('messages.footer_info.privacy_policy')</a></li>
                 </ul>
-            </div>
+            </div> --}}
 
             <div>
                 <h4 class="font-bold mb-4">@lang('messages.footer.quick_links')</h4>
@@ -567,9 +567,7 @@
             <div>
                 <h4 class="font-bold mb-4">@lang('messages.social_media')</h4>
                 <div class="flex gap-4">
-                    <a href="#" class="hover:text-orange-500">Facebook</a>
-                    <a href="#" class="hover:text-orange-500">Twitter</a>
-                    <a href="#" class="hover:text-orange-500">Instagram</a>
+                    <a href="https://www.instagram.com/desaaadat_wisataarjasa" class="hover:text-orange-500">Instagram</a>
                 </div>
             </div>
         </div>

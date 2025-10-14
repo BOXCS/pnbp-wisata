@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Log;
 use Spatie\Translatable\HasTranslations;
 
 class Packages extends Model
@@ -12,7 +13,7 @@ class Packages extends Model
     use HasTranslations;
 
     protected $fillable = ['name', 'description', 'price'];
-    
+
     public $translatable = ['name', 'description', 'price'];
 
     protected $casts = [
@@ -27,9 +28,14 @@ class Packages extends Model
             $locale = app()->getLocale();
             $prices = $this->price ?? [];
 
+            // Pastikan selalu array
+            if (!is_array($prices)) {
+                $prices = ['id' => $prices];
+            }
+
             $value = $prices[$locale] ?? $prices['id'] ?? null;
 
-            if (! $value) {
+            if ($value === null || $value === '') {
                 return '-';
             }
 
@@ -41,6 +47,8 @@ class Packages extends Model
             };
         });
     }
+
+
 
     public function images(): HasMany
     {
@@ -58,4 +66,3 @@ class Packages extends Model
             ?? collect($this->getTranslations($field))->first();
     }
 }
-
