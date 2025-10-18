@@ -146,20 +146,20 @@
 
                     <!-- Overlay -->
                     <div
-                        class="absolute bottom-0 left-0 right-0 h-[30%] bg-black bg-opacity-60 
-                                transition-all duration-700 ease-in-out group-hover:h-full 
+                        class="absolute bottom-0 left-0 right-0 h-[30%] bg-black bg-opacity-60
+                                transition-all duration-700 ease-in-out group-hover:h-full
                                 flex flex-col justify-center items-center text-white p-4">
 
                         <!-- Nama -->
                         <h3
-                            class="text-xl font-semibold transform transition-all duration-700 
+                            class="text-xl font-semibold transform transition-all duration-700
                                    group-hover:-translate-y-6">
                             {{ $culture->name }}
                         </h3>
 
                         <!-- Deskripsi -->
                         <p
-                            class="mt-2 opacity-0 translate-y-6 transition-all duration-700 delay-200 
+                            class="mt-2 opacity-0 translate-y-6 transition-all duration-700 delay-200
                                   group-hover:opacity-100 group-hover:translate-y-0 text-sm">
                             {{ $culture->description }}
                         </p>
@@ -573,8 +573,10 @@
         </div>
 
         <div class="text-center mt-8 text-sm">
-            © 2024 Desa Wisata Arjasa. All Rights Reserved.
-        </div>
+    <p>© 2024 Desa Wisata Arjasa. All Rights Reserved.</p>
+    <p>Copyright by Polije 2025.</p>
+    <p>Pendanaan PNBP 2025</p>
+</div>
     </footer>
 @endsection
 
@@ -967,7 +969,7 @@
             // Isi ulang carousel container
             const modalContainer = document.getElementById('modalCarouselContainer');
             modalContainer.innerHTML = images.map((img, i) => `
-            <img src="/storage/${img}" 
+            <img src="/storage/${img}"
                  class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${i === 0 ? 'opacity-100' : 'opacity-0'}" ... loading="lazy" decoding="async"
                  data-modal-carousel>
         `).join('');

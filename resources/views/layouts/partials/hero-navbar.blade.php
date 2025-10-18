@@ -2,9 +2,14 @@
 <div class="fixed top-0 w-full h-fit bg-white shadow z-50 py-4">
     <div class="relative flex items-center px-6 md:px-1 py-4 max-w-screen-xl mx-auto">
         <!-- Logo di kiri -->
-        <div class="absolute left-0">
-            <img src="images/logo-arjasa.svg" alt="Logo" class="h-20 md:h-20" ... loading="lazy" decoding="async" />
-        </div>
+<div class="absolute left-0 flex items-center gap-6">
+    <!-- Logo Arjasa -->
+    <img src="images/logo-arjasa.svg" alt="Logo" class="h-20 md:h-20" loading="lazy" decoding="async" />
+
+    <!-- Logo Polije -->
+    <img src="images/logo-polije.png" alt="Logo Polije" class="h-20 md:h-20" loading="lazy" decoding="async" />
+</div>
+
 
         <!-- Desktop Navbar di tengah -->
         <div class="hidden md:flex flex-col items-center justify-center w-full text-lg font-semibold">
