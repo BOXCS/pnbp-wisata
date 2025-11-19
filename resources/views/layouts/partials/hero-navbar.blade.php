@@ -1,18 +1,17 @@
 <!-- Navbar di atas gambar -->
-<div class="fixed top-0 w-full h-fit bg-white shadow z-50 py-4">
-    <div class="relative flex items-center px-6 md:px-1 py-4 max-w-screen-xl mx-auto">
+<div class="fixed top-0 w-full h-auto bg-white shadow z-50 py-4">
+    <div class="flex items-center justify-between px-6 md:px-1 py-4 max-w-screen-xl mx-auto">
         <!-- Logo di kiri -->
-<div class="absolute left-0 flex items-center gap-6">
-    <!-- Logo Arjasa -->
-    <img src="images/logo-arjasa.svg" alt="Logo" class="h-20 md:h-20" loading="lazy" decoding="async" />
+        <div class="flex items-center gap-6">
+            <!-- Logo Arjasa -->
+            <img src="images/logo-arjasa.svg" alt="Logo" class="h-20 md:h-20" loading="lazy" decoding="async" />
 
-    <!-- Logo Polije -->
-    <img src="images/logo-polije.png" alt="Logo Polije" class="h-20 md:h-20" loading="lazy" decoding="async" />
-</div>
-
+            <!-- Logo Polije -->
+            <img src="images/logo-polije.png" alt="Logo Polije" class="h-20 md:h-20" loading="lazy" decoding="async" />
+        </div>
 
         <!-- Desktop Navbar di tengah -->
-        <div class="hidden md:flex flex-col items-center justify-center w-full text-lg font-semibold">
+        <div class="hidden md:flex flex-1 justify-center text-lg font-semibold">
             <nav class="flex gap-6">
                 <a href="#profile" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.profile')</a>
                 <a href="#vision" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.vision')</a>
@@ -22,12 +21,13 @@
                 <a href="#facility" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.facility')</a>
                 <a href="#products" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.products')</a>
                 <a href="#social" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.social')</a>
-                <a href="https://carbon.atourin.com/" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.carbon')</a>
+                <a href="https://carbon.atourin.com/"
+                    class="nav-link hover:text-orange-500 transition-colors">@lang('messages.carbon')</a>
             </nav>
         </div>
 
         <!-- Language Selector -->
-        <div id="google_translate_element" class="absolute right-20 font-medium mt-1 hidden md:flex">
+        <div id="google_translate_element" class="font-medium mt-1 hidden md:flex">
             <a href="locale/id">@lang('messages.language_selector_id')</a>
             <span class="text-gray-300">|</span>
             <a href="locale/en">@lang('messages.language_selector_en')</a>
@@ -71,7 +71,8 @@
     <a href="#facility" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.facility')</a>
     <a href="#products" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.products')</a>
     <a href="#social" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.social')</a>
-    <a href="https://carbon.atourin.com/" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.carbon')</a>
+    <a href="https://carbon.atourin.com/"
+        class="nav-link hover:text-orange-500 transition-colors">@lang('messages.carbon')</a>
     <div class="flex items-center gap-2 font-medium mt-4">
         <a href="locale/id">@lang('messages.language_selector_id')</a>
         <span class="text-gray-300">|</span>
