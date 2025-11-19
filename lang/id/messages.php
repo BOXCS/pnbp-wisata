@@ -10,6 +10,7 @@ return [
     'facility' => 'Fasilitas',
     'products' => 'Produk',
     'social' => 'Sosial',
+    'carbon' => 'Kalkulator Carbon',
     'great_art_of_arjasa' => 'SENI BESAR ARJASA',
     'award' => 'ANUGERAH DESA WISATA INDONESIA (ADWI) 2024:',
     'village_name' => 'ARJASA',

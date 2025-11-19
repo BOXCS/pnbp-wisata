@@ -17,6 +17,7 @@
                 <a href="#facility" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.facility')</a>
                 <a href="#products" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.products')</a>
                 <a href="#social" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.social')</a>
+                <a href="https://carbon.atourin.com/" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.carbon')</a>
             </nav>
         </div>
 
@@ -65,6 +66,7 @@
     <a href="#facility" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.facility')</a>
     <a href="#products" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.products')</a>
     <a href="#social" class="hover:text-orange-500 transition-colors menu-link">@lang('messages.social')</a>
+    <a href="https://carbon.atourin.com/" class="nav-link hover:text-orange-500 transition-colors">@lang('messages.carbon')</a>
     <div class="flex items-center gap-2 font-medium mt-4">
         <a href="locale/id">@lang('messages.language_selector_id')</a>
         <span class="text-gray-300">|</span>

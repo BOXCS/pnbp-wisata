@@ -9,6 +9,7 @@ return [
     'facility' => 'Instalaciones',
     'products' => 'Productos',
     'social' => 'Social',
+    'carbon' => 'Calculadora de carbono',
     'great_art_of_arjasa' => 'GRAN ARTE DE ARJASA',
     'award' => 'PREMIO AL PUEBLO TURÍSTICO DE INDONESIA (ADWI) 2024:',
     'village_name' => 'ARJASA',

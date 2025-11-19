@@ -9,6 +9,7 @@ return [
     'facility' => 'Facility',
     'products' => 'Products',
     'social' => 'Social',
+    'carbon' => 'Carbon Calculator',
     'great_art_of_arjasa' => 'GREAT ART OF ARJASA',
     'award' => 'INDONESIAN TOURISM VILLAGE AWARD (ADWI) 2024:',
     'village_name' => 'ARJASA',

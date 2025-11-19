@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 12,
+            "activePatchIndex": 13,
             "patches": [
                 {
                     "date": 1756555496477,
@@ -56,6 +56,10 @@
                 {
                     "date": 1757767666094,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     'navbar_products' => 'PRODUCTS',\n     'navbar_social' => 'SOCIAL',\n     'language_selector_id' => 'ID',\n     'language_selector_en' => 'EN',\n-    'language_selector_cn' => 'CN',\n+    'language_selector_cn' => '中文',\n     'language_selector_es' => 'ES',\n     'mobile_menu_profile' => 'PROFILE',\n     'mobile_menu_vision' => 'VISION & MISSION',\n     'mobile_menu_culture' => 'CULTURE',\n"
+                },
+                {
+                    "date": 1763536111436,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n     'packages' => 'Packages',\n     'facility' => 'Facility',\n     'products' => 'Products',\n     'social' => 'Social',\n+    'carbon' => 'Carbon Calculator',\n     'great_art_of_arjasa' => 'GREAT ART OF ARJASA',\n     'award' => 'INDONESIAN TOURISM VILLAGE AWARD (ADWI) 2024:',\n     'village_name' => 'ARJASA',\n     'village_thing' => 'VILLAGE\\'S',\n"
                 }
             ],
             "date": 1756555496477,

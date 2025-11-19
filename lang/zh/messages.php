@@ -9,6 +9,7 @@ return [
     'facility' => '设施',
     'products' => '产品',
     'social' => '社交',
+    'carbon' => '碳计算器',
     'great_art_of_arjasa' => '阿尔贾萨的伟大艺术',
     'award' => '印度尼西亚旅游村奖 (ADWI) 2024:',
     'village_name' => '阿尔贾萨',
